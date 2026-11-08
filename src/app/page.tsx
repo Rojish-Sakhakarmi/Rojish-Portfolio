@@ -279,11 +279,11 @@ export default function HomePage() {
                     <form onSubmit={handleFormSubmit} className="space-y-4">
                       <div>
                         <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] mb-1.5">Your Name / Company</label>
-                        <input type="text" required value={contactName} onChange={(event) => setContactName(event.target.value)} placeholder="e.g. Sujan Shrestha" className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)]" />
+                        <input type="text" required value={contactName} onChange={(event) => setContactName(event.target.value)} placeholder="e.g.  Anil Shrestha" className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)]" />
                       </div>
                       <div>
                         <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] mb-1.5">Your Email Address</label>
-                        <input type="email" required value={contactEmail} onChange={(event) => setContactEmail(event.target.value)} placeholder="sujan@example.com" className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)]" />
+                        <input type="email" required value={contactEmail} onChange={(event) => setContactEmail(event.target.value)} placeholder="anil@example.com" className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)]" />
                       </div>
                       <div>
                         <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] mb-1.5">Message / Opportunity Scope</label>
