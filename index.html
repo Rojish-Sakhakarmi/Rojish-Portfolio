@@ -3,43 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rojish Sakhakarmi — Brand, Systems & Markets</title>
-  <meta name="description" content="Personal portfolio of Rojish Sakhakarmi. Notes on brand, marketing, design, systems, and market discipline.">
+  <title>Rojish Sakhakarmi — Business Development & Strategy</title>
+  <meta name="description" content="Personal portfolio of Rojish Sakhakarmi. Business Development Officer specializing in brand strategy, international client outreach, and market positioning.">
   <meta name="author" content="Rojish Sakhakarmi">
-  <meta property="og:title" content="Rojish Sakhakarmi">
-  <meta property="og:description" content="I think about brands, people and markets.">
+  <meta property="og:title" content="Rojish Sakhakarmi — Business Development & Strategy">
+  <meta property="og:description" content="Where strategy, creativity, and communication meet.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0a0a0a">
 
-  <!-- Favicon: Clean Ink-Square Icon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 12 L16 8 L24 12 L16 16 Z M8 17 L16 21 L24 17 M8 22 L16 26 L24 22' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linejoin='round'/></svg>">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><text x='16' y='21' font-family='monospace' font-size='14' font-weight='bold' fill='%23ffffff' text-anchor='middle'>RS</text></svg>">
 
-  <!-- Typography: Geist with Helvetica and system-ui fallback -->
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ==========================================================================
-       THEME VARIABLES & COLOR TOKENS
-       Strict Minimal Monochrome (#000 & #fff, subtle charcoal & neutral grays)
-       ========================================================================== */
     :root {
       --bg: #ffffff;
-      --bg-subtle: #f9f9fa;
+      --bg-subtle: #f8f8fa;
       --bg-card: #ffffff;
-      --bg-hover: #f4f4f6;
+      --bg-hover: #f3f3f5;
       --text: #0a0a0a;
       --text-muted: #52525b;
       --text-subtle: #71717a;
       --border: #e4e4e7;
       --border-dark: #18181b;
       --pill-bg: #f4f4f5;
-      --doodle: #18181b;
       --progress-bg: #0a0a0a;
-      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+      --card-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.06);
       --font-sans: 'Geist', 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-hand: 'Caveat', cursive, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     [data-theme="dark"] {
@@ -53,12 +48,10 @@
       --border: #27272a;
       --border-dark: #fafafa;
       --pill-bg: #18181b;
-      --doodle: #f4f4f5;
       --progress-bg: #ffffff;
-      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --card-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
     }
 
-    /* CSS Reset */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -73,13 +66,12 @@
 
     body {
       font-family: var(--font-sans);
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.6;
       background-color: var(--bg);
       color: var(--text);
-      transition: background-color 0.25s ease, color 0.25s ease;
+      transition: background-color 0.2s ease, color 0.2s ease;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
 
@@ -88,38 +80,10 @@
       text-decoration: none;
     }
 
-    button {
-      font-family: inherit;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ==========================================================================
-       CONTAINERS & COMMON UTILITIES
-       ========================================================================== */
     .container {
-      max-width: 1120px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    .section-spacing {
-      padding: 108px 0;
-      position: relative;
-    }
-
-    .divider {
-      border: 0;
-      border-top: 1px solid var(--border);
-      margin: 0;
+      padding: 0 24px;
     }
 
     #progress-bar {
@@ -133,35 +97,26 @@
       transition: width 0.1s ease-out;
     }
 
-    /* Handwritten Accent Note */
-    .hand-note {
-      font-family: var(--font-hand);
-      font-size: 20px;
-      color: var(--text-subtle);
-      line-height: 1.2;
-      display: inline-block;
-      user-select: none;
+    .font-mono {
+      font-family: var(--font-mono);
     }
 
-    /* ==========================================================================
-       HEADER & NAVIGATION
-       ========================================================================== */
     header {
       position: sticky;
       top: 0;
-      background: rgba(var(--bg), 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(var(--bg), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       z-index: 900;
-      transition: background-color 0.25s ease, border-color 0.25s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 74px;
+      height: 64px;
     }
 
     .logo-wrap {
@@ -169,40 +124,31 @@
       align-items: center;
       gap: 10px;
       font-weight: 600;
-      font-size: 17px;
+      font-size: 16px;
       letter-spacing: -0.02em;
     }
 
-    .logo-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      overflow: hidden;
+    .logo-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
       border: 1px solid var(--border);
-      background-color: var(--bg-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      background: var(--pill-bg);
     }
 
     .nav-group {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
     }
 
     .nav-link {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--text-muted);
       position: relative;
-      padding: 6px 0;
+      padding: 4px 0;
       transition: color 0.2s ease;
     }
 
@@ -219,7 +165,7 @@
       width: 0%;
       height: 1px;
       background-color: var(--text);
-      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: width 0.2s ease;
     }
 
     .nav-link:hover::after,
@@ -231,40 +177,36 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      padding: 6px 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 5px 12px;
       border: 1px solid var(--border);
       border-radius: 9999px;
       background: var(--bg-card);
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      color: inherit;
+      transition: border-color 0.2s ease;
     }
 
-    .theme-toggle-btn:hover {
-      border-color: var(--text);
-      transform: scale(1.03);
-    }
-
-    /* ==========================================================================
-       BUTTONS & PILLS
-       ========================================================================== */
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 9999px;
       background-color: var(--pill-bg);
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 12px;
+      font-family: var(--font-mono);
       border: 1px solid var(--border);
     }
 
     .pulse-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background-color: var(--text);
+      background-color: #10b981;
       display: inline-block;
       animation: pulseDot 2s infinite ease-in-out;
     }
@@ -279,13 +221,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 9999px;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       transition: all 0.2s ease;
       white-space: nowrap;
-      position: relative;
+      cursor: pointer;
     }
 
     .btn-solid {
@@ -295,304 +239,205 @@
     }
 
     .btn-solid:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
+      opacity: 0.9;
     }
 
     .btn-outline {
-      background-color: transparent;
+      background: transparent;
       color: var(--text);
       border: 1px solid var(--border-dark);
     }
 
     .btn-outline:hover {
       background-color: var(--pill-bg);
-      transform: translateY(-1px);
     }
 
-    .btn-arrow {
-      display: inline-block;
-      transition: transform 0.2s ease;
+    .hero-section {
+      padding: 48px 0 40px 0;
     }
 
-    .btn:hover .btn-arrow {
-      transform: translateX(4px);
-    }
-
-    /* ==========================================================================
-       HERO SECTION WITH DOODLES & ART
-       ========================================================================== */
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 48px;
       align-items: center;
-      gap: 56px;
-      padding: 90px 0 80px 0;
-    }
-
-    .hero-content {
-      position: relative;
     }
 
     .hero-headline-wrap {
-      margin: 22px 0 20px 0;
-      position: relative;
+      font-size: clamp(34px, 5.2vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin: 20px 0;
     }
 
-    .headline-line {
-      font-size: clamp(38px, 5.2vw, 64px);
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+    .hero-headline-wrap span {
       display: block;
     }
 
-    /* Hand-drawn underline doodle for the word 'brands' */
-    .doodle-underline {
-      position: relative;
-      display: inline-block;
-    }
-
-    .doodle-underline svg {
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 100%;
-      height: 14px;
-      overflow: visible;
-      stroke: var(--doodle);
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-    }
-
     .hero-subtext {
-      font-size: 19px;
-      line-height: 1.55;
+      font-size: 17px;
       color: var(--text-muted);
-      max-width: 580px;
-      margin-bottom: 34px;
-      letter-spacing: -0.01em;
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 28px;
     }
 
     .hero-buttons {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
 
     .hero-socials {
       display: flex;
       align-items: center;
-      gap: 18px;
-      font-size: 14px;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
       color: var(--text-subtle);
-    }
-
-    .hero-socials a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s ease;
     }
 
     .hero-socials a:hover {
       color: var(--text);
     }
 
-    /* Cool Line Art / Human Sketch Card */
     .hero-art-card {
-      position: relative;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 32px 28px;
+      border-radius: 20px;
+      padding: 24px;
       box-shadow: var(--card-shadow);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: relative;
       overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
     .hero-art-card:hover {
       border-color: var(--text);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
 
-    .sketch-human-illustration {
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-      stroke: var(--doodle);
-      fill: none;
-      animation: gentleFloat 6s ease-in-out infinite;
-    }
-
-    @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    .art-badge {
-      margin-top: 18px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      border: 1px dashed var(--border);
-      background: var(--bg-subtle);
-      font-family: var(--font-hand);
-      font-size: 17px;
-      color: var(--text-muted);
+    .art-tech-header, .art-tech-footer {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
     }
 
-    /* Floating mini doodles around art */
-    .float-doodle {
-      position: absolute;
-      stroke: var(--doodle);
-      fill: none;
-      pointer-events: none;
+    .art-tech-footer {
+      border-bottom: none;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      padding-bottom: 0;
+      margin-top: 16px;
+      margin-bottom: 0;
     }
 
-    /* ==========================================================================
-       TICKER (SCROLLING STRIP)
-       ========================================================================== */
-    .ticker-wrap {
+    .capabilities-wrap {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      padding: 16px 0;
-      white-space: nowrap;
-      user-select: none;
-      background: var(--bg-subtle);
+      background-color: var(--bg-subtle);
+      padding: 32px 0;
+      margin: 20px 0 48px 0;
     }
 
-    .ticker-inner {
-      display: inline-flex;
-      animation: tickerRoll 24s linear infinite;
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
     }
 
-    .ticker-wrap:hover .ticker-inner {
-      animation-play-state: paused;
+    .capability-card {
+      border-left: 2px solid var(--border-dark);
+      padding-left: 16px;
     }
 
-    .ticker-item {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0 32px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .ticker-star {
-      display: inline-block;
+    .capability-tag {
+      font-family: var(--font-mono);
       font-size: 11px;
-      opacity: 0.6;
+      color: var(--text-subtle);
+      margin-bottom: 4px;
     }
 
-    @keyframes tickerRoll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .capability-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
     }
 
-    /* ==========================================================================
-       DISCIPLINE LESSONS (WITH SKETCH ICONS)
-       ========================================================================== */
+    .capability-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .section-spacing {
+      padding: 48px 0;
+    }
+
     .section-title {
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 600;
       letter-spacing: -0.03em;
-      margin-bottom: 36px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
     }
 
     .discipline-grid {
-      display: grid;
-      grid-template-columns: 1fr;
       border-top: 1px solid var(--border);
     }
 
     .discipline-row {
       display: grid;
-      grid-template-columns: 280px 1fr auto;
-      align-items: center;
-      gap: 24px;
-      padding: 24px 8px;
+      grid-template-columns: 260px 1fr;
+      align-items: baseline;
+      gap: 20px;
+      padding: 18px 8px;
       border-bottom: 1px solid var(--border);
-      transition: all 0.2s ease;
-      position: relative;
+      transition: background-color 0.15s ease, padding-left 0.15s ease;
     }
 
     .discipline-row:hover {
       background: var(--bg-hover);
-      padding-left: 18px;
-      padding-right: 18px;
-      border-radius: 12px;
-    }
-
-    .discipline-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .discipline-sketch-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      stroke: var(--doodle);
-      fill: none;
-      transition: transform 0.2s ease;
-    }
-
-    .discipline-row:hover .discipline-sketch-icon {
-      transform: scale(1.1) rotate(-4deg);
-      border-color: var(--text);
+      padding-left: 14px;
+      border-radius: 8px;
     }
 
     .discipline-title {
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: -0.01em;
       color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .discipline-lesson {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    /* ==========================================================================
-       BLOG & ESSAYS
-       ========================================================================== */
     .post-row {
       display: grid;
-      grid-template-columns: 140px 1fr auto;
+      grid-template-columns: 120px 1fr auto;
       align-items: baseline;
-      gap: 24px;
-      padding: 24px 8px;
+      gap: 20px;
+      padding: 18px 8px;
       border-bottom: 1px solid var(--border);
-      transition: all 0.2s ease;
+      transition: background-color 0.15s ease, padding-left 0.15s ease;
       cursor: pointer;
     }
 
@@ -602,385 +447,105 @@
 
     .post-row:hover {
       background: var(--bg-hover);
-      padding-left: 16px;
-      padding-right: 16px;
-      border-radius: 12px;
-    }
-
-    .post-row:hover .row-arrow {
-      transform: translateX(4px);
+      padding-left: 14px;
+      border-radius: 8px;
     }
 
     .post-date {
-      font-size: 14px;
+      font-family: var(--font-mono);
+      font-size: 13px;
       color: var(--text-subtle);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .post-main {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
     }
 
     .post-title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text);
+      margin-bottom: 4px;
     }
 
     .post-summary {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .post-meta-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
     }
 
     .category-chip {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 500;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background: var(--pill-bg);
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      background-color: var(--pill-bg);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      white-space: nowrap;
     }
 
-    .row-arrow {
-      font-size: 16px;
-      color: var(--text-muted);
-      transition: transform 0.2s ease;
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: start;
     }
 
-    /* Blog Controls */
-    .blog-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .filter-chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      font-size: 13px;
-      font-weight: 500;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      border: 1px solid var(--border);
+    .contact-card {
       background: var(--bg-card);
-      color: var(--text-muted);
-      transition: all 0.2s ease;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
     }
 
-    .filter-btn:hover {
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 6px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
       color: var(--text);
-      border-color: var(--text);
-    }
-
-    .filter-btn.active {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
-
-    .search-box {
       font-family: inherit;
       font-size: 14px;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text);
-      width: 240px;
       outline: none;
       transition: border-color 0.2s ease;
     }
 
-    .search-box:focus {
+    .form-input:focus, .form-textarea:focus {
       border-color: var(--text);
     }
 
-    .empty-state {
-      padding: 64px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 16px;
+    .form-textarea {
+      resize: none;
+      min-height: 110px;
+    }
+
+    .shared-contact-band {
       border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* Single Post View */
-    .post-column {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 60px 0 80px 0;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-bottom: 36px;
-      transition: color 0.2s ease;
-    }
-
-    .back-link:hover {
-      color: var(--text);
-    }
-
-    .post-view-title {
-      font-size: clamp(32px, 4.5vw, 44px);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    .post-view-meta {
-      font-size: 14px;
-      color: var(--text-subtle);
-      margin-bottom: 40px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-      letter-spacing: -0.01em;
-    }
-
-    .post-content p {
-      font-size: 19px;
-      line-height: 1.7;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-
-    .trading-disclaimer {
-      font-size: 14px;
-      font-style: italic;
-      color: var(--text-subtle);
-      border-left: 2px solid var(--border);
-      padding-left: 14px;
-      margin: 24px 0;
-    }
-
-    .post-footer-nav {
-      margin-top: 56px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    /* ==========================================================================
-       ABOUT VIEW (#about) WITH PHOTO & SKETCH TAPE
-       ========================================================================== */
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 56px;
-      align-items: start;
-    }
-
-    .lead-text {
-      font-size: clamp(22px, 3vw, 29px);
-      font-weight: 500;
-      line-height: 1.35;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      color: var(--text);
-    }
-
-    .body-copy {
-      font-size: 17px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 20px;
-    }
-
-    .at-a-glance-table {
-      width: 100%;
-      border-top: 1px solid var(--border);
-      margin: 32px 0;
-    }
-
-    .glance-row {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 16px;
-    }
-
-    .glance-label {
-      font-weight: 500;
-      color: var(--text-subtle);
-    }
-
-    .glance-value {
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    /* Polaroid / Framed Photo with Hand-drawn Washi Tape */
-    .profile-photo-frame {
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px;
-      box-shadow: var(--card-shadow);
-      text-align: center;
-    }
-
-    .washi-tape {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-2deg);
-      width: 110px;
-      height: 24px;
-      background: var(--pill-bg);
-      border: 1px dashed var(--border);
-      z-index: 2;
-      opacity: 0.9;
-    }
-
-    .photo-inner {
-      aspect-ratio: 1 / 1;
-      border-radius: 12px;
-      overflow: hidden;
-      background-color: var(--bg-subtle);
-      margin-bottom: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .photo-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(100%) contrast(1.05);
-      transition: filter 0.3s ease, transform 0.3s ease;
-    }
-
-    .photo-inner:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.02);
-    }
-
-    .photo-caption {
-      font-family: var(--font-hand);
-      font-size: 19px;
-      color: var(--text-subtle);
+      padding: 48px 0;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    /* ==========================================================================
-       CONTACT CTA BAND WITH PAPER AIRPLANE DOODLE
-       ========================================================================== */
-    .contact-band {
-      border-top: 1px solid var(--border);
-      padding: 96px 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .contact-headline {
-      font-size: clamp(30px, 4vw, 44px);
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .contact-subtext {
-      font-size: 17px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      max-width: 520px;
-    }
-
-    .contact-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      justify-content: space-between;
       flex-wrap: wrap;
+      gap: 24px;
     }
 
-    .copy-pill-btn {
-      font-size: 13px;
-      font-weight: 500;
-      padding: 10px 18px;
-      border-radius: 9999px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text-muted);
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .copy-pill-btn:hover {
-      border-color: var(--text);
-      color: var(--text);
-    }
-
-    .airplane-sketch-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .airplane-sketch {
-      width: 100%;
-      max-width: 260px;
-      stroke: var(--doodle);
-      fill: none;
-      animation: planeHover 5s ease-in-out infinite;
-    }
-
-    @keyframes planeHover {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(2deg); }
-    }
-
-    /* ==========================================================================
-       FOOTER
-       ========================================================================== */
     footer {
       border-top: 1px solid var(--border);
-      padding: 34px 0;
-      font-size: 14px;
+      padding: 24px 0;
+      font-size: 13px;
+      font-family: var(--font-mono);
       color: var(--text-muted);
-      background: var(--bg);
     }
 
     .footer-inner {
@@ -994,32 +559,27 @@
     .footer-links {
       display: flex;
       align-items: center;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      transition: color 0.2s ease;
+      gap: 20px;
     }
 
     .footer-links a:hover {
       color: var(--text);
     }
 
-    /* Toast Notification */
     .toast-pill {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
+      bottom: 24px;
+      right: 24px;
       background: var(--text);
       color: var(--bg);
-      padding: 10px 18px;
+      padding: 8px 16px;
       border-radius: 9999px;
-      font-size: 13px;
-      font-weight: 500;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       transform: translateY(100px);
       opacity: 0;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s ease;
       z-index: 1000;
     }
 
@@ -1028,91 +588,44 @@
       opacity: 1;
     }
 
-    /* ==========================================================================
-       RESPONSIVE BREAKPOINTS
-       ========================================================================== */
-    @media (max-width: 900px) {
+    @media (max-width: 860px) {
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 50px 0 60px 0;
-      }
-      .about-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .contact-grid {
-        grid-template-columns: 1fr;
         gap: 32px;
+        padding: 30px 0;
       }
-      .airplane-sketch-wrap {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header-inner {
-        height: 64px;
-      }
-      .nav-group {
-        gap: 18px;
+      .contact-layout {
+        grid-template-columns: 1fr;
       }
       .discipline-row {
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 6px;
       }
       .post-row {
         grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .post-meta-right {
-        justify-content: space-between;
-      }
-      .glance-row {
-        grid-template-columns: 130px 1fr;
-      }
-      .blog-controls {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .search-box {
-        width: 100%;
+        gap: 8px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Reading Progress Indicator -->
   <div id="progress-bar"></div>
 
-  <!-- Global Header -->
+  <!-- Header -->
   <header>
     <div class="container">
       <div class="header-inner">
         <a href="#" class="logo-wrap" id="logo-link">
-          <div class="logo-avatar">
-            <img src="/images/profile.jpg" alt="Rojish" onerror="this.onerror=null; this.src='profile.jpg';" />
-          </div>
+          <span class="logo-badge">RS</span>
           <span>Rojish Sakhakarmi</span>
         </a>
 
         <nav class="nav-group" aria-label="Main Navigation">
           <a href="#about" class="nav-link" id="nav-about">About</a>
-          <a href="#blog" class="nav-link" id="nav-blog">Blog</a>
+          <a href="#blog" class="nav-link" id="nav-blog">Writing</a>
           <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
           <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
             <span id="theme-text">Dark</span>
           </button>
         </nav>
@@ -1120,88 +633,77 @@
     </div>
   </header>
 
-  <!-- Main View Router Container -->
-  <main id="app"></main>
+  <!-- Router Mount -->
+  <main id="app" class="container"></main>
 
-  <!-- Global Footer -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <div>© 2026 Rojish Sakhakarmi ✦ Nepal</div>
+        <div>© 2026 Rojish Sakhakarmi — Bhaktapur, Nepal</div>
         <div class="footer-links">
           <a href="https://linkedin.com/in/rojish0" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://instagram.com/rojish0" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://github.com/Rojish-Sakhakarmi" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="/admin" target="_blank" rel="noopener noreferrer">Admin CMS ↗</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Toast Notification Pill -->
   <div class="toast-pill" id="toast">Copied email to clipboard!</div>
 
-  <!-- ==========================================================================
-       JAVASCRIPT: CONTENT DATA, ROUTING, & VECTOR DOODLES
-       ========================================================================== -->
   <script>
-    // =========================================================================
-    // BLOG DATA ARRAY
-    // Add new essays by appending an object here.
-    // =========================================================================
     const BLOG_POSTS = [
       {
-        slug: "what-a-brand-promises",
-        title: "What a brand actually promises",
-        category: "Brand",
-        date: "2026-09-12",
-        excerpt: "A brand is a promise people can check. Here is how I think about making one that holds.",
+        slug: "why-creativity-needs-strategy",
+        title: "Why creativity becomes truly valuable only when backed by strategy",
+        category: "Brand Strategy",
+        date: "2026-09-15",
+        excerpt: "Making things look good is only half the work. True creative impact comes from understanding why a brand exists, who it serves, and the business problem it solves.",
         body: [
-          "A brand is never just a logo, a color palette, or a memorable sentence on a landing page. At its core, it is simply an expectation you set in someone's mind and whether you honor it when they actually interact with you.",
-          "Most organizations fail because they promise one thing in their communication and deliver something entirely different in their operations. When expectations and reality diverge, trust doesn't just erode—it vanishes.",
-          "The strongest brands I have studied do the opposite: they identify a single, specific truth about how they operate, communicate it with absolute clarity, and refuse to complicate it. Say one thing, deliver it consistently, and let the experience speak for itself."
+          "In graphic design and branding, it is easy to get caught up in aesthetic trends, colors, and typography. But over time, working across both creative design and business development, I realized that aesthetics without strategy rarely produce lasting business value.",
+          "Good design catches attention, but strategic positioning builds trust. Before sketching a logo or planning a website layout, you have to ask the fundamental commercial questions: What specific problem are we solving? What expectation are we setting in the client's mind? And can the business consistently deliver on that expectation?",
+          "When creativity is anchored to a clear business objective, design stops being a decorative expense and becomes a powerful commercial asset. It communicates value before a word is read and removes friction for the decision-maker."
         ]
       },
       {
-        slug: "the-trades-i-skipped",
-        title: "Why my best trades were the ones I skipped",
-        category: "Markets",
-        date: "2026-08-03",
-        excerpt: "Patience is a position. Notes on waiting for a clear setup instead of forcing one.",
+        slug: "international-client-outreach",
+        title: "What international client outreach taught me about business development",
+        category: "Business Development",
+        date: "2026-08-20",
+        excerpt: "Notes from lead generation and client communication at WebX Nepal. Why listening and understanding client requirements beats high-pressure pitches.",
         body: [
-          "When I first began observing the markets, I assumed that activity equaled progress. It felt unnatural to sit with open capital and do nothing while prices ticked across the screen.",
-          "Over time, the market taught me that boredom is often the highest-yielding posture. Forcing trades out of restlessness or the fear of missing out invariably leads to poor execution and unnecessary loss. Sitting on your hands until the probability is firmly in your favor preserves both mental clarity and capital.",
-          "Being right matters far less than managing risk and respecting discipline. Waiting for the market to meet your rules rather than chasing its moves is the entire game. This is my personal experience, not financial advice."
+          "Stepping into business development at WebX Nepal, I was tasked with international outreach, lead generation, and digital positioning. Coming in with a design and IT background, I initially wondered how much persuasion would be required.",
+          "What I quickly discovered was that effective business development is not about aggressive selling. It is about careful research, active listening, and diagnosing what a prospective partner actually needs before proposing a digital solution.",
+          "When you take the time to understand a client's workflows, target audience, and current bottlenecks, the commercial proposal almost writes itself. Genuine communication and clear expectations build partnerships that last."
         ]
       },
       {
-        slug: "listening-is-the-skill",
-        title: "Listening is the real sales skill",
-        category: "Sales",
-        date: "2026-06-20",
-        excerpt: "The best pitch I ever heard was mostly questions.",
+        slug: "teaching-financial-markets",
+        title: "What educating others on financial markets taught me about risk and patience",
+        category: "Financial Markets",
+        date: "2026-07-10",
+        excerpt: "Observing the stock and forex markets rewards emotional discipline over impulse. Teaching financial literacy showed me how human psychology drives decision-making.",
         body: [
-          "Early in my exposure to sales, I thought persuasion was an exercise in eloquence. I believed that having the sharper pitch, the quickest rebuttal, and the polished deck would close any conversation.",
-          "In practice, the most effective conversations I have ever observed were almost quiet. The seller spoke perhaps twenty percent of the time, asking grounded questions and letting the other person articulate their real friction points.",
-          "When someone genuinely feels heard and their dilemma is accurately defined, the solution rarely needs to be hard-sold. Understand the need first, remove the posturing, and the right offer almost explains itself."
+          "My fascination with the financial markets—from stock investing to forex—began with a simple curiosity about how capital flows and how market participants react to uncertainty. In trading, you quickly learn that being right matters far less than managing downside risk.",
+          "When I started teaching and educating others about financial literacy and market fundamentals, I noticed that the hardest lesson is rarely technical analysis—it is emotional discipline. Most beginners lose money not because of bad charts, but because of impatience and ego.",
+          "Whether in the markets or in business negotiations, patience is an active position. Managing risk, preserving resources, and waiting for high-probability setups will always compound better than chasing restless impulses. (This reflects personal experience, not financial advice.)"
         ]
       },
       {
-        slug: "design-removes-effort",
-        title: "Good design removes effort",
-        category: "Design",
-        date: "2026-05-02",
-        excerpt: "If people hesitate, the design has more work to do.",
+        slug: "systems-thinking-from-it",
+        title: "How an IT background in cybersecurity shapes business thinking",
+        category: "Systems & Tech",
+        date: "2026-06-05",
+        excerpt: "Studying Computer Science and networking at KFA Business School gave me a framework for diagnosing friction and understanding how systems behave under pressure.",
         body: [
-          "There is a persistent temptation in design to add decorative flourishes, unexpected patterns, or clever interactions to prove that effort was expended. But great design rarely calls attention to itself.",
-          "When someone visits a page, looks at a document, or navigates an interface, every split second of hesitation is friction. If they have to pause and wonder what is clickable, where to look next, or what a label means, the design has created unnecessary cognitive debt.",
-          "True craftsmanship lies in subtraction. It is the quiet discipline of aligning spacing, choosing legible type, and arranging information so naturally that the reader absorbs the message without ever thinking about the container."
+          "Completing my Bachelor's in Computer Science and IT with a focus on networking and cybersecurity gave me a foundational appreciation for how interconnected systems function—and where they break.",
+          "In cybersecurity, you learn that vulnerabilities rarely appear in the center of a well-trodden process; they emerge at the handoffs, the edge cases, and the gaps where communication breaks down. The exact same rule applies to business operations and sales funnels.",
+          "When a business struggles to convert leads or scale its brand, the bottleneck is almost always an unaddressed operational edge case. Having an IT mindset allows me to analyze commercial problems with structured logic, ensuring that marketing promises align with operational capability."
         ]
       }
     ];
 
-    // =========================================================================
-    // UTILITIES
-    // =========================================================================
     function escapeHtml(str) {
       if (!str) return '';
       return String(str)
@@ -1212,55 +714,22 @@
         .replace(/'/g, '&#039;');
     }
 
-    function formatDate(dateStr) {
-      const parts = dateStr.split('-');
-      const date = new Date(parts[0], parts[1] - 1, parts[2]);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
-    }
-
-    function formatMonthYear(dateStr) {
-      const parts = dateStr.split('-');
-      const date = new Date(parts[0], parts[1] - 1, parts[2]);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long'
-      });
-    }
-
-    function calculateReadingTime(paragraphs) {
-      const totalWords = paragraphs.join(' ').trim().split(/\s+/).length;
-      const minutes = Math.ceil(totalWords / 200);
-      return `${minutes} min read`;
-    }
-
-    function showToast(message) {
+    function showToast(msg) {
       const toast = document.getElementById('toast');
-      toast.textContent = message;
+      toast.textContent = msg;
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2400);
+      setTimeout(() => toast.classList.remove('show'), 2800);
     }
 
     window.copyEmail = function() {
-      navigator.clipboard.writeText('rojish180@gmail.com').then(() => {
-        showToast('rojish180@gmail.com copied to clipboard!');
+      navigator.clipboard.writeText('hello@rojish-sakhakarmi.com.np').then(() => {
+        showToast('hello@rojish-sakhakarmi.com.np copied to clipboard!');
       });
     };
 
-    // =========================================================================
-    // THEME HANDLING
-    // =========================================================================
+    // Theme Toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeText = document.getElementById('theme-text');
-
-    function getInitialTheme() {
-      const stored = localStorage.getItem('theme');
-      if (stored) return stored;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
 
     function applyTheme(theme) {
       if (theme === 'dark') {
@@ -1279,704 +748,611 @@
       applyTheme(next);
     });
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
-    });
+    applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
 
-    applyTheme(getInitialTheme());
-
-    // =========================================================================
-    // SHARED CONTACT BAND (WITH AIRPLANE DOODLE)
-    // =========================================================================
-    function renderContactBand() {
+    // Shared Band
+    function renderSharedContactBand() {
       return `
-        <section id="contact-band" class="contact-band">
-          <div class="container">
-            <div class="contact-grid">
-              <div>
-                <span class="hand-note" style="margin-bottom: 8px;">Direct conversation ✦</span>
-                <h2 class="contact-headline">Let's talk about ideas worth building.</h2>
-                <p class="contact-subtext">Brand, growth, design or markets. Send a note and I'll reply personally.</p>
-
-                <div class="contact-actions">
-                  <a href="mailto:rojish180@gmail.com" class="btn btn-solid">
-                    <span>rojish180@gmail.com</span>
-                    <span class="btn-arrow">→</span>
-                  </a>
-                  <button class="copy-pill-btn" onclick="copyEmail()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
-                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-                    </svg>
-                    <span>Copy email</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Hand-Drawn Paper Airplane Vector Doodle -->
-              <div class="airplane-sketch-wrap" aria-hidden="true">
-                <svg class="airplane-sketch" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Flight trajectory loop -->
-                  <path d="M 20 150 C 40 160, 70 145, 80 120 C 90 95, 75 70, 50 80 C 25 90, 40 125, 80 115 C 130 105, 160 55, 195 45" 
-                        stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
-                  <!-- Airplane body -->
-                  <polygon points="195,45 130,55 160,78" stroke-width="2" stroke-linejoin="round"/>
-                  <polygon points="195,45 160,78 175,90" stroke-width="1.5" stroke-linejoin="round"/>
-                  <line x1="160" y1="78" x2="195" y2="45" stroke-width="1.8"/>
-                  <!-- Sparkle doodle -->
-                  <path d="M 215 35 L 215 25 M 215 35 L 225 35 M 215 35 L 215 45 M 215 35 L 205 35" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
+        <section class="shared-contact-band">
+          <div>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle);">Direct line //</span>
+            <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Let's talk about ideas worth building.</h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Business development, brand strategy, creative direction, or financial markets. Send a note and I will reply personally.</p>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="btn btn-solid">Initiate conversation →</a>
+            <button class="btn btn-outline" onclick="copyEmail()">Copy email</button>
           </div>
         </section>
       `;
     }
 
-    // =========================================================================
-    // VIEW RENDERERS
-    // =========================================================================
-
     // 1. HOME VIEW
     function renderHome() {
-      const recentPosts = BLOG_POSTS.slice(0, 3);
-      const postRows = recentPosts.map(post => `
+      const postRows = BLOG_POSTS.slice(0, 3).map(post => `
         <div class="post-row" onclick="location.hash='#post/${escapeHtml(post.slug)}'">
-          <div class="post-date">${escapeHtml(formatDate(post.date))}</div>
-          <div class="post-main">
+          <div class="post-date">${escapeHtml(post.date)}</div>
+          <div>
             <h3 class="post-title">${escapeHtml(post.title)}</h3>
             <p class="post-summary">${escapeHtml(post.excerpt)}</p>
           </div>
-          <div class="post-meta-right">
+          <div>
             <span class="category-chip">${escapeHtml(post.category)}</span>
-            <span class="row-arrow">→</span>
           </div>
         </div>
       `).join('');
 
       return `
-        <!-- Hero Section -->
         <section class="hero-section">
-          <div class="container">
-            <div class="hero-grid">
-              
-              <!-- Left: Editorial Copy -->
-              <div class="hero-content">
-                <div class="pill">
-                  <span class="pulse-dot"></span>
-                  <span>Open to conversations</span>
-                </div>
-
-                <div class="hero-headline-wrap">
-                  <span class="headline-line">
-                    I think about 
-                    <span class="doodle-underline">
-                      brands,
-                      <svg viewBox="0 0 160 16" preserveAspectRatio="none">
-                        <path d="M 4 12 C 40 4, 110 5, 156 10 C 130 14, 60 13, 20 14"/>
-                      </svg>
-                    </span>
-                  </span>
-                  <span class="headline-line">people and markets.</span>
-                </div>
-
-                <p class="hero-subtext">
-                  Based in Nepal, with a background in IT and working knowledge of marketing, sales, design and trading. I write about what each one teaches me.
-                </p>
-
-                <div class="hero-buttons">
-                  <a href="#blog" class="btn btn-solid">
-                    <span>Read the blog</span>
-                    <span class="btn-arrow">→</span>
-                  </a>
-                  <a href="#about" class="btn btn-outline">
-                    <span>About me</span>
-                    <span class="btn-arrow">→</span>
-                  </a>
-                  <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-style: dashed;">
-                    <span>Resume</span>
-                  </a>
-                </div>
-
-                <div class="hero-socials">
-                  <span class="hand-note" style="font-size: 18px; margin-right: 6px;">Connect ✦</span>
-                  <a href="https://linkedin.com/in/rojish0" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-                  <a href="https://instagram.com/rojish0" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-                  <a href="https://github.com/Rojish-Sakhakarmi" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
+          <div class="hero-grid">
+            <div>
+              <div class="pill">
+                <span class="pulse-dot"></span>
+                <span>Based in Bhaktapur, Nepal • Open to BD Roles</span>
               </div>
 
-              <!-- Right: Cool Human Sketch / Line-Art Card -->
+              <div class="hero-headline-wrap">
+                <span>Where strategy, creativity,</span>
+                <span>and communication meet.</span>
+              </div>
+
+              <p class="hero-subtext">
+                Business Development Officer with frontline experience in international client outreach, brand positioning, and graphic design. Grounded in an academic background in IT and an active educator in the financial markets.
+              </p>
+
+              <div class="hero-buttons">
+                <a href="#contact" class="btn btn-solid">Initiate Conversation →</a>
+                <a href="#about" class="btn btn-outline">Read My Story</a>
+                <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline font-mono" style="font-size: 12px;">Resume.pdf ↗</a>
+              </div>
+
+              <div class="hero-socials">
+                <span style="color: var(--text);">CHANNELS //</span>
+                <a href="https://linkedin.com/in/rojish0" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                <a href="https://instagram.com/rojish0" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                <a href="mailto:hello@rojish-sakhakarmi.com.np">hello@rojish-sakhakarmi.com.np ↗</a>
+              </div>
+            </div>
+
+            <!-- Vector Strategic Matrix Card -->
+            <div>
               <div class="hero-art-card">
-                <!-- Decorative sketch star doodle top right -->
-                <svg class="float-doodle" style="top: 16px; right: 20px; width: 28px; height: 28px;" viewBox="0 0 32 32">
-                  <path d="M 16 2 L 18 12 L 28 14 L 18 16 L 16 26 L 14 16 L 4 14 L 14 12 Z" stroke-width="1.8" stroke-linejoin="round"/>
-                </svg>
-                
-                <!-- Editorial Line Art Illustration of Human Thinker & Markets -->
-                <svg class="sketch-human-illustration" viewBox="0 0 300 270" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Desk Horizon Line -->
-                  <path d="M 20 220 L 280 220" stroke-width="2" stroke-linecap="round"/>
-                  
-                  <!-- Human Silhouette & Profile Contour (Minimalist Ink Line Art) -->
-                  <!-- Head, hair & thoughtful posture -->
-                  <path d="M 125 75 C 130 50, 165 45, 175 65 C 185 85, 180 105, 165 118 C 160 122, 155 130, 158 145 L 168 185" 
-                        stroke-width="2.4" stroke-linecap="round"/>
-                  <path d="M 140 55 C 150 48, 170 50, 175 65 C 165 65, 155 70, 150 78" 
-                        stroke-width="1.8" stroke-linecap="round"/>
-                  <!-- Eyewear / focused gaze line -->
-                  <circle cx="162" cy="85" r="9" stroke-width="2"/>
-                  <path d="M 171 85 L 180 82" stroke-width="1.8" stroke-linecap="round"/>
-                  <circle cx="163" cy="85" r="1.5" fill="currentColor"/>
-                  <!-- Nose and jawline profile -->
-                  <path d="M 172 87 L 176 95 L 170 98 L 171 106 C 165 114, 155 116, 148 116" 
-                        stroke-width="2" stroke-linecap="round"/>
+                <div class="art-tech-header">
+                  <span>COMMERCIAL ARCHITECTURE</span>
+                  <span>STRATEGY // OUTREACH</span>
+                </div>
 
-                  <!-- Torso & Arm resting on notebook -->
-                  <path d="M 125 145 C 110 160, 95 180, 85 220" stroke-width="2.2" stroke-linecap="round"/>
-                  <path d="M 158 145 C 175 160, 195 175, 210 220" stroke-width="2.2" stroke-linecap="round"/>
-                  <!-- Forearm & hand with pen -->
-                  <path d="M 105 185 C 120 185, 145 195, 160 195 L 165 188" stroke-width="2" stroke-linecap="round"/>
-
-                  <!-- Notebook / Laptop Wireframe -->
-                  <path d="M 130 195 L 190 195 L 205 215 L 115 215 Z" stroke-width="2" stroke-linejoin="round"/>
-                  <line x1="135" y1="202" x2="185" y2="202" stroke-width="1.4" stroke-linecap="round"/>
-                  <line x1="130" y1="208" x2="190" y2="208" stroke-width="1.4" stroke-linecap="round"/>
-
-                  <!-- Coffee mug line doodle -->
-                  <rect x="65" y="195" width="22" height="25" rx="3" stroke-width="2"/>
-                  <path d="M 87 200 C 94 200, 94 212, 87 212" stroke-width="1.8"/>
-                  <path d="M 72 188 C 72 184, 76 182, 76 178 M 79 188 C 79 184, 83 182, 83 178" stroke-width="1.4" stroke-linecap="round"/>
-
-                  <!-- Floating Market Candlestick & Chart Sketch -->
-                  <g opacity="0.85">
-                    <line x1="210" y1="120" x2="210" y2="155" stroke-width="1.2"/>
-                    <rect x="207" y="128" width="6" height="18" stroke-width="1.6" fill="currentColor"/>
-                    <line x1="225" y1="105" x2="225" y2="148" stroke-width="1.2"/>
-                    <rect x="222" y="112" width="6" height="22" stroke-width="1.6"/>
-                    <line x1="240" y1="85" x2="240" y2="135" stroke-width="1.2"/>
-                    <rect x="237" y="95" width="6" height="26" stroke-width="1.6" fill="currentColor"/>
-                    <!-- Trend line sketch -->
-                    <path d="M 200 150 Q 220 135, 255 80" stroke-width="1.8" stroke-dasharray="3 3"/>
+                <svg class="sketch-vector" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" style="max-width: 280px; margin: 0 auto; display: block;">
+                  <g stroke="currentColor" stroke-width="0.8" opacity="0.2">
+                    <line x1="30" y1="20" x2="240" y2="20" stroke-dasharray="3 3"/>
+                    <line x1="30" y1="95" x2="240" y2="95" stroke-dasharray="3 3"/>
+                    <line x1="30" y1="170" x2="240" y2="170"/>
+                    <line x1="30" y1="20" x2="30" y2="170"/>
+                    <line x1="135" y1="20" x2="135" y2="170" stroke-dasharray="3 3"/>
+                    <line x1="240" y1="20" x2="240" y2="170" stroke-dasharray="3 3"/>
                   </g>
+                  <text x="35" y="16" fill="currentColor" font-size="8" font-family="monospace" stroke="none" opacity="0.6">COMMERCIAL VALUE ▲</text>
+                  <text x="170" y="185" fill="currentColor" font-size="8" font-family="monospace" stroke="none" opacity="0.6">BRAND TRUST ▶</text>
+                  
+                  <path d="M 30 165 Q 80 160, 110 135 T 170 85 T 235 30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+                  
+                  <circle cx="85" cy="155" r="4" stroke="currentColor" stroke-width="1.6" fill="var(--bg-card)"/>
+                  <circle cx="85" cy="155" r="1.5" fill="currentColor"/>
+                  
+                  <circle cx="140" cy="110" r="4" stroke="currentColor" stroke-width="1.6" fill="var(--bg-card)"/>
+                  <circle cx="140" cy="110" r="1.5" fill="currentColor"/>
+                  
+                  <circle cx="210" cy="50" r="6" stroke="currentColor" stroke-width="2" fill="var(--bg-card)"/>
+                  <circle cx="210" cy="50" r="2.5" fill="currentColor"/>
 
-                  <!-- Spark of Idea doodle near head -->
-                  <path d="M 120 40 L 120 30 M 105 50 L 98 44 M 135 50 L 142 44" stroke-width="1.8" stroke-linecap="round"/>
-                  <!-- Organic thought loop -->
-                  <path d="M 90 70 C 80 60, 60 70, 70 85 C 60 95, 75 110, 85 105 C 95 105, 100 95, 90 85 Z" 
-                        stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 3"/>
+                  <text x="95" y="158" fill="currentColor" font-size="8" font-family="monospace" stroke="none" opacity="0.75">Client Discovery</text>
+                  <text x="150" y="113" fill="currentColor" font-size="8" font-family="monospace" stroke="none" opacity="0.75">Strategic Alignment</text>
+                  <text x="180" y="38" fill="currentColor" font-size="9" font-weight="bold" font-family="monospace" stroke="none">Value Delivered ✓</text>
                 </svg>
 
-                <div class="art-badge">
-                  <span>✦</span>
-                  <span>curiosity · systems · discipline</span>
-                  <span>✦</span>
+                <div class="art-tech-footer">
+                  <span>OUTREACH & DISCOVERY</span>
+                  <span>CREATIVE STRATEGY</span>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
 
-        <!-- Scrolling Tape Strip -->
-        <div class="ticker-wrap" aria-hidden="true">
-          <div class="ticker-inner">
-            <span class="ticker-item">Marketing <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Sales <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Graphic Design <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">UI/UX <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Technology <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Trading <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Marketing <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Sales <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Graphic Design <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">UI/UX <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Technology <span class="ticker-star">✦</span></span>
-            <span class="ticker-item">Trading <span class="ticker-star">✦</span></span>
+        <!-- Static Capabilities Grid (Replaces Flowing Bar) -->
+        <section class="capabilities-wrap">
+          <div class="capabilities-grid">
+            <div class="capability-card">
+              <div class="capability-tag">01. OUTREACH & GROWTH</div>
+              <div class="capability-title">Business Development</div>
+              <div class="capability-desc">International client outreach, lead generation, researching partner requirements, and digital positioning.</div>
+            </div>
+            <div class="capability-card">
+              <div class="capability-tag">02. BRAND & CREATIVE</div>
+              <div class="capability-title">Graphic Design & Positioning</div>
+              <div class="capability-desc">Brand identity, visual communication, layout, and creative direction backed by clear commercial intent.</div>
+            </div>
+            <div class="capability-card">
+              <div class="capability-tag">03. FINANCIAL MARKETS</div>
+              <div class="capability-title">Market Education & Risk</div>
+              <div class="capability-desc">Stock investing, Forex trading, and educating others on risk management, patience, and market psychology.</div>
+            </div>
+            <div class="capability-card">
+              <div class="capability-tag">04. SYSTEMS & DIGITAL</div>
+              <div class="capability-title">IT & E-Commerce Operations</div>
+              <div class="capability-desc">BCS.IT foundations in cybersecurity and networking, combined with hands-on SEO and product management.</div>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <!-- What Each Discipline Taught Me (With Hand-drawn Sketch Icons) -->
+        <!-- Discipline Lessons -->
         <section class="section-spacing">
-          <div class="container">
-            <div class="section-title">
-              <span>What each discipline taught me</span>
-              <span class="hand-note">six foundational lessons ✦</span>
+          <div class="section-title">
+            <span>What each discipline taught me</span>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-subtle);">[ 06 DISCIPLINES ]</span>
+          </div>
+
+          <div class="discipline-grid">
+            <div class="discipline-row">
+              <div class="discipline-title"><span class="font-mono" style="font-size: 11px; color: var(--text-subtle);">01.</span> Business Development</div>
+              <div class="discipline-lesson">Listening is the skill. Research the prospect's real requirements first, understand their workflow bottlenecks, and the commercial proposal explains itself.</div>
             </div>
-
-            <div class="discipline-grid">
-              
-              <!-- Marketing -->
-              <div class="discipline-row">
-                <div class="discipline-left">
-                  <div class="discipline-sketch-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <!-- Megaphone doodle -->
-                      <path d="M3 11v3a1 1 0 0 0 1 1h2l4 4V5L6 9H4a1 1 0 0 0-1 1z" stroke-width="1.8" stroke-linejoin="round"/>
-                      <path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12" stroke-width="1.8" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="discipline-title">Marketing</div>
-                </div>
-                <div class="discipline-lesson">
-                  People buy a clear idea of who they become. Say one thing and say it well.
-                </div>
-              </div>
-
-              <!-- Sales -->
-              <div class="discipline-row">
-                <div class="discipline-left">
-                  <div class="discipline-sketch-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <!-- Listening / Speech questions doodle -->
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="1.8"/>
-                      <circle cx="9" cy="10" r="1" fill="currentColor"/>
-                      <circle cx="13" cy="10" r="1" fill="currentColor"/>
-                      <circle cx="17" cy="10" r="1" fill="currentColor"/>
-                    </svg>
-                  </div>
-                  <div class="discipline-title">Sales</div>
-                </div>
-                <div class="discipline-lesson">
-                  Listening is the skill. Understand the need first and the offer almost explains itself.
-                </div>
-              </div>
-
-              <!-- Graphic Design -->
-              <div class="discipline-row">
-                <div class="discipline-left">
-                  <div class="discipline-sketch-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <!-- Pen tool & palette sketch -->
-                      <path d="M12 19l7-7 3 3-7 7-3-3z" stroke-width="1.8"/>
-                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18" stroke-width="1.8"/>
-                      <circle cx="11" cy="11" r="2" stroke-width="1.6"/>
-                    </svg>
-                  </div>
-                  <div class="discipline-title">Graphic design</div>
-                </div>
-                <div class="discipline-lesson">
-                  Consistency builds trust. Spacing, type and colour set how a brand feels before a word is read.
-                </div>
-              </div>
-
-              <!-- UI/UX -->
-              <div class="discipline-row">
-                <div class="discipline-left">
-                  <div class="discipline-sketch-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <!-- Interface Wireframe doodle -->
-                      <rect x="3" y="3" width="18" height="18" rx="3" stroke-width="1.8"/>
-                      <line x1="3" y1="9" x2="21" y2="9" stroke-width="1.6"/>
-                      <line x1="9" y1="21" x2="9" y2="9" stroke-width="1.6"/>
-                    </svg>
-                  </div>
-                  <div class="discipline-title">UI/UX</div>
-                </div>
-                <div class="discipline-lesson">
-                  Good design removes effort. If people hesitate, the design has more work to do.
-                </div>
-              </div>
-
-              <!-- Information Technology -->
-              <div class="discipline-row">
-                <div class="discipline-left">
-                  <div class="discipline-sketch-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <!-- Node System / Code bracket doodle -->
-                      <polyline points="16 18 22 12 16 6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                      <polyline points="8 6 2 12 8 18" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                      <line x1="14" y1="4" x2="10" y2="20" stroke-width="1.6" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="discipline-title">Information technology</div>
-                </div>
-                <div class="discipline-lesson">
-                  Systems fail at the edges. Simple tools that people understand beat clever ones they cannot maintain.
-                </div>
-              </div>
-
-              <!-- Trading -->
-              <div class="discipline-row">
-                <div class="discipline-left">
-                  <div class="discipline-sketch-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <!-- Candlestick chart sketch -->
-                      <line x1="6" y1="3" x2="6" y2="21" stroke-width="1.5"/>
-                      <rect x="4" y="7" width="4" height="8" stroke-width="1.6" fill="currentColor"/>
-                      <line x1="18" y1="3" x2="18" y2="21" stroke-width="1.5"/>
-                      <rect x="16" y="9" width="4" height="9" stroke-width="1.6"/>
-                    </svg>
-                  </div>
-                  <div class="discipline-title">Trading</div>
-                </div>
-                <div class="discipline-lesson">
-                  Being right matters less than managing risk. Discipline and patience compound; impulse does not.
-                </div>
-              </div>
-
+            <div class="discipline-row">
+              <div class="discipline-title"><span class="font-mono" style="font-size: 11px; color: var(--text-subtle);">02.</span> Graphic Design & Branding</div>
+              <div class="discipline-lesson">Creativity becomes valuable when backed by strategy. Typography, spacing, and visual hierarchy set how a brand feels before a word is read.</div>
+            </div>
+            <div class="discipline-row">
+              <div class="discipline-title"><span class="font-mono" style="font-size: 11px; color: var(--text-subtle);">03.</span> Financial Markets & Mentorship</div>
+              <div class="discipline-lesson">Being right matters far less than managing risk. Teaching others market literacy reinforced that emotional discipline and patience compound over time.</div>
+            </div>
+            <div class="discipline-row">
+              <div class="discipline-title"><span class="font-mono" style="font-size: 11px; color: var(--text-subtle);">04.</span> Client & Customer Communication</div>
+              <div class="discipline-lesson">Sales is not about pressure; it is about diagnosing need. Understand consumer psychology and align your solution with what they genuinely seek.</div>
+            </div>
+            <div class="discipline-row">
+              <div class="discipline-title"><span class="font-mono" style="font-size: 11px; color: var(--text-subtle);">05.</span> Information Technology & Cybersecurity</div>
+              <div class="discipline-lesson">Systems fail at the handoffs and edges. Simple, dependable processes that teams understand beat overly complex systems that break under pressure.</div>
+            </div>
+            <div class="discipline-row">
+              <div class="discipline-title"><span class="font-mono" style="font-size: 11px; color: var(--text-subtle);">06.</span> E-Commerce & Digital Operations</div>
+              <div class="discipline-lesson">Attention to detail determines conversion. Optimized product listings, precise mockups, and structured SEO build steady organic visibility.</div>
             </div>
           </div>
         </section>
 
-        <!-- Latest Writing -->
+        <!-- Latest Notes -->
         <section class="section-spacing" style="padding-top: 0;">
-          <div class="container">
-            <div class="section-title">
-              <span>Latest writing</span>
-              <a href="#blog" class="btn btn-outline" style="font-size: 14px; padding: 6px 16px;">
-                <span>All notes</span>
-                <span class="btn-arrow">→</span>
-              </a>
-            </div>
-
-            <div class="posts-list">
-              ${postRows}
-            </div>
+          <div class="section-title">
+            <span>Recent Writing & Notes</span>
+            <a href="#blog" class="font-mono" style="font-size: 12px; text-transform: uppercase;">All notes →</a>
           </div>
+          <div>${postRows}</div>
         </section>
 
-        ${renderContactBand()}
+        ${renderSharedContactBand()}
       `;
     }
 
-    // 2. ABOUT VIEW (WITH FRAMED PROFILE PHOTO & ANNOTATIONS)
+    // 2. CONTACT VIEW
+    function renderContact() {
+      return `
+        <section class="section-spacing">
+          <div style="max-width: 820px; margin: 0 auto;">
+            <div style="margin-bottom: 32px;">
+              <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-subtle); display: block; margin-bottom: 8px;">[ DIRECT CONTACT & COLLABORATION ]</span>
+              <h1 style="font-size: clamp(30px, 4vw, 44px); font-weight: 600; letter-spacing: -0.03em; margin-bottom: 8px;">Let's talk about ideas worth building.</h1>
+              <p style="color: var(--text-muted); font-size: 16px;">Business development, brand positioning, creative direction, or financial market conversations. Send a note and I will reply personally.</p>
+            </div>
+
+            <div class="contact-layout">
+              <div class="contact-card">
+                <form onsubmit="handleContactSubmit(event)">
+                  <div class="form-group">
+                    <label class="form-label">Your Name / Company</label>
+                    <input type="text" id="contact-name" required class="form-input" placeholder="e.g. Sujan Shrestha" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Your Email Address</label>
+                    <input type="email" id="contact-email" required class="form-input" placeholder="sujan@example.com" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Message / Opportunity Scope</label>
+                    <textarea id="contact-message" required class="form-textarea" placeholder="Tell me about your project, role, or what you'd like to collaborate on..."></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-solid" style="width: 100%;">Send Message →</button>
+                </form>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-subtle);">
+                  <div class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 6px;">Direct Email</div>
+                  <div class="font-mono" style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">hello@rojish-sakhakarmi.com.np</div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-outline" style="font-size: 11px; padding: 6px 14px;" onclick="copyEmail()">Copy email</button>
+                    <a href="mailto:hello@rojish-sakhakarmi.com.np" class="btn btn-solid" style="font-size: 11px; padding: 6px 14px;">Direct Mail ↗</a>
+                  </div>
+                </div>
+
+                <div style="padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);">
+                  <div class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 12px;">Professional Channels</div>
+                  <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
+                    <a href="https://linkedin.com/in/rojish0" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: space-between;">
+                      <span>LinkedIn</span>
+                      <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">in/rojish0 ↗</span>
+                    </a>
+                    <a href="https://instagram.com/rojish0" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: space-between;">
+                      <span>Instagram</span>
+                      <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">@rojish0 ↗</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="font-mono" style="padding: 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 12px; color: var(--text-subtle);">
+                  Location: Bhaktapur, Nepal (UTC+5:45)
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    window.handleContactSubmit = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const message = document.getElementById('contact-message').value;
+      const mailto = `mailto:hello@rojish-sakhakarmi.com.np?subject=${encodeURIComponent("Inquiry from " + name)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
+      window.location.href = mailto;
+      showToast('Opening email client...');
+    };
+
+    // 3. ABOUT VIEW
     function renderAbout() {
       return `
         <article class="section-spacing">
-          <div class="container">
-            <h1 class="section-title" style="font-size: clamp(34px, 5vw, 48px); margin-bottom: 48px;">
-              <span>About</span>
-              <span class="hand-note">philosophy & path ✦</span>
-            </h1>
+          <div class="section-title">
+            <div>
+              <span>About Me</span>
+              <p style="font-size: 14px; font-weight: 400; color: var(--text-muted); margin-top: 4px;">Business Development • Brand Strategy • Graphic Design • Financial Markets</p>
+            </div>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-subtle);">[ BHAKTAPUR // NEPAL ]</span>
+          </div>
 
-            <div class="about-layout">
-              
-              <!-- Left: Narrative -->
-              <div>
-                <section style="margin-bottom: 56px;">
-                  <h2 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 16px;">The short version</h2>
-                  <p class="lead-text">
-                    I'm a Nepal-based professional with a background in information technology and a trader's discipline, focused on how brands grow and how people make decisions.
-                  </p>
-                  <p class="body-copy">
-                    Technology gave me a way of thinking about systems. Marketing, sales and design showed me how people respond to them. Trading showed me how I respond under pressure.
-                  </p>
-                </section>
+          <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 40px; align-items: start;">
+            <div>
+              <!-- Introduction -->
+              <section style="margin-bottom: 36px;">
+                <h2 class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 12px;">Personal Introduction</h2>
+                <p style="font-size: clamp(20px, 2.5vw, 25px); font-weight: 500; line-height: 1.35; margin-bottom: 16px;">
+                  My name is Rojish Sakhakarmi, based in Bhaktapur, Nepal. I am a multidisciplinary creative and business enthusiast exploring how creativity, technology, and strategy come together to build meaningful brands and businesses.
+                </p>
+                <div style="color: var(--text-muted); font-size: 15px; line-height: 1.6; display: flex; flex-direction: column; gap: 12px;">
+                  <p>Rather than limiting myself to one narrow discipline, I have been actively exploring different areas—from business development and client outreach to graphic design, e-commerce, and financial markets—learning how they connect and gaining practical frontline experience.</p>
+                  <p>I am particularly interested in understanding people, identifying commercial opportunities, solving real bottlenecks, and turning ideas into something meaningful and sustainable.</p>
+                </div>
+              </section>
 
-                <section style="margin-bottom: 56px;">
-                  <h2 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 20px;">How I got here</h2>
-                  <p class="body-copy">
-                    I started with technology because I wanted to understand how things are built. Along the way I became interested in why some brands stick and others disappear, which led me to marketing, sales and graphic design.
-                  </p>
-                  <p class="body-copy">
-                    Trading came from wanting to understand money and risk first-hand. It rewards patience and punishes ego, and it keeps me honest about what I know.
-                  </p>
-                  <p class="body-copy">
-                    Today I bring all of it to one question: what makes people trust a brand, choose it, and stay.
-                  </p>
-                </section>
+              <!-- Philosophy -->
+              <section style="margin-bottom: 36px; padding: 24px; border-radius: 16px; border: 1px solid var(--border); background: var(--bg-subtle);">
+                <span class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); display: block; margin-bottom: 8px;">My Philosophy</span>
+                <blockquote style="font-size: 18px; font-weight: 600; font-style: italic; margin-bottom: 10px;">
+                  "Creativity becomes more valuable when it is backed by strategy."
+                </blockquote>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+                  I believe in more than just making things look good. I want to understand why something exists, who it serves, and how it can create real commercial and human value. When visual design is paired with clear business logic and active listening, brands earn trust that lasts.
+                </p>
+              </section>
 
-                <section>
-                  <h2 style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 16px;">At a glance</h2>
-                  <div class="at-a-glance-table">
-                    <div class="glance-row">
-                      <div class="glance-label">Based in</div>
-                      <div class="glance-value">Nepal</div>
+              <!-- Experience Timeline -->
+              <section style="margin-bottom: 36px;">
+                <h2 class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 16px;">Professional Experience</h2>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <!-- WebX Nepal -->
+                  <div style="padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                      <div>
+                        <h3 style="font-size: 16px; font-weight: 600;">Business Development Intern</h3>
+                        <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">WebX Nepal</span>
+                      </div>
+                      <span class="font-mono" style="font-size: 11px; padding: 2px 8px; border-radius: 9999px; border: 1px solid var(--border); background: var(--pill-bg);">Completed Internship</span>
                     </div>
-                    <div class="glance-row">
-                      <div class="glance-label">Background</div>
-                      <div class="glance-value">Information technology</div>
-                    </div>
-                    <div class="glance-row">
-                      <div class="glance-label">Interests</div>
-                      <div class="glance-value">Marketing, sales, design, markets</div>
-                    </div>
-                    <div class="glance-row">
-                      <div class="glance-label">Open to</div>
-                      <div class="glance-value">Conversations and collaborations</div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">
+                      Worked across branding, creative website development, business development, client outreach, and digital positioning. Gained direct hands-on exposure to:
+                    </p>
+                    <div class="font-mono" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 6px; font-size: 12px; color: var(--text-muted);">
+                      <div>• International client outreach</div>
+                      <div>• Business research & lead gen</div>
+                      <div>• Brand positioning & strategy</div>
+                      <div>• Client requirements mapping</div>
+                      <div>• Website experience planning</div>
+                      <div>• Creative direction</div>
                     </div>
                   </div>
 
-                  <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                    <span>Download resume</span>
-                    <span class="btn-arrow">→</span>
+                  <!-- Aiecom Solutions -->
+                  <div style="padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                      <div>
+                        <h3 style="font-size: 16px; font-weight: 600;">E-commerce Assistant</h3>
+                        <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">Aiecom Solutions</span>
+                      </div>
+                      <span class="font-mono" style="font-size: 11px; padding: 2px 8px; border-radius: 9999px; border: 1px solid var(--border); background: var(--pill-bg);">2023 – 2025</span>
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-muted);">
+                      Handled e-commerce operations, product listing and catalog management, SEO and product optimization, and visual product mockups.
+                    </p>
+                  </div>
+
+                  <!-- Agam DeBuDs -->
+                  <div style="padding: 18px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);">
+                    <div style="margin-bottom: 6px;">
+                      <h3 style="font-size: 15px; font-weight: 600;">Social Media Manager</h3>
+                      <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">Agam DeBuDs Pvt. Ltd.</span>
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-muted);">
+                      Led social media management, content planning, and digital brand communication.
+                    </p>
+                  </div>
+
+                  <!-- Joshi Ayurved -->
+                  <div style="padding: 18px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);">
+                    <div style="margin-bottom: 6px;">
+                      <h3 style="font-size: 15px; font-weight: 600;">Pharmacist / Sales Management</h3>
+                      <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">Joshi Ayurved</span>
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-muted);">
+                      Direct retail sales management and customer engagement, developing active listening skills and an intuitive grasp of customer psychology.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Financial Markets & Mentorship -->
+              <section style="margin-bottom: 36px; padding: 22px; border-radius: 16px; border: 1px solid var(--border); background: var(--bg-card);">
+                <span class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); display: block; margin-bottom: 8px;">Financial Markets & Mentorship</span>
+                <h3 style="font-size: 17px; font-weight: 600; margin-bottom: 8px;">Educating & Mentoring in Market Literacy</h3>
+                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px;">
+                  Outside my commercial work, I have a strong passion for financial markets—including stock market investing and forex trading. I actively educate and teach people about market fundamentals, financial literacy, and how to manage risk under uncertainty.
+                </p>
+                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+                  Teaching financial markets has taught me the paramount importance of patience and emotional discipline: managing downside risk matters far more than impulse, whether executing a trade or structuring a long-term business agreement.
+                </p>
+              </section>
+
+              <!-- Education -->
+              <section style="margin-bottom: 36px;">
+                <h2 class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 14px;">Academic Background</h2>
+                <div style="padding: 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                    <div>
+                      <h3 style="font-size: 16px; font-weight: 600;">Bachelor's in Computer Science / IT (BCS.IT)</h3>
+                      <span class="font-mono" style="font-size: 12px; color: var(--text-subtle);">KFA Business School and IT</span>
+                    </div>
+                    <span class="font-mono" style="font-size: 11px; padding: 2px 8px; border-radius: 9999px; border: 1px solid var(--border); background: var(--pill-bg);">Cybersecurity & Networking Focus</span>
+                  </div>
+                  <p style="font-size: 14px; color: var(--text-muted);">
+                    Focused academically on cybersecurity and network infrastructure, providing a strong technical backbone for understanding how modern systems communicate, where friction emerges, and how digital workflows scale.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Skills & Capabilities Grid -->
+              <section style="margin-bottom: 24px;">
+                <h2 class="font-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-bottom: 14px;">Skills & Competencies</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                  <div style="padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-subtle);">
+                    <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Business & Strategy</h4>
+                    <div class="font-mono" style="font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px;">
+                      <div>• International client outreach</div>
+                      <div>• Business research & lead gen</div>
+                      <div>• Brand strategy & positioning</div>
+                      <div>• Customer psychology</div>
+                      <div>• Client communication</div>
+                    </div>
+                  </div>
+
+                  <div style="padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-subtle);">
+                    <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Branding & Graphic Design</h4>
+                    <div class="font-mono" style="font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px;">
+                      <div>• Brand identity & visual direction</div>
+                      <div>• Graphic design & layout</div>
+                      <div>• Typography & visual hierarchy</div>
+                      <div>• Adobe Photoshop & Illustrator</div>
+                      <div>• Figma & Canva</div>
+                    </div>
+                  </div>
+
+                  <div style="padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-subtle);">
+                    <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Digital Marketing & Operations</h4>
+                    <div class="font-mono" style="font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px;">
+                      <div>• Search Engine Optimization (SEO)</div>
+                      <div>• E-commerce listing & mockups</div>
+                      <div>• Social media management</div>
+                      <div>• Content strategy & planning</div>
+                      <div>• Website experience planning</div>
+                    </div>
+                  </div>
+
+                  <div style="padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-subtle);">
+                    <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Financial Markets & IT</h4>
+                    <div class="font-mono" style="font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px;">
+                      <div>• Stock market investing & Forex</div>
+                      <div>• Financial literacy education</div>
+                      <div>• Risk management discipline</div>
+                      <div>• HTML & CSS fundamentals</div>
+                      <div>• Cybersecurity & Networking</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+                <a href="#contact" class="btn btn-solid">Get in touch →</a>
+                <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline font-mono" style="font-size: 12px;">Download Resume (PDF) ↗</a>
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div style="position: sticky; top: 90px;">
+              <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--border); background: #000; color: #fff; font-family: monospace; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto;">
+                  RS
+                </div>
+                <div style="font-weight: 600; font-size: 15px;">Rojish Sakhakarmi</div>
+                <div class="font-mono" style="font-size: 12px; color: var(--text-subtle); margin-top: 2px;">Business Development Officer</div>
+                <div class="font-mono" style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Bhaktapur, Nepal</div>
+
+                <div class="font-mono" style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; text-align: left; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-subtle);">Focus</span>
+                    <span>Business Development</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-subtle);">Creative</span>
+                    <span>Graphic Design & Brand</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-subtle);">Markets</span>
+                    <span>Forex & Stock Educator</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-subtle);">Education</span>
+                    <span>BCS.IT (KFA)</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-subtle);">Status</span>
+                    <span style="color: #10b981;">Available for Roles</span>
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--border);">
+                  <a href="mailto:hello@rojish-sakhakarmi.com.np" class="font-mono" style="font-size: 11px; color: var(--text-subtle); text-decoration: underline;">
+                    hello@rojish-sakhakarmi.com.np
                   </a>
-                </section>
-              </div>
-
-              <!-- Right: Framed Portrait with Sketched Washi Tape & Hand-drawn arrow -->
-              <div style="position: sticky; top: 110px;">
-                <div class="profile-photo-frame">
-                  <div class="washi-tape"></div>
-                  <div class="photo-inner">
-                    <img src="/images/profile.jpg" alt="Rojish Sakhakarmi" onerror="this.onerror=null; this.src='profile.jpg';" />
-                  </div>
-                  <div class="photo-caption">
-                    <span>✦ Rojish Sakhakarmi</span>
-                  </div>
-                  <div class="hand-note" style="font-size: 17px; margin-top: 8px; color: var(--text-subtle);">
-                    Bhaktapur, Nepal
-                  </div>
-                </div>
-
-                <!-- Sketch arrow pointing up to photo -->
-                <div style="margin-top: 24px; text-align: center;" aria-hidden="true">
-                  <svg width="180" height="60" viewBox="0 0 180 60" style="stroke: var(--doodle); fill: none;">
-                    <path d="M 20 45 C 50 55, 90 40, 110 20" stroke-width="1.8" stroke-dasharray="3 3"/>
-                    <polyline points="102,18 112,18 112,28" stroke-width="1.8"/>
-                    <text x="10" y="25" font-family="'Caveat', cursive" font-size="19" fill="currentColor">practical mindset</text>
-                  </svg>
                 </div>
               </div>
-
             </div>
           </div>
         </article>
 
-        ${renderContactBand()}
+        ${renderSharedContactBand()}
       `;
     }
 
-    // 3. BLOG VIEW (CATEGORY FILTER + SEARCH)
+    // 4. BLOG VIEW
     let currentCategory = "All";
     let currentSearch = "";
 
     function renderBlog() {
       const categories = ["All", ...Array.from(new Set(BLOG_POSTS.map(p => p.category)))];
-
       const filtered = BLOG_POSTS.filter(post => {
-        const matchesCategory = currentCategory === "All" || post.category === currentCategory;
+        const matchesCat = currentCategory === "All" || post.category === currentCategory;
         const q = currentSearch.toLowerCase().trim();
-        const matchesSearch = !q ||
-          post.title.toLowerCase().includes(q) ||
-          post.excerpt.toLowerCase().includes(q) ||
-          post.body.join(' ').toLowerCase().includes(q);
-        return matchesCategory && matchesSearch;
+        return matchesCat && (!q || post.title.toLowerCase().includes(q) || post.excerpt.toLowerCase().includes(q) || post.body.join(' ').toLowerCase().includes(q));
       });
 
-      const chipsHtml = categories.map(cat => `
-        <button class="filter-btn ${cat === currentCategory ? 'active' : ''}" onclick="setBlogCategory('${escapeHtml(cat)}')">
+      const chips = categories.map(cat => `
+        <button class="pill ${cat === currentCategory ? 'font-mono' : ''}" style="${cat === currentCategory ? 'background: var(--text); color: var(--bg);' : ''}" onclick="setBlogCategory('${escapeHtml(cat)}')">
           ${escapeHtml(cat)}
         </button>
       `).join('');
 
-      let contentHtml = '';
-      if (filtered.length === 0) {
-        contentHtml = `<div class="empty-state">No posts match that yet.</div>`;
-      } else {
-        contentHtml = filtered.map(post => `
-          <div class="post-row" onclick="location.hash='#post/${escapeHtml(post.slug)}'">
-            <div class="post-date">${escapeHtml(formatDate(post.date))}</div>
-            <div class="post-main">
-              <h3 class="post-title">${escapeHtml(post.title)}</h3>
-              <p class="post-summary">${escapeHtml(post.excerpt)}</p>
-            </div>
-            <div class="post-meta-right">
-              <span class="category-chip">${escapeHtml(post.category)}</span>
-              <span class="row-arrow">→</span>
-            </div>
+      const postRows = filtered.length === 0 ? `<div style="padding: 48px 0; text-align: center; color: var(--text-muted); font-size: 13px;" class="font-mono">No notes match that yet.</div>` : filtered.map(post => `
+        <div class="post-row" onclick="location.hash='#post/${escapeHtml(post.slug)}'">
+          <div class="post-date">${escapeHtml(post.date)}</div>
+          <div>
+            <h3 class="post-title">${escapeHtml(post.title)}</h3>
+            <p class="post-summary">${escapeHtml(post.excerpt)}</p>
           </div>
-        `).join('');
-      }
+          <div>
+            <span class="category-chip">${escapeHtml(post.category)}</span>
+          </div>
+        </div>
+      `).join('');
 
       return `
         <section class="section-spacing">
-          <div class="container">
-            <div class="section-title" style="margin-bottom: 8px;">
-              <span>Blog</span>
-              <span class="hand-note">reflections & field notes ✦</span>
+          <div class="section-title">
+            <div>
+              <span>Writing & Notes</span>
+              <p style="font-size: 14px; font-weight: 400; color: var(--text-muted); margin-top: 4px;">Thoughts on business development, brand strategy, graphic design, financial markets, and systems.</p>
             </div>
-            <p class="hero-subtext" style="margin-bottom: 44px;">Notes on brand, sales, design, technology and markets.</p>
-
-            <div class="blog-controls">
-              <div class="filter-chips">
-                ${chipsHtml}
-              </div>
-              <input
-                type="search"
-                class="search-box"
-                id="blog-search-input"
-                placeholder="Search essays (press / to focus)..."
-                value="${escapeHtml(currentSearch)}"
-                oninput="handleBlogSearch(this.value)"
-                aria-label="Search essays"
-              />
-            </div>
-
-            <div class="posts-list" id="blog-posts-container">
-              ${contentHtml}
-            </div>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-subtle);">[ ${BLOG_POSTS.length} ARTICLES ]</span>
           </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">${chips}</div>
+            <input type="search" placeholder="Search notes..." value="${escapeHtml(currentSearch)}" oninput="handleSearch(this.value)" class="form-input font-mono" style="width: 220px; padding: 6px 12px; font-size: 12px; border-radius: 9999px;" />
+          </div>
+
+          <div>${postRows}</div>
         </section>
 
-        ${renderContactBand()}
+        ${renderSharedContactBand()}
       `;
     }
 
     window.setBlogCategory = function(cat) {
       currentCategory = cat;
-      const app = document.getElementById('app');
-      app.innerHTML = renderBlog();
-      const input = document.getElementById('blog-search-input');
-      if (input && currentSearch) {
-        input.focus();
-        input.setSelectionRange(input.value.length, input.value.length);
-      }
+      document.getElementById('app').innerHTML = renderBlog();
     };
 
-    window.handleBlogSearch = function(val) {
+    window.handleSearch = function(val) {
       currentSearch = val;
-      const filtered = BLOG_POSTS.filter(post => {
-        const matchesCategory = currentCategory === "All" || post.category === currentCategory;
-        const q = currentSearch.toLowerCase().trim();
-        const matchesSearch = !q ||
-          post.title.toLowerCase().includes(q) ||
-          post.excerpt.toLowerCase().includes(q) ||
-          post.body.join(' ').toLowerCase().includes(q);
-        return matchesCategory && matchesSearch;
-      });
-
-      const container = document.getElementById('blog-posts-container');
-      if (!container) return;
-
-      if (filtered.length === 0) {
-        container.innerHTML = `<div class="empty-state">No posts match that yet.</div>`;
-      } else {
-        container.innerHTML = filtered.map(post => `
-          <div class="post-row" onclick="location.hash='#post/${escapeHtml(post.slug)}'">
-            <div class="post-date">${escapeHtml(formatDate(post.date))}</div>
-            <div class="post-main">
-              <h3 class="post-title">${escapeHtml(post.title)}</h3>
-              <p class="post-summary">${escapeHtml(post.excerpt)}</p>
-            </div>
-            <div class="post-meta-right">
-              <span class="category-chip">${escapeHtml(post.category)}</span>
-              <span class="row-arrow">→</span>
-            </div>
-          </div>
-        `).join('');
-      }
+      document.getElementById('app').innerHTML = renderBlog();
     };
 
-    // 4. POST VIEW (#post/slug)
+    // 5. POST VIEW
     function renderPost(slug) {
-      const index = BLOG_POSTS.findIndex(p => p.slug === slug);
-      if (index === -1) {
+      const post = BLOG_POSTS.find(p => p.slug === slug);
+      if (!post) {
         return `
-          <div class="container section-spacing" style="text-align: center;">
-            <h1 class="section-title" style="justify-content: center;">Post not found</h1>
-            <p class="hero-subtext" style="margin: 0 auto 32px auto;">The post you are looking for does not exist or has been moved.</p>
-            <a href="#blog" class="btn btn-solid">
-              <span class="btn-arrow" style="transform: rotate(180deg); display: inline-block;">→</span>
-              <span>Back to blog</span>
-            </a>
+          <div class="section-spacing" style="text-align: center;">
+            <h1 style="font-size: 24px; margin-bottom: 12px;">Article not found</h1>
+            <a href="#blog" class="btn btn-solid">Back to writing</a>
           </div>
-          ${renderContactBand()}
         `;
       }
-
-      const post = BLOG_POSTS[index];
-      const nextPost = BLOG_POSTS[(index + 1) % BLOG_POSTS.length];
-      const readingTime = calculateReadingTime(post.body);
-      const paragraphsHtml = post.body.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+      const idx = BLOG_POSTS.indexOf(post);
+      const nextPost = BLOG_POSTS[(idx + 1) % BLOG_POSTS.length];
 
       return `
-        <article class="container">
-          <div class="post-column">
-            <a href="#blog" class="back-link">
-              <span class="btn-arrow" style="transform: rotate(180deg); display: inline-block;">→</span>
-              <span>Back to blog</span>
-            </a>
-
-            <h1 class="post-view-title">${escapeHtml(post.title)}</h1>
-
-            <div class="post-view-meta">
-              ${escapeHtml(post.category)} · ${escapeHtml(formatMonthYear(post.date))} · ${readingTime}
-            </div>
-
-            <div class="post-content">
-              ${paragraphsHtml}
-            </div>
-
-            ${post.category === 'Markets' ? `<div class="trading-disclaimer">Note: This is my personal experience, not financial advice.</div>` : ''}
-
-            <div class="post-footer-nav">
-              <a href="#post/${escapeHtml(nextPost.slug)}" class="btn btn-outline">
-                <span>Next: ${escapeHtml(nextPost.title)}</span>
-                <span class="btn-arrow">→</span>
-              </a>
-            </div>
+        <article style="max-width: 700px; margin: 0 auto; padding: 48px 0 64px 0;">
+          <a href="#blog" class="font-mono" style="font-size: 12px; text-transform: uppercase; color: var(--text-subtle); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px;">← Back to writing</a>
+          <h1 style="font-size: clamp(28px, 4vw, 42px); font-weight: 600; line-height: 1.15; margin-bottom: 12px;">${escapeHtml(post.title)}</h1>
+          <div class="font-mono" style="font-size: 12px; color: var(--text-subtle); padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 28px;">
+            ${escapeHtml(post.category)} / ${escapeHtml(post.date)} / Rojish Sakhakarmi
+          </div>
+          <div style="font-size: 17px; line-height: 1.7; display: flex; flex-direction: column; gap: 20px;">
+            ${post.body.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+          </div>
+          ${post.category.includes('Market') ? `<div style="margin: 24px 0; padding-left: 14px; border-left: 2px solid var(--border); font-size: 13px; font-style: italic; color: var(--text-subtle);">Note: This reflects personal market experience, not financial advice.</div>` : ''}
+          <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end;">
+            <a href="#post/${escapeHtml(nextPost.slug)}" class="btn btn-outline font-mono" style="font-size: 12px;">Next: ${escapeHtml(nextPost.title)} →</a>
           </div>
         </article>
-
-        ${renderContactBand()}
       `;
     }
 
-    // =========================================================================
-    // READING PROGRESS BAR LOGIC
-    // =========================================================================
-    const progressBar = document.getElementById('progress-bar');
-
+    // Scroll Progress
     window.addEventListener('scroll', () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#post/')) {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        if (docHeight > 0) {
-          const progress = (scrollTop / docHeight) * 100;
-          progressBar.style.width = Math.min(progress, 100) + '%';
-        }
+      if (window.location.hash.startsWith('#post/')) {
+        const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('progress-bar').style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
       } else {
-        progressBar.style.width = '0%';
+        document.getElementById('progress-bar').style.width = '0%';
       }
     });
 
-    // Keyboard shortcut to search
-    window.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.getElementById('blog-search-input')) {
-        const input = document.getElementById('blog-search-input');
-        if (document.activeElement !== input) {
-          e.preventDefault();
-          input.focus();
-        }
-      }
-      if (e.key === 'Escape' && document.getElementById('blog-search-input')) {
-        const input = document.getElementById('blog-search-input');
-        input.value = '';
-        handleBlogSearch('');
-        input.blur();
-      }
-    });
-
-    // =========================================================================
-    // HASH ROUTER
-    // =========================================================================
+    // Router
     function handleRoute() {
-      const hash = window.location.hash || '';
+      const hash = window.location.hash || '#';
       const app = document.getElementById('app');
 
       document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
 
-      if (hash === '#contact') {
-        if (!document.getElementById('contact-band')) {
-          app.innerHTML = renderHome();
-        }
-        document.getElementById('nav-contact').classList.add('active');
-        document.title = "Rojish Sakhakarmi";
-        progressBar.style.width = '0%';
-        const contactBand = document.getElementById('contact-band');
-        if (contactBand) {
-          contactBand.scrollIntoView({ behavior: 'smooth' });
-        }
-        return;
-      }
-
       window.scrollTo(0, 0);
-      progressBar.style.width = '0%';
 
       if (hash === '#about') {
         document.getElementById('nav-about').classList.add('active');
@@ -1985,19 +1361,19 @@
       } else if (hash === '#blog') {
         document.getElementById('nav-blog').classList.add('active');
         app.innerHTML = renderBlog();
-        document.title = "Blog — Rojish Sakhakarmi";
+        document.title = "Writing — Rojish Sakhakarmi";
+      } else if (hash === '#contact') {
+        document.getElementById('nav-contact').classList.add('active');
+        app.innerHTML = renderContact();
+        document.title = "Contact — Rojish Sakhakarmi";
       } else if (hash.startsWith('#post/')) {
-        const slug = hash.replace('#post/', '').trim();
+        const slug = hash.replace('#post/', '');
         app.innerHTML = renderPost(slug);
-        const post = BLOG_POSTS.find(p => p.slug === slug);
-        if (post) {
-          document.title = `${post.title} — Rojish Sakhakarmi`;
-        } else {
-          document.title = "Post not found — Rojish Sakhakarmi";
-        }
+        const p = BLOG_POSTS.find(x => x.slug === slug);
+        document.title = p ? `${p.title} — Rojish Sakhakarmi` : "Article — Rojish Sakhakarmi";
       } else {
         app.innerHTML = renderHome();
-        document.title = "Rojish Sakhakarmi";
+        document.title = "Rojish Sakhakarmi — Business Development & Strategy";
       }
     }
 

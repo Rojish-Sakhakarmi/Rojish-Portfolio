@@ -1,61 +1,92 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: #090d16;
-    --foreground: #f1f5f9;
-    --muted: #94a3b8;
-    --card: #0f172a;
-    --card-border: #1e293b;
-    --primary: #6366f1;
-    --primary-glow: rgba(99, 102, 241, 0.25);
-  }
-
-  html {
-    scroll-behavior: smooth;
-    color-scheme: dark;
-  }
-
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    overflow-x: hidden;
-  }
-
-  ::selection {
-    background: #6366f1;
-    color: #ffffff;
-  }
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f9f9fa;
+  --bg-card: #ffffff;
+  --bg-hover: #f4f4f6;
+  --text: #0a0a0a;
+  --text-muted: #52525b;
+  --text-subtle: #71717a;
+  --border: #e4e4e7;
+  --border-dark: #18181b;
+  --pill-bg: #f4f4f5;
+  --doodle: #18181b;
+  --progress-bg: #0a0a0a;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  --font-sans: 'Geist', 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: 'Caveat', cursive, sans-serif;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #090d16;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
-}
-
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+[data-theme="dark"],
+.dark {
+  --bg: #09090b;
+  --bg-subtle: #121215;
+  --bg-card: #111114;
+  --bg-hover: #18181c;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
+  --border: #27272a;
+  --border-dark: #fafafa;
+  --pill-bg: #18181b;
+  --doodle: #f4f4f5;
+  --progress-bg: #ffffff;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
-.glass-panel:hover {
-  border-color: rgba(99, 102, 241, 0.3);
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-.glow-bg {
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+.hand-note {
+  font-family: var(--font-hand);
+  font-size: 20px;
+  color: var(--text-subtle);
+  line-height: 1.2;
+  user-select: none;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.float-sketch {
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+@keyframes tickerRoll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-inner {
+  display: inline-flex;
+  animation: tickerRoll 24s linear infinite;
+}
+
+.ticker-wrap:hover .ticker-inner {
+  animation-play-state: paused;
 }
