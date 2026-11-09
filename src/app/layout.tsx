@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rojish Sakhakarmi — Brand, Systems & Markets",
+  title: "Rojish0 — Brand, Systems & Markets",
   description: "Personal website of Rojish Sakhakarmi. Notes on brand, marketing, design, systems, and markets.",
   authors: [{ name: "Rojish Sakhakarmi" }],
   openGraph: {

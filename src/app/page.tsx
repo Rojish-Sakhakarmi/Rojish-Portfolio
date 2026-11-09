@@ -1,7 +1,111 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Code2,
+  Palette,
+  TrendingUp,
+  MessageCircle,
+  Clock,
+  MapPin,
+  Copy,
+  Mail,
+  Zap,
+  Globe,
+  Layers
+} from "lucide-react";
+
+// --- Custom SVGs for Social & File Icons ---
+const IconLinkedin = ({ size = 16 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+);
+const IconInstagram = ({ size = 16 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+);
+const IconFileText = ({ size = 16 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+);
+
+// --- Underline Visual Doodles ---
+const DoodleHeroSwirl = () => (
+  <svg className="absolute -bottom-2 left-0 w-full h-3 text-[var(--text)] opacity-60 pointer-events-none overflow-visible" viewBox="0 0 260 14" fill="none" preserveAspectRatio="none">
+    <motion.path
+      d="M 4 8 C 50 2, 110 12, 160 6 C 190 2, 215 10, 255 7"
+      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+      initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1 }}
+    />
+  </svg>
+);
+
+const DoodleArrowSweep = () => (
+  <svg className="absolute -bottom-2.5 left-0 w-full h-4 text-[var(--text)] opacity-60 pointer-events-none overflow-visible" viewBox="0 0 320 16" fill="none" preserveAspectRatio="none">
+    <motion.path
+      d="M 4 10 Q 80 2, 170 12 T 310 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"
+      initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.9 }}
+    />
+  </svg>
+);
+
+const DoodleCleanUnderline = () => (
+  <svg className="absolute -bottom-1.5 left-0 w-full h-3 text-[var(--text)] opacity-70 pointer-events-none overflow-visible" viewBox="0 0 340 12" fill="none" preserveAspectRatio="none">
+    <motion.path
+      d="M 2 6 C 70 2, 170 10, 338 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+      initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
+    />
+  </svg>
+);
+
+const DoodlePulseLine = () => (
+  <svg className="absolute -bottom-1.5 left-0 w-full h-3 text-[var(--text)] opacity-70 pointer-events-none overflow-visible" viewBox="0 0 220 12" fill="none" preserveAspectRatio="none">
+    <motion.path
+      d="M 2 6 H 65 L 75 2 L 85 10 L 95 3 L 105 7 H 218" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.85 }}
+    />
+  </svg>
+);
+
+const DoodleWaveSpark = () => (
+  <svg className="absolute -bottom-1.5 left-0 w-full h-3 text-[var(--text)] opacity-70 pointer-events-none overflow-visible" viewBox="0 0 280 12" fill="none" preserveAspectRatio="none">
+    <motion.path
+      d="M 2 7 Q 70 2, 140 7 T 276 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+      initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 0.9 }}
+    />
+  </svg>
+);
+
+/** Minimalist Focus Architecture Widget (Replaces the radar) */
+const MinimalFocusBadge = () => (
+  <div className="relative w-48 h-48 rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] p-5 flex flex-col justify-between overflow-hidden shadow-xl group hover:border-[var(--text)] transition-colors">
+    <div className="flex items-center justify-between text-[10px] font-mono text-[var(--text-subtle)]">
+      <span>[ CORE NODES ]</span>
+      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+    </div>
+
+    {/* Clean Geometric Matrix */}
+    <div className="my-auto py-2 grid grid-cols-2 gap-2">
+      {[
+        { label: "Systems", code: "01" },
+        { label: "Strategy", code: "02" },
+        { label: "Design", code: "03" },
+        { label: "Markets", code: "04" }
+      ].map((item) => (
+        <div key={item.code} className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] flex items-center justify-between text-[10px] font-mono group-hover:border-[var(--border-dark)] transition-colors">
+          <span className="text-[var(--text-muted)]">{item.label}</span>
+          <span className="text-[var(--text-subtle)]">{item.code}</span>
+        </div>
+      ))}
+    </div>
+
+    <div className="text-[10px] font-mono text-[var(--text-subtle)] flex items-center justify-between border-t border-[var(--border)]/60 pt-2">
+      <span>Interdisciplinary</span>
+      <span className="text-[var(--text)] font-semibold">Bhaktapur</span>
+    </div>
+  </div>
+);
 
 interface BlogPost {
   slug: string;
@@ -10,6 +114,7 @@ interface BlogPost {
   date: string;
   excerpt: string;
   body: string[];
+  readTime: string;
 }
 
 const INITIAL_POSTS: BlogPost[] = [
@@ -18,6 +123,7 @@ const INITIAL_POSTS: BlogPost[] = [
     title: "Why creativity becomes truly valuable only when backed by strategy",
     category: "Brand Strategy",
     date: "2026-09-15",
+    readTime: "4 min read",
     excerpt: "Making things look good is only half the work. True creative impact comes from understanding why a brand exists, who it serves, and the business problem it solves.",
     body: [
       "In graphic design and branding, it is easy to get caught up in aesthetic trends, colors, and typography. But over time, working across both creative design and business development, I realized that aesthetics without strategy rarely produce lasting business value.",
@@ -30,6 +136,7 @@ const INITIAL_POSTS: BlogPost[] = [
     title: "What international client outreach taught me about business development",
     category: "Business Development",
     date: "2026-08-20",
+    readTime: "5 min read",
     excerpt: "Notes from lead generation and client communication at WebX Nepal. Why listening and understanding client requirements beats high-pressure pitches.",
     body: [
       "Stepping into business development at WebX Nepal, I was tasked with international outreach, lead generation, and digital positioning. Coming in with a design and IT background, I initially wondered how much persuasion would be required.",
@@ -42,6 +149,7 @@ const INITIAL_POSTS: BlogPost[] = [
     title: "What educating others on financial markets taught me about risk and patience",
     category: "Financial Markets",
     date: "2026-07-10",
+    readTime: "6 min read",
     excerpt: "Observing the stock and forex markets rewards emotional discipline over impulse. Teaching financial literacy showed me how human psychology drives decision-making.",
     body: [
       "My fascination with the financial markets—from stock investing to forex—began with a simple curiosity about how capital flows and how market participants react to uncertainty. In trading, you quickly learn that being right matters far less than managing downside risk.",
@@ -54,6 +162,7 @@ const INITIAL_POSTS: BlogPost[] = [
     title: "How an IT background in cybersecurity shapes business thinking",
     category: "Systems & Tech",
     date: "2026-06-05",
+    readTime: "4 min read",
     excerpt: "Studying Computer Science and networking at KFA Business School gave me a framework for diagnosing friction and understanding how systems behave under pressure.",
     body: [
       "Completing my Bachelor's in Computer Science and IT with a focus on networking and cybersecurity gave me a foundational appreciation for how interconnected systems function—and where they break.",
@@ -75,29 +184,27 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [contactName, setContactName] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
-  const [contactMessage, setContactMessage] = useState("");
-  const [formSent, setFormSent] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [nepalTime, setNepalTime] = useState("");
 
+  // Live Nepal Clock
   useEffect(() => {
-    let cancelled = false;
-    const loadBackendPosts = async () => {
+    const updateTime = () => {
       try {
-        const response = await fetch("/api/posts");
-        if (!response.ok) throw new Error("Unable to load posts");
-        const data = await response.json();
-        if (!cancelled && data.success && Array.isArray(data.posts) && data.posts.length) {
-          setPosts(data.posts);
-        }
+        const options: Intl.DateTimeFormatOptions = {
+          timeZone: "Asia/Kathmandu",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        };
+        setNepalTime(new Intl.DateTimeFormat("en-US", options).format(new Date()));
       } catch {
-        console.warn("Could not load backend posts; using local defaults.");
+        setNepalTime("Bhaktapur, NP");
       }
     };
-    loadBackendPosts();
-    return () => { cancelled = true; };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -140,87 +247,69 @@ export default function HomePage() {
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL);
-      showToast("Email copied to clipboard.");
+      showToast("Email address copied! 📋");
     } catch {
       showToast(`Contact me at ${EMAIL}`);
     }
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const subject = `Opportunity / Inquiry from ${contactName}`;
-    const body = `Name: ${contactName}\nEmail: ${contactEmail}\n\nMessage:\n${contactMessage}`;
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setFormSent(true);
-    showToast("Opening your email client...");
+  const triggerDirectMail = () => {
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Hey Rojish — Let's Connect")}`;
   };
 
-  const handleCardMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = event.clientX - rect.left - rect.width / 2;
-    const y = event.clientY - rect.top - rect.height / 2;
-    setTilt({ x: -(y / rect.height) * 12, y: (x / rect.width) * 12 });
-  };
-
+  const isBlogsPage = currentRoute === "#blog" || currentRoute === "#blogs";
   const isPostRoute = currentRoute.startsWith("#post/");
   const activePostSlug = isPostRoute ? currentRoute.slice("#post/".length) : null;
   const categories = ["All", ...Array.from(new Set(posts.map((post) => post.category)))];
+  
   const filteredPosts = posts.filter((post) => {
     const matchesCategory = activeCategory === "All" || post.category === activeCategory;
     const query = searchQuery.toLowerCase();
     const matchesSearch = [post.title, post.excerpt, post.body.join(" ")].join(" ").toLowerCase().includes(query);
     return matchesCategory && matchesSearch;
   });
+
   const activePost = posts.find((post) => post.slug === activePostSlug);
   const activePostIndex = activePost ? posts.findIndex((post) => post.slug === activePost.slug) : -1;
   const nextPost = posts.length && activePostIndex >= 0 ? posts[(activePostIndex + 1) % posts.length] : null;
 
-  const PostList = ({ items }: { items: BlogPost[] }) => (
-    <div className="divide-y divide-[var(--border)] border-t border-b border-[var(--border)]">
-      {items.length === 0 ? (
-        <div className="py-12 text-center text-[var(--text-muted)] text-xs font-mono">No notes match your search.</div>
-      ) : items.map((post) => (
-        <a
-          key={post.slug}
-          href={`#post/${post.slug}`}
-          className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 py-5 px-3 hover:bg-[var(--bg-hover)] rounded-xl transition-all group"
-        >
-          <div className="sm:col-span-2 text-xs text-[var(--text-subtle)] font-mono">{post.date}</div>
-          <div className="sm:col-span-8 space-y-0.5">
-            <h3 className="font-semibold text-base group-hover:underline">{post.title}</h3>
-            <p className="text-xs sm:text-sm text-[var(--text-muted)]">{post.excerpt}</p>
-          </div>
-          <div className="sm:col-span-2 flex items-center justify-between sm:justify-end gap-3">
-            <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border border-[var(--border)] bg-[var(--pill-bg)] text-[var(--text-muted)]">{post.category}</span>
-            <span className="text-[var(--text-muted)] group-hover:translate-x-1 transition-transform">→</span>
-          </div>
-        </a>
-      ))}
-    </div>
-  );
-
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-200">
-      <div className="fixed top-0 left-0 h-[2px] bg-[var(--progress-bg)] z-50 transition-all duration-75" style={{ width: `${activePostSlug ? scrollProgress : 0}%` }} />
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-200 selection:bg-[var(--text)] selection:text-[var(--bg)]">
+      
+      {/* Dark Theme Overrides */}
+      <style dangerouslySetInnerHTML={{__html: `
+        [data-theme='dark'] {
+          --bg: #050505;
+          --bg-subtle: #0a0a0a;
+          --bg-card: #0e0e11;
+          --bg-hover: #16161a;
+          --border: #222226;
+          --border-dark: #333338;
+          --text: #ffffff;
+          --text-muted: #a1a1aa;
+          --text-subtle: #52525b;
+        }
+      `}} />
 
-      <header className="sticky top-0 bg-[var(--bg)]/90 backdrop-blur-md border-b border-[var(--border)] z-40">
+      <div className="fixed top-0 left-0 h-[2px] bg-[var(--text)] z-50 transition-all duration-75 opacity-80" style={{ width: `${activePostSlug ? scrollProgress : 0}%` }} />
+
+      <header className="sticky top-0 bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)] z-40 transition-colors">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-[64px] flex items-center justify-between">
           <a href="#" className="flex items-center gap-2.5 font-semibold text-[16px] tracking-tight hover:opacity-80 transition-opacity">
-            <span className="font-mono text-xs px-2 py-0.5 rounded border border-[var(--border)] bg-[var(--pill-bg)]">RS</span>
-            <span>Rojish Sakhakarmi</span>
+            <span className="font-mono text-xs px-2 py-0.5 rounded border border-[var(--border)] bg-[var(--bg-card)] shadow-sm">RS</span>
+            <span>Rojish0</span>
           </a>
           <nav className="flex items-center gap-5 sm:gap-7">
             {[
               { href: "#about", label: "About" },
-              { href: "#blog", label: "Writing" },
+              { href: "#blogs", label: "Blogs" },
               { href: "#contact", label: "Contact" }
             ].map((item) => (
-              <a key={item.href} href={item.href} className={`text-sm transition-colors hover:text-[var(--text)] ${currentRoute === item.href ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
+              <a key={item.href} href={item.href} className={`text-sm transition-colors hover:text-[var(--text)] ${currentRoute === item.href || (item.href === "#blogs" && currentRoute === "#blog") ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
                 {item.label}
               </a>
             ))}
-            <button onClick={toggleTheme} className="px-3 py-1 rounded-full border border-[var(--border)] hover:border-[var(--text)] text-xs uppercase tracking-wider font-medium transition-all">
+            <button onClick={toggleTheme} className="px-3 py-1.5 rounded-full border border-[var(--border)] hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] text-xs uppercase tracking-wider font-bold transition-all duration-300">
               {theme === "dark" ? "Light" : "Dark"}
             </button>
           </nav>
@@ -230,24 +319,30 @@ export default function HomePage() {
       <main className="max-w-[1240px] mx-auto px-5 sm:px-8">
         {activePostSlug ? (
           activePost ? (
-            <article className="max-w-[700px] mx-auto py-12 sm:py-16">
-              <a href="#blog" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text)] mb-8">← Back to writing</a>
+            <article className="max-w-[720px] mx-auto py-12 sm:py-16">
+              <a href="#blogs" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text)] mb-8 transition-colors">← Back to blogs</a>
               <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 leading-tight">{activePost.title}</h1>
-              <div className="text-xs text-[var(--text-subtle)] font-mono pb-5 mb-8 border-b border-[var(--border)] flex items-center gap-3">
-                <span>{activePost.category}</span><span>/</span><span>{activePost.date}</span><span>/</span><span>Rojish Sakhakarmi</span>
+              
+              <div className="text-xs text-[var(--text-subtle)] font-mono pb-5 mb-8 border-b border-[var(--border)] flex flex-wrap items-center gap-3">
+                <span className="px-2.5 py-0.5 rounded bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text)] font-semibold">{activePost.category}</span>
+                <span>/</span>
+                <span>{activePost.date}</span>
+                <span>/</span>
+                <span>{activePost.readTime}</span>
               </div>
-              <div className="space-y-6 text-base sm:text-[18px] leading-relaxed">
+
+              <div className="space-y-6 text-base sm:text-[18px] leading-relaxed text-[var(--text-muted)]">
                 {activePost.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
               {activePost.category.toLowerCase().includes("market") && (
-                <div className="my-8 pl-4 border-l-2 border-[var(--border)] italic text-sm text-[var(--text-subtle)]">
+                <div className="my-8 pl-4 border-l-2 border-[var(--border)] italic text-sm text-[var(--text-subtle)] bg-[var(--bg-subtle)] py-3 px-4 rounded-r-xl">
                   Note: This reflects personal market experience, not financial advice.
                 </div>
               )}
               {nextPost && (
                 <div className="mt-12 pt-6 border-t border-[var(--border)] flex justify-end">
-                  <a href={`#post/${nextPost.slug}`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[var(--border-dark)] hover:bg-[var(--pill-bg)] text-xs font-semibold uppercase tracking-wider">
-                    <span>Next: {nextPost.title}</span><span>→</span>
+                  <a href={`#post/${nextPost.slug}`} className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[var(--border-dark)] hover:bg-[var(--bg-hover)] hover:border-[var(--text)] transition-all text-xs font-semibold uppercase tracking-wider">
+                    <span>Next: {nextPost.title}</span><span className="group-hover:translate-x-1 transition-transform">→</span>
                   </a>
                 </div>
               )}
@@ -255,332 +350,690 @@ export default function HomePage() {
           ) : (
             <div className="py-20 text-center">
               <h1 className="text-2xl font-bold mb-3">Article not found</h1>
-              <a href="#blog" className="px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider">Back to writing</a>
+              <a href="#blogs" className="px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider hover:scale-105 transition-transform inline-block">Back to blogs</a>
             </div>
           )
         ) : currentRoute === "#contact" ? (
-          <section className="py-12 sm:py-16">
-            <div className="max-w-[840px] mx-auto">
-              <div className="mb-10 text-center sm:text-left">
-                <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] mb-2 block">[ DIRECT CONTACT & COLLABORATION ]</span>
-                <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3">Let's talk about ideas worth building.</h1>
-                <p className="text-[var(--text-muted)] text-base sm:text-lg">Business development, brand positioning, creative direction, or financial market conversations. Send a note and I will reply personally.</p>
+          /* --- ULTRA-CLEAN MINIMAL CONTACT SECTION --- */
+          <section className="py-12 sm:py-20">
+            <div className="max-w-[1000px] mx-auto">
+              
+              <div className="mb-10 text-center sm:text-left relative">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)] shadow-sm mb-4"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] font-bold">Direct Inbox</span>
+                </motion.div>
+
+                <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.02] mb-4">
+                  Let’s connect.<br />
+                  <span className="relative inline-block">
+                    <span>Simple & direct.</span>
+                    <DoodleCleanUnderline />
+                  </span>
+                </h1>
+
+                <p className="text-[var(--text-muted)] text-base sm:text-lg max-w-xl leading-relaxed">
+                  No forms to submit. Drop me a line directly via email or connect through social platforms.
+                </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                <div className="md:col-span-7 bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-6 sm:p-7 shadow-sm">
-                  {formSent ? (
-                    <div className="py-10 text-center space-y-3">
-                      <div className="w-10 h-10 rounded-full border border-[var(--border)] mx-auto flex items-center justify-center font-mono text-xs">✓</div>
-                      <h3 className="font-semibold text-lg">Inquiry Prepared</h3>
-                      <p className="text-sm text-[var(--text-muted)] max-w-xs mx-auto">Your message has opened in your email client. You can also reach me directly at <span className="font-mono text-[var(--text)]">{EMAIL}</span>.</p>
-                      <button onClick={() => setFormSent(false)} className="text-xs font-mono underline hover:text-[var(--text)] mt-2">Send another note</button>
+
+              {/* ALIGNED 2-CARD GRID */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                
+                {/* PRIMARY ACTION CARD */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="lg:col-span-7 bg-[var(--bg-card)] border border-[var(--border)] rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ EMAIL ADDRESS ]</span>
+                      <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-bold">OPEN INBOX</span>
                     </div>
-                  ) : (
-                    <form onSubmit={handleFormSubmit} className="space-y-4">
-                      <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] mb-1.5">Your Name / Company</label>
-                        <input type="text" required value={contactName} onChange={(event) => setContactName(event.target.value)} placeholder="e.g.  Manil Shrestha" className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)]" />
+                    
+                    <div className="font-mono text-xl sm:text-2xl font-bold text-[var(--text)] tracking-tight mb-4 break-all">
+                      {EMAIL}
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-8">
+                      Always open to discussions regarding business growth, brand strategy, IT systems, and financial markets.
+                    </p>
+                  </div>
+
+                  <div className="pt-6 border-t border-[var(--border)]/70 flex items-center gap-3">
+                    <button
+                      onClick={triggerDirectMail}
+                      className="group w-full py-4 px-6 rounded-2xl bg-[var(--text)] text-[var(--bg)] font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-98 transition-all shadow-md flex items-center justify-center gap-2"
+                    >
+                      <Mail size={16} />
+                      <span>Send Mail</span>
+                      <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </button>
+                    
+                    <button
+                      onClick={copyEmail}
+                      className="p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] hover:border-[var(--text)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors shrink-0"
+                      title="Copy Address"
+                    >
+                      <Copy size={16} />
+                    </button>
+                  </div>
+                </motion.div>
+
+                {/* RIGHT UTILITY CARD */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="lg:col-span-5 bg-[var(--bg-subtle)] border border-[var(--border)] rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between"
+                >
+                  <div className="space-y-6">
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-2">[ LOCAL TIME ]</div>
+                      <div className="text-2xl font-mono font-bold text-[var(--text)] tracking-tight">{nepalTime || "Bhaktapur, NP"}</div>
+                      <div className="text-xs text-[var(--text-muted)] flex items-center gap-1.5 mt-1">
+                        <MapPin size={13} className="text-emerald-500" /> Bhaktapur, Nepal (UTC +5:45)
                       </div>
-                      <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] mb-1.5">Your Email Address</label>
-                        <input type="email" required value={contactEmail} onChange={(event) => setContactEmail(event.target.value)} placeholder="anil@example.com" className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)]" />
+                    </div>
+
+                    <hr className="border-[var(--border)] opacity-60" />
+
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-3">[ SOCIAL CHANNELS ]</div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <a
+                          href={LINKEDIN}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-between p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all group text-xs font-medium"
+                        >
+                          <span className="flex items-center gap-2"><IconLinkedin size={15} /> LinkedIn</span>
+                          <ArrowUpRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </a>
+                        <a
+                          href={INSTAGRAM}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-between p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all group text-xs font-medium"
+                        >
+                          <span className="flex items-center gap-2"><IconInstagram size={15} /> Instagram</span>
+                          <ArrowUpRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </a>
                       </div>
-                      <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] mb-1.5">Message / Opportunity Scope</label>
-                        <textarea required rows={4} value={contactMessage} onChange={(event) => setContactMessage(event.target.value)} placeholder="Tell me about your project, role, or what you'd like to collaborate on..." className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-transparent text-sm outline-none focus:border-[var(--text)] resize-none" />
-                      </div>
-                      <button type="submit" className="w-full py-3 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider hover:opacity-90 flex items-center justify-center gap-2">
-                        <span>Send Message</span><span>→</span>
-                      </button>
-                    </form>
-                  )}
-                </div>
-                <div className="md:col-span-5 space-y-4">
-                  <div className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] space-y-3">
-                    <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)]">Direct Email</span>
-                    <div className="font-mono text-sm font-semibold truncate">{EMAIL}</div>
-                    <div className="flex items-center gap-2 pt-1">
-                      <button onClick={copyEmail} className="px-3.5 py-1.5 rounded-full border border-[var(--border)] hover:border-[var(--text)] text-xs font-medium">Copy email</button>
-                      <a href={`mailto:${EMAIL}`} className="px-3.5 py-1.5 rounded-full bg-[var(--text)] text-[var(--bg)] text-xs font-medium">Direct Mail ↗</a>
                     </div>
                   </div>
-                  <div className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] space-y-3">
-                    <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)]">Professional Channels</span>
-                    <div className="flex flex-col gap-2 text-sm">
-                      <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2 rounded-lg hover:bg-[var(--bg-hover)]"><span>LinkedIn</span><span className="text-xs font-mono text-[var(--text-subtle)]">in/rojish0 ↗</span></a>
-                      <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-2 rounded-lg hover:bg-[var(--bg-hover)]"><span>Instagram</span><span className="text-xs font-mono text-[var(--text-subtle)]">@rojish0 ↗</span></a>
-                    </div>
+
+                  <div className="pt-6 border-t border-[var(--border)]/70 text-[10px] font-mono text-[var(--text-subtle)] flex items-center justify-between">
+                    <span>LOCATION: BHAKTAPUR</span>
+                    <span className="flex items-center gap-1 text-emerald-400 font-bold">● ONLINE</span>
                   </div>
-                  <div className="p-4 rounded-xl border border-[var(--border)] text-xs text-[var(--text-subtle)] font-mono space-y-1">
-                    <div>LOCATION: Bhaktapur, Nepal</div><div>TIMEZONE: UTC+5:45 (Nepal Standard Time)</div>
-                  </div>
-                </div>
+                </motion.div>
+
               </div>
             </div>
           </section>
         ) : currentRoute === "#about" ? (
-          <article className="py-12 sm:py-16">
-            <div className="mb-10 flex items-center justify-between flex-wrap gap-4">
-              <div>
-                <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2">About Me</h1>
-                <p className="text-[var(--text-muted)] text-sm sm:text-base">Business Development • Brand Strategy • Graphic Design • Financial Markets</p>
+          /* --- RE-ARRANGED & REFINED ABOUT PAGE --- */
+          <article className="about-page py-10 sm:py-16">
+            
+            {/* HERO SECTION WITH MINIMAL MATRIX BADGE */}
+            <section className="relative overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-10 lg:p-14 mb-12">
+              <div className="absolute -right-8 -top-10 h-64 w-64 rounded-full border border-[var(--border)] opacity-70" aria-hidden="true" />
+              
+              <div className="absolute right-10 top-10 hidden lg:block" aria-hidden="true">
+                <MinimalFocusBadge />
               </div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)]">[ BHAKTAPUR // NEPAL ]</span>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-              <div className="lg:col-span-8 space-y-12">
-                <section>
-                  <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] mb-3">Personal Introduction</h2>
-                  <p className="text-xl sm:text-2xl font-medium leading-snug tracking-tight mb-4">I'm Rojish, an IT student from Bhaktapur with hands-on experience in client outreach, e-commerce, SEO, and creative work.</p>
-                  <p className="text-xl sm:text-2xl font-medium leading-snug tracking-tight mb-4">I enjoy understanding how businesses work, identifying opportunities, communicating with people, and finding practical ways to solve problems.</p>
-                  <div className="space-y-4 text-[var(--text-muted)] leading-relaxed text-sm sm:text-base">
-                    <p>My experience spans business development, international client outreach, graphic design, e-commerce operations, and digital marketing. These roles have helped me connect technical understanding with commercial thinking.</p>
-                    <p>I am particularly interested in understanding people, identifying commercial opportunities, solving real bottlenecks, and building lasting professional relationships.</p>
-                  </div>
-                </section>
 
-                <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] space-y-3">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)]">My Philosophy</span>
-                  <blockquote className="text-lg sm:text-xl font-semibold italic text-[var(--text)] leading-snug">"Creativity becomes more valuable when it is backed by strategy."</blockquote>
-                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">I believe in more than just making things look good. I want to understand why something exists, who it serves, and how it can create real commercial and human value. When visual design is paired with clear business logic and active listening, brands earn trust that lasts.</p>
-                </section>
-
-                <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] space-y-3">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)]">Financial Markets & Education</span>
-                  <h3 className="font-bold text-lg">Financial Market Literacy</h3>
-                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">Outside my commercial work, I have a strong interest in financial markets, including stock market investing and forex trading. I also share market fundamentals and financial literacy concepts with others.</p>
-                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">Following markets has reinforced the importance of patience, emotional discipline, and managing risk under uncertainty.</p>
-                </section>
-
-                <section>
-                  <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] mb-4">Academic Background</h2>
-                  <div className="p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] space-y-2">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div>
-                        <h3 className="font-bold text-base sm:text-lg">Bachelor's in Computer Science / IT (BCS.IT)</h3>
-                        <span className="text-xs font-mono text-[var(--text-subtle)]">KFA Business School and IT</span>
-                      </div>
-                      <span className="text-xs font-mono px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--pill-bg)]">Cybersecurity & Networking Focus</span>
-                    </div>
-                    <p className="text-sm text-[var(--text-muted)] leading-relaxed pt-1">Academic focus on cybersecurity and network infrastructure, providing a technical foundation for understanding modern systems and digital workflows.</p>
-                  </div>
-                </section>
-
-                <section>
-                  <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] mb-4">Skills & Areas of Capability</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {[
-                      { title: "Business Development", skills: ["International client outreach", "Business research & lead generation", "Client communication", "Relationship building", "Understanding customer needs"] },
-                      { title: "Branding & Creative Design", skills: ["Brand identity & visual communication", "Graphic design & typography", "Creative direction & layout", "Adobe Photoshop & Illustrator", "Figma & Canva"] },
-                      { title: "Digital Growth & Operations", skills: ["Search Engine Optimization (SEO)", "E-commerce listing & mockups", "Social media management", "Content planning", "Website experience planning"] },
-                      { title: "Financial Markets & Tech", skills: ["Stock market investing & Forex", "Financial literacy", "Risk management & psychology", "HTML & CSS fundamentals", "Cybersecurity & networking"] }
-                    ].map((group) => (
-                      <div key={group.title} className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] space-y-2">
-                        <h4 className="font-semibold text-sm">{group.title}</h4>
-                        <ul className="text-xs font-mono text-[var(--text-muted)] space-y-1">
-                          {group.skills.map((skill) => <li key={skill}>• {skill}</li>)}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                <div className="pt-4 flex flex-wrap items-center gap-3">
-                  <a href="#contact" className="px-6 py-3 rounded-full bg-[var(--text)] text-[var(--bg)] text-xs font-semibold uppercase tracking-wider">Get in touch →</a>
-                  <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-5 py-3 rounded-full border border-[var(--border)] hover:border-[var(--text)] text-xs font-mono">Download Resume (PDF) ↗</a>
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="h-2 w-2 rounded-full bg-[var(--text)]" />
+                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)]">Personal Overview</span>
                 </div>
-              </div>
-
-              <aside className="lg:col-span-4 sticky top-24 space-y-4">
-                <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
-                  <div className="border border-[var(--border)] rounded-xl p-4 bg-[var(--bg-subtle)] text-center space-y-2">
-                    <div className="w-16 h-16 rounded-full border border-[var(--border)] mx-auto overflow-hidden bg-black flex items-center justify-center font-mono text-lg font-bold text-white">RS</div>
-                    <div className="font-semibold text-base">Rojish Sakhakarmi</div>
-                    <div className="text-xs text-[var(--text-subtle)] font-mono">Aspiring Business Development Professional</div>
-                    <div className="text-[11px] font-mono text-[var(--text-muted)]">Bhaktapur, Nepal</div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+                  <div className="lg:col-span-8">
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.065em] leading-[0.98] max-w-3xl">
+                      I like being<br />
+                      <span className="relative inline-block">
+                        <span>where ideas</span>
+                        <DoodlePulseLine />
+                      </span>{" "}
+                      meet people.
+                    </h1>
+                    <p className="mt-7 max-w-xl text-base sm:text-lg leading-relaxed text-[var(--text-muted)]">I’m Rojish, an IT graduate interested in the human side of business: understanding what people need, shaping ideas, and communicating them effectively.</p>
                   </div>
-                  <div className="border-t border-[var(--border)] pt-4 space-y-3 font-mono text-xs">
-                    {[
-                      ["Focus", "Business Development"],
-                      ["Creative", "Graphic Design & Brand"],
-                      ["Markets", "Forex & Stock Markets"],
-                      ["Education", "BCS.IT (KFA)"],
-                      ["Status", "Open to Opportunities"]
-                    ].map(([label, value]) => (
-                      <div key={label} className="flex justify-between gap-3 py-1 border-b border-[var(--border)] last:border-0">
-                        <span className="text-[var(--text-subtle)]">{label}</span><span className="font-medium text-right">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <a href={`mailto:${EMAIL}`} className="w-full py-2.5 rounded-xl border border-[var(--border)] hover:border-[var(--text)] text-xs font-mono flex items-center justify-center text-center">{EMAIL}</a>
-                </div>
-              </aside>
-            </div>
-          </article>
-        ) : currentRoute === "#blog" ? (
-          <section className="py-12 sm:py-16">
-            <div className="mb-8 flex items-center justify-between flex-wrap gap-4">
-              <div>
-                <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2">Writing & Notes</h1>
-                <p className="text-[var(--text-muted)] text-sm sm:text-base">Thoughts on business development, brand strategy, graphic design, financial markets, and systems.</p>
-              </div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)]">[ {posts.length} ARTICLES ]</span>
-            </div>
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <button key={category} onClick={() => setActiveCategory(category)} className={`px-3 py-1 rounded-full text-xs font-medium border transition-all ${activeCategory === category ? "bg-[var(--text)] text-[var(--bg)] border-[var(--text)]" : "border-[var(--border)] hover:border-[var(--text)] text-[var(--text-muted)]"}`}>
-                    {category}
-                  </button>
-                ))}
-              </div>
-              <input type="search" placeholder="Search notes..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-transparent text-xs outline-none focus:border-[var(--text)] w-full sm:w-60 font-mono" />
-            </div>
-            <PostList items={filteredPosts} />
-          </section>
-        ) : (
-          <>
-            <section className="pt-8 pb-12 sm:pt-14 sm:pb-16">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div className="lg:col-span-7">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--pill-bg)] border border-[var(--border)] text-xs font-mono mb-5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Bhaktapur, Nepal • Open to opportunities</span>
-                  </div>
-                  <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-5 leading-[1.08]">Business. People. Growth.</h1>
-                  <p className="text-base sm:text-lg text-[var(--text-muted)] max-w-xl mb-7 leading-relaxed">I’m an IT student with hands-on experience in client outreach, lead generation, e-commerce, SEO, and creative work. I enjoy understanding business needs and building meaningful professional relationships.</p>
-                  <div className="flex flex-wrap items-center gap-3 mb-8">
-                    <a href="#contact" className="px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider flex items-center gap-2">Initiate Conversation →</a>
-                    <a href="#about" className="px-5 py-2.5 rounded-full border border-[var(--border-dark)] hover:bg-[var(--pill-bg)] font-medium text-xs uppercase tracking-wider">Read My Story</a>
-                    <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 rounded-full border border-[var(--border)] hover:border-[var(--text)] text-xs font-mono">Resume.pdf ↗</a>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[var(--text-subtle)]">
-                    <span className="text-[var(--text)]">CHANNELS //</span>
-                    <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)]">LinkedIn ↗</a>
-                    <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)]">Instagram ↗</a>
-                    <a href={`mailto:${EMAIL}`} className="hover:text-[var(--text)]">{EMAIL} ↗</a>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-5" style={{ perspective: "1000px" }}>
-                  <motion.div ref={cardRef} onMouseMove={handleCardMouseMove} onMouseLeave={() => setTilt({ x: 0, y: 0 })} animate={{ rotateX: tilt.x, rotateY: tilt.y }} transition={{ type: "spring", stiffness: 260, damping: 20 }} className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-6 shadow-md relative overflow-hidden group hover:border-[var(--text)]">
-                    <div className="flex items-center justify-between text-[11px] font-mono text-[var(--text-subtle)] pb-3 mb-4 border-b border-[var(--border)]">
-                      <span>BUSINESS DEVELOPMENT</span><span>RESEARCH // RELATIONSHIPS</span>
+                  <div className="lg:col-span-4 lg:pb-2">
+                    <div className="border-l-2 border-[var(--text)] pl-4 max-w-xs">
+                      <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-2">My Philosophy</div>
+                      <p className="text-sm sm:text-base font-medium leading-relaxed">Good conversations. Clear ideas. Useful connections.</p>
                     </div>
-                    <svg className="w-full max-w-[270px] mx-auto stroke-[var(--text)] fill-none my-2" viewBox="0 0 260 210" xmlns="http://www.w3.org/2000/svg">
-                      <g stroke="currentColor" strokeWidth="0.8" opacity="0.2">
-                        <line x1="30" y1="20" x2="240" y2="20" strokeDasharray="3 3" />
-                        <line x1="30" y1="100" x2="240" y2="100" strokeDasharray="3 3" />
-                        <line x1="30" y1="180" x2="240" y2="180" />
-                        <line x1="30" y1="20" x2="30" y2="180" />
-                        <line x1="135" y1="20" x2="135" y2="180" strokeDasharray="3 3" />
-                        <line x1="240" y1="20" x2="240" y2="180" strokeDasharray="3 3" />
-                      </g>
-                      <text x="35" y="15" fill="currentColor" fontSize="8" fontFamily="monospace" stroke="none" opacity="0.6">COMMERCIAL VALUE ▲</text>
-                      <text x="160" y="196" fill="currentColor" fontSize="8" fontFamily="monospace" stroke="none" opacity="0.6">BRAND TRUST ▶</text>
-                      <path d="M 30 175 Q 80 170, 110 145 T 170 95 T 235 35" strokeWidth="2.4" strokeLinecap="round" />
-                      <circle cx="85" cy="165" r="4" strokeWidth="1.6" fill="var(--bg-card)" />
-                      <circle cx="140" cy="120" r="4" strokeWidth="1.6" fill="var(--bg-card)" />
-                      <circle cx="210" cy="55" r="6" strokeWidth="2" fill="var(--bg-card)" />
-                      <text x="95" y="168" fill="currentColor" fontSize="8" fontFamily="monospace" stroke="none">Client Discovery</text>
-                      <text x="150" y="123" fill="currentColor" fontSize="8" fontFamily="monospace" stroke="none">Strategic Alignment</text>
-                      <text x="180" y="42" fill="currentColor" fontSize="9" fontWeight="bold" fontFamily="monospace" stroke="none">Value Delivered ✓</text>
-                    </svg>
-                    <div className="pt-3 border-t border-[var(--border)] flex items-center justify-between text-[11px] font-mono text-[var(--text-subtle)]">
-                      <span>OUTREACH & DISCOVERY</span><span>CLIENT RELATIONSHIPS</span>
+                    <div className="mt-7 flex flex-wrap gap-3">
+                      <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-5 py-3 text-xs sm:text-sm font-semibold hover:scale-105 active:scale-95 transition-transform">Say hello <ArrowUpRight size={16} /></a>
+                      <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-dark)] px-5 py-3 text-xs sm:text-sm font-medium hover:bg-[var(--text)] hover:text-[var(--bg)] hover:border-[var(--text)] active:scale-95 transition-all">Resume <ArrowUpRight size={15} /></a>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <section className="border-t border-b border-[var(--border)] bg-[var(--bg-subtle)] -mx-5 sm:-mx-8 px-5 sm:px-8 py-8">
-              <div className="max-w-[1240px] mx-auto">
-                <div className="text-[11px] font-mono uppercase tracking-widest text-[var(--text-subtle)] mb-5">CORE DISCIPLINES & CAPABILITIES //</div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[
-                    ["01. OUTREACH & GROWTH", "Business Development", "International client outreach, lead generation, researching partner requirements, and digital positioning."],
-                    ["02. BRAND & CREATIVE", "Graphic Design & Positioning", "Brand identity, visual communication, layout, and creative direction backed by clear commercial intent."],
-                    ["03. FINANCIAL MARKETS", "Market Literacy & Risk", "Stock investing, Forex trading, and an interest in risk management, patience, and market psychology."],
-                    ["04. SYSTEMS & DIGITAL", "IT & E-Commerce Operations", "BCS.IT foundations in cybersecurity and networking, combined with hands-on SEO and product management."]
-                  ].map(([eyebrow, title, description]) => (
-                    <div key={eyebrow} className="space-y-1.5 border-l-2 border-[var(--border-dark)] pl-3.5">
-                      <span className="font-mono text-xs text-[var(--text-subtle)]">{eyebrow}</span>
-                      <h3 className="font-semibold text-sm sm:text-base">{title}</h3>
-                      <p className="text-xs text-[var(--text-muted)] leading-relaxed">{description}</p>
+            {/* RE-ARRANGED STORY & CARD GRID */}
+            <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
+              <div className="lg:col-span-7 space-y-6">
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4">01 / Background & Story</div>
+                  <h2 className="text-2xl sm:text-4xl font-bold tracking-tight leading-tight mb-6">From understanding systems<br />to understanding people.</h2>
+                  <div className="space-y-4 text-sm sm:text-base leading-relaxed text-[var(--text-muted)] max-w-2xl">
+                    <p>My background is in Computer Science and IT, with a focus on cybersecurity and networking. It gave me a structured way to approach problems and an interest in how technology works behind the scenes.</p>
+                    <p>Over time, I found myself drawn just as much to the people side of things. I enjoy coming up with design ideas, thinking about how a brand or message should come across, and finding the right way to communicate with someone.</p>
+                    <p>I’ve also shared the basics of the stock market with beginners through informal mentoring and classes. Explaining market concepts in a simple way taught me the value of listening, being clear, and understanding what someone already knows.</p>
+                    <p>That’s part of what attracts me to business development and sales. I like researching, starting conversations, understanding needs, and finding a useful way forward without making things feel forced.</p>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 sm:p-8">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">Core Mindset</div>
+                  <p className="text-xl sm:text-2xl font-semibold leading-snug tracking-tight text-[var(--text)]">“The best ideas only matter when you can make people understand them.”</p>
+                  <div className="mt-4 text-xs text-[var(--text-muted)]">A guiding principle for communication, creative work, and business.</div>
+                </div>
+              </div>
+
+              {/* SIDEBAR CARDS */}
+              <aside className="lg:col-span-5 space-y-4">
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 sm:p-7 shadow-sm">
+                  <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[var(--border)]">
+                    <div>
+                      <div className="text-xs text-[var(--text-subtle)] font-mono uppercase tracking-[0.18em]">Profile Spec</div>
+                      <div className="font-semibold text-lg mt-1">Rojish Sakhakarmi</div>
                     </div>
+                    <div className="w-12 h-12 rounded-2xl border border-[var(--border-dark)] flex items-center justify-center font-mono text-sm bg-[var(--bg-subtle)]">RS</div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
+                      <span className="text-[var(--text-subtle)] font-mono uppercase">Location</span>
+                      <span className="font-medium text-[var(--text)]">Bhaktapur, Nepal</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
+                      <span className="text-[var(--text-subtle)] font-mono uppercase">Education</span>
+                      <span className="font-medium text-[var(--text)]">B.Sc. CS & IT</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
+                      <span className="text-[var(--text-subtle)] font-mono uppercase">Focus Areas</span>
+                      <span className="font-medium text-[var(--text)]">Business, Design & IT</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
+                      <span className="text-[var(--text-subtle)] font-mono uppercase">Interests</span>
+                      <span className="font-medium text-[var(--text)]">Markets & Strategy</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] p-6">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">Core Competencies</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Design Thinking','Client Outreach','Sales Strategy','Financial Markets','Networking & Security','Visual Positioning'].map((item) => (
+                      <span key={item} className="rounded-full border border-[var(--border-dark)] bg-[var(--bg-card)] px-3 py-1.5 text-xs text-[var(--text-muted)] cursor-default">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </aside>
+            </section>
+
+            {/* DOMAINS OF INTEREST */}
+            <section className="mb-16">
+              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">02 / Key Pillars</div>
+              <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-6">Different ways of looking at a problem.</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { icon: BriefcaseBusiness, title: 'Business & sales', desc: 'Understanding needs, finding opportunities, and building genuine connections.' },
+                  { icon: MessageCircle, title: 'Communication', desc: 'Making ideas easier to understand, whether in a conversation or a message.' },
+                  { icon: Palette, title: 'Design thinking', desc: 'Exploring visual ideas, branding, and how things are presented.' },
+                  { icon: TrendingUp, title: 'Markets', desc: 'Following financial markets and helping beginners understand the basics.' }
+                ].map(({icon: Icon, title, desc}) => (
+                  <div key={title} className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 hover:-translate-y-1 transition-transform">
+                    <Icon size={20} className="mb-6 text-[var(--text-muted)]" />
+                    <h3 className="font-semibold mb-2">{title}</h3>
+                    <p className="text-xs sm:text-sm leading-relaxed text-[var(--text-muted)]">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* BOTTOM CALLOUT */}
+            <section className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">03 / Next Steps</div>
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Open to interesting conversations.</h2>
+                <p className="mt-2 text-sm text-[var(--text-muted)] max-w-xl">Whether it's strategy, technology, or creative direction, I'm always down to connect.</p>
+              </div>
+              <a href="#contact" className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3.5 text-sm font-bold hover:scale-105 active:scale-95 transition-transform">Start a conversation <ArrowUpRight size={16} /></a>
+            </section>
+          </article>
+        ) : isBlogsPage ? (
+          /* --- MINIMAL & CLEAN BLOGS SECTION --- */
+          <section className="py-12 sm:py-16">
+            <div className="mb-8 pb-6 border-b border-[var(--border)]">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] font-bold mb-2 block">[ ESSAYS & FIELD NOTES ]</span>
+              <h1 className="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
+                Blogs &{" "}
+                <span className="relative inline-block">
+                  <span>Perspectives</span>
+                  <DoodleWaveSpark />
+                </span>
+              </h1>
+              <p className="text-[var(--text-muted)] text-sm sm:text-base mt-2 max-w-xl">
+                Curated thoughts on strategy, technology, markets, and human decision-making. Clear ideas, high density.
+              </p>
+            </div>
+
+            {/* SEARCH & CATEGORY FILTERS */}
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-bold border transition-all active:scale-95 ${activeCategory === category ? "bg-[var(--text)] text-[var(--bg)] border-[var(--text)] shadow-md" : "bg-[var(--bg-card)] border-[var(--border)] hover:border-[var(--text)] hover:text-[var(--text)] text-[var(--text-muted)]"}`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+              <input
+                type="search"
+                placeholder="Search blogs..."
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                className="px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-xs outline-none focus:border-[var(--text)] w-full sm:w-64 font-mono transition-colors"
+              />
+            </div>
+
+            {/* MINIMAL POST LIST */}
+            <div className="divide-y divide-[var(--border)] border-t border-b border-[var(--border)] my-6">
+              {!filteredPosts || filteredPosts.length === 0 ? (
+                <div className="py-12 text-center text-[var(--text-muted)] text-xs font-mono">No blogs match your search query.</div>
+              ) : filteredPosts.map((post) => (
+                <a
+                  key={post.slug}
+                  href={`#post/${post.slug}`}
+                  className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 py-6 px-3 hover:bg-[var(--bg-hover)] rounded-2xl transition-all group relative overflow-hidden"
+                >
+                  <div className="sm:col-span-3 text-xs text-[var(--text-subtle)] font-mono flex flex-col justify-center gap-1">
+                    <span className="font-semibold text-[var(--text-muted)]">{post.category}</span>
+                    <span className="text-[10px] text-[var(--text-subtle)]">{post.date} · {post.readTime}</span>
+                  </div>
+
+                  <div className="sm:col-span-8 space-y-1.5">
+                    <h3 className="font-semibold text-base sm:text-lg group-hover:underline leading-snug tracking-tight text-[var(--text)]">
+                      {post.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                  </div>
+
+                  <div className="sm:col-span-1 flex items-center justify-end">
+                    <span className="text-[var(--text-muted)] group-hover:translate-x-1.5 transition-transform font-bold text-lg">→</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* CLEAN ESSAY BANNER */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12 rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] p-7 sm:p-9 relative overflow-hidden shadow-xl"
+            >
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-2 max-w-xl">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-subtle)] font-bold">[ DISCUSS & COLLABORATE ]</span>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight">Have a thought or feedback?</h3>
+                  <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                    I frequently write about market mechanics, strategy, and technology edge cases. If you want to discuss any of these topics, feel free to reach out.
+                  </p>
+                </div>
+
+                <button
+                  onClick={triggerDirectMail}
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-7 py-3.5 text-xs font-bold uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-md shrink-0"
+                >
+                  <span>Start a discussion</span>
+                  <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </button>
+              </div>
+            </motion.div>
+
+          </section>
+        ) : (
+          <>
+            <section className="home-hero relative isolate min-h-[650px] lg:min-h-[720px] flex items-center py-16 sm:py-20">
+              <div className="hero-glow hero-glow-one" aria-hidden="true" />
+              <div className="hero-glow hero-glow-two" aria-hidden="true" />
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-4 items-center w-full relative z-10">
+                <div className="lg:col-span-7 relative z-20">
+                  <motion.div
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="inline-flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-md px-4 py-2 text-xs text-[var(--text-muted)] mb-8 shadow-sm"
+                  >
+                    <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500" />
+                    Based in Bhaktapur, Nepal
+                    <span className="text-[var(--text-subtle)]">·</span>
+                    Open to opportunities
+                  </motion.div>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.08 }}
+                    className="text-xs sm:text-sm uppercase tracking-[0.28em] font-mono text-[var(--text-subtle)] mb-4 font-bold"
+                  >
+                    Hey, I’m Rojish
+                  </motion.p>
+
+                  <motion.h1
+                    initial={{ opacity: 0, y: 22 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.14 }}
+                    className="text-[clamp(3.4rem,8vw,6.8rem)] leading-[0.94] font-bold tracking-[-0.075em] max-w-[780px]"
+                  >
+                    I connect
+                    <span className="relative inline-block block">
+                      <span>ideas to</span>
+                      <DoodleHeroSwirl />
+                    </span>
+                    <span className="block">opportunity<span className="text-[var(--text)]">.</span></span>
+                  </motion.h1>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.65, delay: 0.25 }}
+                    className="mt-7 max-w-[510px] text-base sm:text-lg leading-relaxed text-[var(--text-muted)]"
+                  >
+                    IT graduate exploring the space between business, technology, and creative thinking. I enjoy understanding people, spotting opportunities, and making things happen.
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.34 }}
+                    className="flex flex-wrap items-center gap-4 mt-8"
+                  >
+                    <a href="#contact" className="group inline-flex items-center gap-3 rounded-full bg-[var(--text)] text-[var(--bg)] px-7 py-3.5 text-sm font-bold hover:gap-4 hover:scale-105 active:scale-95 transition-all">
+                      Let’s talk <ArrowUpRight size={17} />
+                    </a>
+                    <a href="#about" className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-7 py-3.5 text-sm font-bold hover:bg-[var(--text)] hover:text-[var(--bg)] hover:border-[var(--text)] hover:scale-105 active:scale-95 transition-all">
+                      More about me <ArrowRight size={16} />
+                    </a>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.55, duration: 0.7 }}
+                    className="flex items-center gap-3 mt-10 text-[var(--text-subtle)]"
+                  >
+                    <a aria-label="LinkedIn" href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-xs font-mono font-bold hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] hover:scale-105 active:scale-95 transition-all duration-300">
+                      <IconLinkedin size={14} /> LINKEDIN
+                    </a>
+                    <a aria-label="Instagram" href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-xs font-mono font-bold hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] hover:scale-105 active:scale-95 transition-all duration-300">
+                      <IconInstagram size={14} /> INSTAGRAM
+                    </a>
+                    <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-xs font-mono font-bold hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] hover:scale-105 active:scale-95 transition-all duration-300">
+                      <IconFileText size={14} /> RESUME
+                    </a>
+                  </motion.div>
+                </div>
+
+                <div className="lg:col-span-5 relative min-h-[390px] sm:min-h-[480px] flex items-center justify-center lg:-translate-x-8 lg:pr-12 pointer-events-none">
+                  <div className="doodle-cross doodle-cross-one" aria-hidden="true">✳</div>
+                  <div className="doodle-cross doodle-cross-two" aria-hidden="true">✳</div>
+                  <motion.div
+                    className="doodle-scribble"
+                    animate={{ rotate: [0, 8, -5, 0], scale: [1, 1.04, 1] }}
+                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                    aria-hidden="true"
+                  >
+                    <svg viewBox="0 0 420 420" fill="none">
+                      <path d="M210 22C314 22 398 106 398 210C398 314 314 398 210 398C106 398 22 314 22 210C22 106 106 22 210 22Z" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 10" />
+                      <path d="M210 58C294 58 362 126 362 210C362 294 294 362 210 362C126 362 58 294 58 210C58 126 126 58 210 58Z" stroke="currentColor" strokeWidth="1" opacity=".45" />
+                      <path d="M90 270C126 188 170 310 214 220C248 151 281 195 326 112" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                      <circle cx="90" cy="270" r="5" fill="currentColor" />
+                      <circle cx="326" cy="112" r="5" fill="currentColor" />
+                    </svg>
+                  </motion.div>
+
+                  <motion.div
+                    className="idea-map relative z-10"
+                    initial={{ opacity: 0, scale: 0.88, rotate: -4 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 85, damping: 15, delay: 0.2 }}
+                  >
+                    <svg className="idea-map-lines" viewBox="0 0 500 500" fill="none" aria-hidden="true">
+                      <path d="M250 250 C180 165 112 140 85 93" />
+                      <path d="M250 250 C330 155 385 130 420 90" />
+                      <path d="M250 250 C365 245 405 250 455 260" />
+                      <path d="M250 250 C340 340 390 370 410 425" />
+                      <path d="M250 250 C165 350 120 375 70 415" />
+                      <path d="M250 250 C140 245 95 255 42 230" />
+                      <path d="M85 93 q-10 -14 -22 -8 M420 90 q14 -8 20 3 M455 260 q16 8 21 -3 M410 425 q-3 15 -17 18 M70 415 q-17 1 -20 -12 M42 230 q-12 -10 -20 1" />
+                      <circle cx="250" cy="250" r="112" className="idea-map-orbit" />
+                      <circle cx="250" cy="250" r="94" className="idea-map-orbit inner" />
+                      <path d="M210 258 q18 -35 38 -2 t42 -3" className="idea-map-scribble" />
+                      <path d="M222 286 q28 14 56 -2" className="idea-map-scribble" />
+                      <path d="M205 213 q-10 -18 7 -28 q14 -8 26 5 q12 -15 28 -5 q17 11 5 28" className="idea-map-scribble" />
+                      <path d="M240 178 l8 -13 l8 13" className="idea-map-scribble" />
+                      <circle cx="85" cy="93" r="5" /><circle cx="420" cy="90" r="5" />
+                      <circle cx="455" cy="260" r="5" /><circle cx="410" cy="425" r="5" />
+                      <circle cx="70" cy="415" r="5" /><circle cx="42" cy="230" r="5" />
+                    </svg>
+                    <div className="idea-map-core">
+                      <span className="idea-core-kicker">THE CONNECTION</span>
+                      <strong>MAKE<br />IT HAPPEN.</strong>
+                      <span className="idea-core-arrow">↗</span>
+                    </div>
+                    <span className="idea-label idea-label-tech">technology</span>
+                    <span className="idea-label idea-label-creative">creativity</span>
+                    <span className="idea-label idea-label-sales">sales</span>
+                    <span className="idea-label idea-label-market">markets</span>
+                    <span className="idea-label idea-label-people">people</span>
+                    <span className="idea-label idea-label-comms">communication</span>
+                    <span className="idea-handwritten">different dots,<br />one big picture ↗</span>
+                    <span className="idea-star idea-star-one">✳</span>
+                    <span className="idea-star idea-star-two">✧</span>
+                  </motion.div>
+
+                  <motion.span className="hero-hand-note" animate={{ rotate: [-8, -3, -8], y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
+                    always connecting dots ↗
+                  </motion.span>
+                </div>
+              </div>
+
+              <motion.div
+                className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-3 text-[10px] font-mono tracking-[0.2em] text-[var(--text-subtle)]"
+                animate={{ y: [0, 6, 0], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2.5, repeat: Infinity }}
+              >
+                SCROLL TO EXPLORE <span className="w-8 h-px bg-[var(--border-dark)]" />
+              </motion.div>
+            </section>
+
+            <section className="home-marquee -mx-5 sm:-mx-8 border-y border-[var(--border)] bg-[var(--bg-subtle)] overflow-hidden py-5">
+              <div className="ticker-wrap">
+                <div className="ticker-inner gap-10 sm:gap-16 whitespace-nowrap text-xs sm:text-sm font-mono uppercase tracking-[0.18em] text-[var(--text-muted)]">
+                  {Array.from({ length: 2 }).map((_, index) => (
+                    <span key={index} className="inline-flex items-center gap-10 sm:gap-16">
+                      <span>Business Development</span><span className="text-[var(--text-subtle)]">✳</span>
+                      <span>Digital Growth</span><span className="text-[var(--text-subtle)]">✳</span>
+                      <span>Creative Thinking & Design</span><span className="text-[var(--text-subtle)]">✳</span>
+                      <span>Technology</span><span className="text-[var(--text-subtle)]">✳</span>
+                      <span>People & Communication</span><span className="text-[var(--text-subtle)]">✳</span>
+                    </span>
                   ))}
                 </div>
               </div>
             </section>
 
-            <section className="py-14 sm:py-18">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight">What each discipline taught me</h2>
-                  <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-0.5">Practical lessons drawn from business development, design, retail, technology, and market education.</p>
+            {/* WHERE THINGS CONNECT SECTION */}
+            <section className="pt-16 sm:pt-24 pb-6">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="max-w-xl">
+                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)]">Where things connect</span>
+                  <h2 className="mt-4 text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
+                    Different worlds.<br />
+                    <span className="relative inline-block">
+                      <span>One connected mind.</span>
+                      <DoodleArrowSweep />
+                    </span>
+                  </h2>
                 </div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] hidden sm:inline">[ 06 DISCIPLINES ]</span>
+                <a href="#about" className="inline-flex items-center gap-2 text-sm font-bold hover:gap-4 transition-all bg-[var(--bg-card)] border border-[var(--border)] px-5 py-2.5 rounded-full hover:border-[var(--text)] shadow-sm">
+                  Get to know me <ArrowUpRight size={17} />
+                </a>
               </div>
-              <div className="divide-y divide-[var(--border)] border-t border-b border-[var(--border)]">
+
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  ["Business Development", "Listening is the skill. Research the prospect's real requirements first, understand their workflow bottlenecks, and the commercial proposal explains itself."],
-                  ["Graphic Design & Branding", "Creativity becomes valuable when backed by strategy. Typography, spacing, and visual hierarchy shape how a brand feels before a word is read."],
-                  ["Financial Markets", "Being right matters far less than managing risk. Following markets reinforced that emotional discipline and patience matter over time."],
-                  ["Client & Customer Communication", "Sales is not about pressure; it is about diagnosing need. Understand customer psychology and align your solution with what people genuinely seek."],
-                  ["Information Technology & Cybersecurity", "Systems fail at the handoffs and edges. Simple, dependable processes that teams understand beat overly complex systems."],
-                  ["E-Commerce & Digital Operations", "Attention to detail matters. Optimized product listings, precise mockups, and structured SEO help build organic visibility."]
-                ].map(([title, lesson], index) => (
-                  <div key={title} className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 py-4 px-2 hover:bg-[var(--bg-hover)] rounded-lg">
-                    <div className="md:col-span-4 font-semibold text-sm sm:text-base flex items-center gap-2"><span className="text-xs font-mono text-[var(--text-subtle)]">0{index + 1}.</span><span>{title}</span></div>
-                    <div className="md:col-span-8 text-[var(--text-muted)] text-sm leading-relaxed">{lesson}</div>
-                  </div>
+                  {
+                    number: "01",
+                    label: "Business",
+                    icon: BriefcaseBusiness,
+                    note: "People & opportunities",
+                    highlights: ["Outreach & Pitching", "Lead Generation", "Client Relationships"],
+                    badge: "Growth Focus"
+                  },
+                  {
+                    number: "02",
+                    label: "Technology",
+                    icon: Code2,
+                    note: "Systems & problem-solving",
+                    highlights: ["Web Architecture", "Cybersecurity Baseline", "Structured Logic"],
+                    badge: "IT CS Degree"
+                  },
+                  {
+                    number: "03",
+                    label: "Creative",
+                    icon: Palette,
+                    note: "Ideas & visual stories",
+                    highlights: ["Brand Positioning", "Design Aesthetics", "UI/UX Presentation"],
+                    badge: "Visual Strategy"
+                  },
+                  {
+                    number: "04",
+                    label: "Markets",
+                    icon: TrendingUp,
+                    note: "Money & human behavior",
+                    highlights: ["Technical Analysis", "Risk Management", "Market Literacy"],
+                    badge: "Capital Flows"
+                  },
+                ].map(({ number, label, icon: Icon, note, highlights, badge }, index) => (
+                  <motion.a
+                    href="#about"
+                    key={label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    whileHover={{ y: -6 }}
+                    className="group relative rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 flex flex-col justify-between transition-all duration-300 hover:border-[var(--text)] hover:shadow-xl hover:shadow-black/20 overflow-hidden"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--text)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-[10px] font-mono font-bold text-[var(--text-subtle)]">{number} / 04</span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--bg-subtle)] border border-[var(--border)] text-[var(--text-muted)]">{badge}</span>
+                      </div>
+
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] group-hover:bg-[var(--text)] group-hover:text-[var(--bg)] transition-colors">
+                          <Icon size={18} />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold group-hover:underline flex items-center gap-1">
+                            {label}
+                            <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </h3>
+                          <p className="text-xs text-[var(--text-subtle)]">{note}</p>
+                        </div>
+                      </div>
+
+                      <hr className="border-[var(--border)] my-4 opacity-50" />
+
+                      <div className="space-y-2">
+                        {highlights.map((item, i) => (
+                          <div key={i} className="flex items-center gap-2 text-xs text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors">
+                            <span className="w-1 h-1 rounded-full bg-[var(--text-subtle)] group-hover:bg-[var(--text)]" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-6 text-[10px] font-mono uppercase tracking-wider text-[var(--text-subtle)] flex items-center justify-between pt-3 border-t border-[var(--border)]/40">
+                      <span>Explore domain</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                  </motion.a>
                 ))}
               </div>
             </section>
 
-            <section className="pb-16 sm:pb-20">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Recent Writing & Notes</h2>
-                  <p className="text-xs text-[var(--text-muted)] mt-0.5">Perspectives on brand strategy, client outreach, and market education.</p>
+            {/* HOMEPAGE CTA */}
+            <section className="relative overflow-hidden rounded-[2.5rem] border border-[var(--border)] bg-[var(--bg-subtle)] p-8 sm:p-12 my-8 shadow-xl">
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-lg">
+                  <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ GET IN TOUCH ]</span>
+                  <h2 className="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
+                    Let's create something<br />
+                    <span className="relative inline-block mt-1">
+                      <span>extraordinary together.</span>
+                      <DoodleCleanUnderline />
+                    </span>
+                  </h2>
+                  <p className="text-[var(--text-muted)] text-sm sm:text-base leading-relaxed">
+                    Have an idea, project, or topic you'd like to discuss? Drop me a line anytime.
+                  </p>
                 </div>
-                <a href="#blog" className="text-xs font-mono uppercase tracking-wider hover:underline">All notes →</a>
+
+                <a
+                  href="#contact"
+                  className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[var(--text)] text-[var(--bg)] px-8 py-4 text-sm font-bold shadow-lg hover:scale-[1.02] active:scale-95 transition-all shrink-0"
+                >
+                  <span>Start a conversation</span>
+                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
               </div>
-              <PostList items={posts.slice(0, 3)} />
             </section>
           </>
         )}
 
-        <section id="contact-band" className="border-t border-[var(--border)] py-14 sm:py-16">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <div className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)]">Get in touch //</div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Let's talk about ideas worth building.</h2>
-              <p className="text-sm text-[var(--text-muted)] max-w-md">Business development opportunities, brand strategy, or creative collaborations. Send a note and I will reply personally.</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <a href="#contact" className="px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider">Initiate Conversation →</a>
-              <button onClick={copyEmail} className="px-4 py-2.5 rounded-full border border-[var(--border)] hover:border-[var(--text)] text-xs font-mono">Copy email</button>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="border-t border-[var(--border)] py-6 text-xs text-[var(--text-muted)]">
+      {/* FOOTER */}
+      <footer className="border-t border-[var(--border)] py-8 text-xs text-[var(--text-muted)] bg-[var(--bg-card)] mt-10">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex flex-wrap items-center justify-between gap-4 font-mono">
           <div>© 2026 Rojish Sakhakarmi — Bhaktapur, Nepal</div>
           <div className="flex items-center gap-5">
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)]">LinkedIn</a>
-            <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text)]">Instagram</a>
-            <a href="/admin" className="text-[var(--text-subtle)] hover:text-[var(--text)]">Admin CMS ↗</a>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">LinkedIn</a>
+            <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">Instagram</a>
           </div>
         </div>
       </footer>
 
       <AnimatePresence>
         {toastMessage && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="fixed bottom-6 right-6 px-4 py-2 rounded-full bg-[var(--text)] text-[var(--bg)] text-xs font-mono shadow-xl z-50">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="fixed bottom-6 right-6 px-5 py-3 rounded-full bg-[var(--text)] text-[var(--bg)] text-xs font-mono font-bold shadow-2xl z-50 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--bg)] opacity-70 animate-pulse" />
             {toastMessage}
           </motion.div>
         )}
