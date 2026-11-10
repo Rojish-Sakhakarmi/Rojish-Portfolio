@@ -15,7 +15,6 @@ import {
   Mail,
   Share2
 } from "lucide-react";
-
 // --- Custom Minimal SVGs ---
 const IconLinkedin = ({ size = 16 }: { size?: number }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
@@ -24,7 +23,7 @@ const IconInstagram = ({ size = 16 }: { size?: number }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
 );
 const IconFileText = ({ size = 16 }: { size?: number }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="9" y2="9"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
 );
 
 // --- Underline Doodles ---
@@ -65,7 +64,7 @@ const DoodlePulseLine = () => (
   </svg>
 );
 
-// 4-Node Focus Badge
+// 4-Node Focus Badge (Removed Systems & Comms)
 const MinimalFocusBadge = () => (
   <div className="relative w-52 sm:w-56 h-auto rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-sm group hover:border-[var(--text)] transition-colors">
     <div className="flex items-center justify-between text-[10px] font-mono text-[var(--text-subtle)] mb-3">
@@ -101,7 +100,7 @@ interface BlogPost {
   date: string;
   excerpt: string;
   body: string[];
-  readTime?: string;
+  readTime: string;
 }
 
 const INITIAL_POSTS: BlogPost[] = [
@@ -473,7 +472,7 @@ export default function HomePage() {
             </div>
           </section>
         ) : currentRoute === "#about" ? (
-          /* --- ABOUT PAGE --- */
+          /* --- ABOUT PAGE WITH ALIGNED CORE MINDSET & 2X2 SHORT TOOLS CARD --- */
           <article className="about-page py-8 sm:py-16">
             <section className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-10 lg:p-14 mb-10 sm:mb-12">
               <div className="absolute right-10 top-10 hidden lg:block" aria-hidden="true">
@@ -516,13 +515,14 @@ export default function HomePage() {
                   <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4">01 / Background & Story</div>
                   <h2 className="text-2xl sm:text-4xl font-bold tracking-tight leading-tight mb-6">From understanding systems<br />to understanding people.</h2>
                   <div className="space-y-4 text-sm sm:text-base leading-relaxed text-[var(--text-muted)] max-w-2xl">
-                    <p>My background is in Computer Science and IT, with a focus on cybersecurity and networking. It gave me a structured way to approach problems and an interest in how technology works behind the scenes.</p>
+                    <p>My background is in Computer Science and IT, where I developed an interest in technology, problem-solving, and understanding how things work behind the scenes.</p>
                     <p>Over time, I found myself drawn just as much to the people side of things. I enjoy coming up with design ideas, thinking about how a brand or message should come across, and finding the right way to communicate with someone.</p>
-                    <p>I’ve also shared the basics of the stock market with beginners through informal mentoring and classes. Explaining market concepts in a simple way taught me the value of listening, being clear, and understanding what someone already knows.</p>
-                    <p>That’s part of what attracts me to business development and sales. I like researching, starting conversations, understanding needs, and finding a useful way forward without making things feel forced.</p>
+                    <p>I've also spent time learning about financial markets and sharing knowledge through informal classes and mentoring. It taught me how to break down complex ideas, understand different perspectives, and communicate in a way people can relate to.</p>
+                    <p>These experiences have shaped my interest in business development and sales. I enjoy researching businesses, identifying opportunities, starting conversations, understanding what people need, and finding ways to create value.</p>
                   </div>
                 </div>
                 
+                {/* Core Mindset Card */}
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 sm:p-7">
                   <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-2">Core Mindset</div>
                   <p className="text-lg sm:text-xl font-semibold leading-snug tracking-tight text-[var(--text)]">“The best ideas only matter when you can make people understand them.”</p>
@@ -537,20 +537,20 @@ export default function HomePage() {
                       <div className="text-xs text-[var(--text-subtle)] font-mono uppercase tracking-[0.18em]">Profile Spec</div>
                       <div className="font-semibold text-lg mt-1">Rojish Sakhakarmi</div>
                     </div>
-                    <div className="w-11 h-11 rounded-2xl border border-[var(--border-dark)] flex items-center justify-center font-mono text-xs bg-[var(--bg-subtle)]">RS</div>
+                    <div className="w-11 h-11 rounded-2xl border border-[var(--border-dark)] flex items-center justify-center font-mono text-xs bg-[var(--bg-subtle)]">Rojis</div>
                   </div>
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
                       <span className="text-[var(--text-subtle)] font-mono uppercase">Location</span>
-                      <span className="font-medium text-[var(--text)]">Bhaktapur, Nepal</span>
+                      <span className="font-medium text-[var(--text)]">Kathmandu, Nepal</span>
                     </div>
                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
                       <span className="text-[var(--text-subtle)] font-mono uppercase">Education</span>
-                      <span className="font-medium text-[var(--text)]">B.Sc. CS & IT</span>
+                      <span className="font-medium text-[var(--text)]">Bachelor in Computer Science</span>
                     </div>
                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
                       <span className="text-[var(--text-subtle)] font-mono uppercase">Focus Areas</span>
-                      <span className="font-medium text-[var(--text)]">Business, Design & IT</span>
+                      <span className="font-medium text-[var(--text)]">Business & Marketing</span>
                     </div>
                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs">
                       <span className="text-[var(--text-subtle)] font-mono uppercase">Interests</span>
@@ -562,7 +562,7 @@ export default function HomePage() {
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] p-5">
                   <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-2.5">Core Competencies</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Design Thinking','Client Outreach','Sales Strategy','Financial Markets','Networking & Security','Visual Positioning'].map((item) => (
+                    {['Brand Strategy','Client Outreach','Marketing Strategy','Financial Markets','Networking & Security','Visual Positioning'].map((item) => (
                       <span key={item} className="rounded-full border border-[var(--border-dark)] bg-[var(--bg-card)] px-2.5 py-1 text-[11px] text-[var(--text-muted)] cursor-default">
                         {item}
                       </span>
@@ -578,10 +578,10 @@ export default function HomePage() {
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {[
-                      { area: "UI & Design", stack: "Figma, Photoshop, Illustrator" },
-                      { area: "Business Dev", stack: "Lead Gen & Outreach" },
-                      { area: "Market Analysis", stack: "SMC, ICT, Liquidity" },
-                      { area: "Brand Strategy", stack: "Positioning & Messaging" }
+                      { area: "UI & Design", stack: "Figma, Photoshop & Illustrator" },
+                      { area: "Brand Strategy", stack: "Brand Positioning & Messaging" },
+                      { area: "Market Analysis", stack: "SMC, Market Structure & Liquidity" },
+                      { area: "Sales & Communication", stack: "Client Relations & Negotiation" }
                     ].map((row, idx) => (
                       <div key={idx} className="p-2.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs flex flex-col justify-between">
                         <span className="text-[9px] font-mono uppercase text-[var(--text-subtle)] font-semibold mb-1">{row.area}</span>
@@ -599,10 +599,10 @@ export default function HomePage() {
               <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-6">Different ways of looking at a problem.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  { icon: BriefcaseBusiness, title: 'Business & sales', desc: 'Understanding needs, finding opportunities, and building genuine connections.' },
+                  { icon: BriefcaseBusiness, title: 'Business & sales', desc: 'Understanding businesses, spotting opportunities, and finding ways to create value.' },
                   { icon: MessageCircle, title: 'Communication', desc: 'Making ideas easier to understand, whether in a conversation or a message.' },
-                  { icon: Palette, title: 'Design thinking', desc: 'Exploring visual ideas, branding, and how things are presented.' },
-                  { icon: TrendingUp, title: 'Markets', desc: 'Following financial markets and helping beginners understand the basics.' }
+                  { icon: Palette, title: 'Design thinking', desc: 'Combining creativity and purpose to shape better visual experiences, brand identities, and ideas.' },
+                  { icon: TrendingUp, title: 'Markets', desc: 'Following financial markets and helping people understand the market dynamics.' }
                 ].map(({icon: Icon, title, desc}) => (
                   <div key={title} className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 hover:-translate-y-1 transition-transform">
                     <Icon size={20} className="mb-6 text-[var(--text-muted)]" />
@@ -668,7 +668,7 @@ export default function HomePage() {
                 >
                   <div className="sm:col-span-3 text-xs text-[var(--text-subtle)] font-mono flex flex-col justify-center gap-1">
                     <span className="font-semibold text-[var(--text-muted)]">{post.category}</span>
-                    <span className="text-[10px] text-[var(--text-subtle)]">{post.date}</span>
+                    <span className="text-[10px] text-[var(--text-subtle)]">{post.date} · {post.readTime}</span>
                   </div>
                   <div className="sm:col-span-8 space-y-1.5">
                     <h3 className="font-semibold text-base sm:text-lg group-hover:underline leading-snug tracking-tight text-[var(--text)]">
