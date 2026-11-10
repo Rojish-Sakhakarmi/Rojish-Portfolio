@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const dataFilePath = path.join(process.cwd(), "src", "data", "posts.json");
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
@@ -22,6 +23,10 @@ function getPosts() {
 
 function savePosts(posts: any[]) {
   try {
+    const dirPath = path.dirname(dataFilePath);
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
     fs.writeFileSync(dataFilePath, JSON.stringify(posts, null, 2), "utf8");
     return true;
   } catch (error) {
@@ -33,7 +38,11 @@ function savePosts(posts: any[]) {
 // GET: Fetch all posts
 export async function GET() {
   const posts = getPosts();
-  return NextResponse.json({ success: true, posts });
+  return NextResponse.json({ success: true, posts }, {
+    headers: {
+      "Cache-Control": "no-store, max-age=0, must-revalidate"
+    }
+  });
 }
 
 // POST: Add a new post
@@ -41,8 +50,10 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { password, post } = body;
+    const authHeader = request.headers.get("x-admin-password");
+    const activePassword = password || authHeader;
 
-    if (password !== ADMIN_PASSWORD) {
+    if (activePassword !== ADMIN_PASSWORD) {
       return NextResponse.json({ success: false, error: "Unauthorized: Invalid password" }, { status: 401 });
     }
 
@@ -81,8 +92,10 @@ export async function PUT(request: Request) {
   try {
     const body = await request.json();
     const { password, post } = body;
+    const authHeader = request.headers.get("x-admin-password");
+    const activePassword = password || authHeader;
 
-    if (password !== ADMIN_PASSWORD) {
+    if (activePassword !== ADMIN_PASSWORD) {
       return NextResponse.json({ success: false, error: "Unauthorized: Invalid password" }, { status: 401 });
     }
 
