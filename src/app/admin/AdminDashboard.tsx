@@ -14,6 +14,7 @@ interface Post {
 export default function AdminDashboard() {
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authChecking, setAuthChecking] = useState(true);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,18 +30,44 @@ export default function AdminDashboard() {
   const [bodyText, setBodyText] = useState("");
 
   useEffect(() => {
-    const saved = localStorage.getItem("portfolio_admin_pw");
-    if (saved) {
-      setPassword(saved);
-      setIsAuthenticated(true);
-      fetchPosts();
-    }
+    const checkSavedSession = async () => {
+      const savedPw = localStorage.getItem("portfolio_admin_pw");
+      if (!savedPw) {
+        setAuthChecking(false);
+        return;
+      }
+
+      // Verify the saved password against the backend API
+      try {
+        const res = await fetch("/api/posts", {
+          headers: { "x-admin-password": savedPw }
+        });
+        if (res.ok) {
+          setPassword(savedPw);
+          setIsAuthenticated(true);
+          const data = await res.json();
+          if (data.success) setPosts(data.posts);
+        } else {
+          localStorage.removeItem("portfolio_admin_pw");
+          setIsAuthenticated(false);
+        }
+      } catch (e) {
+        setIsAuthenticated(false);
+      } finally {
+        setAuthChecking(false);
+      }
+    };
+
+    checkSavedSession();
   }, []);
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (activePw?: string) => {
+    const pwToUse = activePw || password;
     setLoading(true);
     try {
-      const res = await fetch("/api/posts");
+      const res = await fetch("/api/posts", {
+        headers: { "x-admin-password": pwToUse }
+      });
       const data = await res.json();
       if (data.success) {
         setPosts(data.posts);
@@ -52,12 +79,32 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!password) return;
-    localStorage.setItem("portfolio_admin_pw", password);
-    setIsAuthenticated(true);
-    fetchPosts();
+    setError(null);
+    setLoading(true);
+
+    try {
+      // Test credentials against your posts API route
+      const res = await fetch("/api/posts", {
+        headers: { "x-admin-password": password }
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        localStorage.setItem("portfolio_admin_pw", password);
+        setIsAuthenticated(true);
+        setPosts(data.posts);
+      } else {
+        setError("Invalid admin password");
+        setIsAuthenticated(false);
+      }
+    } catch (e) {
+      setError("Failed to authenticate with server");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogout = () => {
@@ -125,7 +172,10 @@ export default function AdminDashboard() {
       const method = editingSlug ? "PUT" : "POST";
       const res = await fetch("/api/posts", {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": password,
+        },
         body: JSON.stringify(payload),
       });
 
@@ -168,44 +218,61 @@ export default function AdminDashboard() {
     }
   };
 
+  // 1. Initial Session Verification Screen
+  if (authChecking) {
+    return (
+      <div className="min-h-screen bg-[#09090b] text-[#fafafa] flex items-center justify-center p-6">
+        <div className="text-xs font-mono text-[#71717a] animate-pulse">
+          Verifying security token...
+        </div>
+      </div>
+    );
+  }
+
+  // 2. Unauthenticated Login Gate
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#09090b] text-[#fafafa] flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-[#111114] border border-[#27272a] rounded-2xl p-8 space-y-6">
+        <div className="max-w-md w-full bg-[#111114] border border-[#27272a] rounded-2xl p-8 space-y-6 shadow-2xl">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-[#71717a]">
-              [ CMS // ACCESS ]
+              [ CMS // ACCESS CONTROL ]
             </span>
             <h1 className="text-2xl font-bold tracking-tight mt-1">Admin Portal</h1>
             <p className="text-sm text-[#a1a1aa] mt-1">
-              Enter your password to manage your strategic essays and notes.
+              Enter your secret admin password to manage site content.
             </p>
           </div>
 
+          {error && (
+            <div className="p-3 rounded-xl bg-red-950/60 border border-red-800 text-red-200 text-xs font-mono">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-mono uppercase text-[#71717a] mb-2">
-              </label>
               <input
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password..."
-                className="w-full px-4 py-2.5 rounded-xl border border-[#27272a] bg-black text-sm outline-none focus:border-white transition-colors"
+                placeholder="Enter admin password..."
+                className="w-full px-4 py-3 rounded-xl border border-[#27272a] bg-black text-sm outline-none focus:border-white transition-colors font-mono"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-colors"
+              disabled={loading}
+              className="w-full py-3 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-colors disabled:opacity-50"
             >
-              Sign In to Dashboard
+              {loading ? "Verifying..." : "Unlock Dashboard"}
             </button>
           </form>
 
-          <div className="text-center">
-            <a href="/" className="text-xs font-mono text-[#71717a] hover:text-white">
+          <div className="text-center pt-2 border-t border-[#27272a]">
+            <a href="/" className="text-xs font-mono text-[#71717a] hover:text-white transition-colors">
               ← Return to live site
             </a>
           </div>
@@ -214,9 +281,9 @@ export default function AdminDashboard() {
     );
   }
 
+  // 3. Authenticated Admin Dashboard
   return (
     <div className="min-h-screen bg-[#09090b] text-[#fafafa] font-sans pb-16">
-      {/* Admin Header */}
       <header className="border-b border-[#27272a] bg-[#111114]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-[1240px] mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -240,9 +307,7 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      {/* Main Content */}
       <div className="max-w-[1240px] mx-auto px-6 pt-10">
-        {/* Alerts */}
         {error && (
           <div className="mb-6 p-4 rounded-xl bg-red-950/60 border border-red-800 text-red-200 text-sm">
             {error}
@@ -255,7 +320,6 @@ export default function AdminDashboard() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Post Editor Form */}
           <div className="lg:col-span-7 bg-[#111114] border border-[#27272a] rounded-2xl p-6 sm:p-8">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#27272a]">
               <div>
@@ -376,14 +440,13 @@ export default function AdminDashboard() {
             </form>
           </div>
 
-          {/* Posts List */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center justify-between pb-2 border-b border-[#27272a]">
               <h2 className="text-sm font-mono uppercase tracking-wider text-[#a1a1aa]">
                 Published Articles ({posts.length})
               </h2>
               <button
-                onClick={fetchPosts}
+                onClick={() => fetchPosts()}
                 className="text-xs font-mono text-[#71717a] hover:text-white"
               >
                 ↻ Refresh
