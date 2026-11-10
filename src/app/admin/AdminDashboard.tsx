@@ -40,13 +40,14 @@ export default function AdminDashboard() {
       // Verify the saved password against the backend API
       try {
         const res = await fetch("/api/posts", {
-          headers: { "x-admin-password": savedPw }
+          headers: { "x-admin-password": savedPw },
         });
-        if (res.ok) {
+        const data = await res.json();
+
+        if (res.ok && data.success) {
           setPassword(savedPw);
           setIsAuthenticated(true);
-          const data = await res.json();
-          if (data.success) setPosts(data.posts);
+          setPosts(data.posts || []);
         } else {
           localStorage.removeItem("portfolio_admin_pw");
           setIsAuthenticated(false);
@@ -66,11 +67,11 @@ export default function AdminDashboard() {
     setLoading(true);
     try {
       const res = await fetch("/api/posts", {
-        headers: { "x-admin-password": pwToUse }
+        headers: { "x-admin-password": pwToUse },
       });
       const data = await res.json();
-      if (data.success) {
-        setPosts(data.posts);
+      if (res.ok && data.success) {
+        setPosts(data.posts || []);
       }
     } catch (e) {
       setError("Failed to load posts from backend");
@@ -88,20 +89,21 @@ export default function AdminDashboard() {
     try {
       // Test credentials against your posts API route
       const res = await fetch("/api/posts", {
-        headers: { "x-admin-password": password }
+        headers: { "x-admin-password": password },
       });
       const data = await res.json();
 
       if (res.ok && data.success) {
         localStorage.setItem("portfolio_admin_pw", password);
         setIsAuthenticated(true);
-        setPosts(data.posts);
+        setPosts(data.posts || []);
       } else {
-        setError("Invalid admin password");
+        setError("Incorrect admin password.");
         setIsAuthenticated(false);
+        localStorage.removeItem("portfolio_admin_pw");
       }
     } catch (e) {
-      setError("Failed to authenticate with server");
+      setError("Failed to authenticate with server.");
     } finally {
       setLoading(false);
     }
@@ -218,18 +220,18 @@ export default function AdminDashboard() {
     }
   };
 
-  // 1. Initial Session Verification Screen
+  // 1. Session check loading screen
   if (authChecking) {
     return (
       <div className="min-h-screen bg-[#09090b] text-[#fafafa] flex items-center justify-center p-6">
         <div className="text-xs font-mono text-[#71717a] animate-pulse">
-          Verifying security token...
+          Verifying security session...
         </div>
       </div>
     );
   }
 
-  // 2. Unauthenticated Login Gate
+  // 2. Login Gate
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#09090b] text-[#fafafa] flex items-center justify-center p-6">
@@ -240,7 +242,7 @@ export default function AdminDashboard() {
             </span>
             <h1 className="text-2xl font-bold tracking-tight mt-1">Admin Portal</h1>
             <p className="text-sm text-[#a1a1aa] mt-1">
-              Enter your secret admin password to manage site content.
+              Enter your password to manage your strategic essays and notes.
             </p>
           </div>
 
@@ -257,22 +259,22 @@ export default function AdminDashboard() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password..."
-                className="w-full px-4 py-3 rounded-xl border border-[#27272a] bg-black text-sm outline-none focus:border-white transition-colors font-mono"
+                placeholder="Enter password..."
+                className="w-full px-4 py-2.5 rounded-xl border border-[#27272a] bg-black text-sm outline-none focus:border-white transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-colors disabled:opacity-50"
+              className="w-full py-2.5 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-colors disabled:opacity-50"
             >
-              {loading ? "Verifying..." : "Unlock Dashboard"}
+              {loading ? "Verifying..." : "Sign In to Dashboard"}
             </button>
           </form>
 
-          <div className="text-center pt-2 border-t border-[#27272a]">
-            <a href="/" className="text-xs font-mono text-[#71717a] hover:text-white transition-colors">
+          <div className="text-center">
+            <a href="/" className="text-xs font-mono text-[#71717a] hover:text-white">
               ← Return to live site
             </a>
           </div>
@@ -281,9 +283,10 @@ export default function AdminDashboard() {
     );
   }
 
-  // 3. Authenticated Admin Dashboard
+  // 3. Authenticated Dashboard
   return (
     <div className="min-h-screen bg-[#09090b] text-[#fafafa] font-sans pb-16">
+      {/* Admin Header */}
       <header className="border-b border-[#27272a] bg-[#111114]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-[1240px] mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -307,7 +310,9 @@ export default function AdminDashboard() {
         </div>
       </header>
 
+      {/* Main Content */}
       <div className="max-w-[1240px] mx-auto px-6 pt-10">
+        {/* Alerts */}
         {error && (
           <div className="mb-6 p-4 rounded-xl bg-red-950/60 border border-red-800 text-red-200 text-sm">
             {error}
@@ -320,6 +325,7 @@ export default function AdminDashboard() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Post Editor Form */}
           <div className="lg:col-span-7 bg-[#111114] border border-[#27272a] rounded-2xl p-6 sm:p-8">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#27272a]">
               <div>
@@ -440,6 +446,7 @@ export default function AdminDashboard() {
             </form>
           </div>
 
+          {/* Posts List */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center justify-between pb-2 border-b border-[#27272a]">
               <h2 className="text-sm font-mono uppercase tracking-wider text-[#a1a1aa]">
