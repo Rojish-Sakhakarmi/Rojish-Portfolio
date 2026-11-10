@@ -185,7 +185,6 @@ export default function AdminDashboard() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-mono uppercase text-[#71717a] mb-2">
-                Password (Default: admin123)
               </label>
               <input
                 type="password"
