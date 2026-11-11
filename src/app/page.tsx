@@ -1008,7 +1008,7 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex flex-wrap items-center justify-between gap-4 font-mono">
           <div>© 2026 Rojish Sakhakarmi — Bhaktapur, Nepal</div>
           <div className="flex items-center gap-5">
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">LinkedIn</a>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">Linkedin</a>
             <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">Instagram</a>
           </div>
         </div>
