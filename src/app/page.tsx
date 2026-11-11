@@ -23,6 +23,9 @@ const IconLinkedin = ({ size = 14, className = "" }: { size?: number; className?
 const IconInstagram = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
 );
+const IconWhatsapp = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+);
 const IconFileText = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
 );
@@ -161,10 +164,11 @@ const INITIAL_POSTS: BlogPost[] = [
 const EMAIL = "hello@rojish-sakhakarmi.com.np";
 const LINKEDIN = "https://linkedin.com/in/rojish0";
 const INSTAGRAM = "https://instagram.com/rojish0";
+const WHATSAPP = "https://wa.me/rojish0";
 
 export default function HomePage() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
-  const [currentRoute, setCurrentRoute] = useState("#");
+  const [currentPath, setCurrentPath] = useState("/");
   const [posts, setPosts] = useState<BlogPost[]>(INITIAL_POSTS);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -199,7 +203,7 @@ export default function HomePage() {
         };
         setNepalTime(new Intl.DateTimeFormat("en-US", options).format(new Date()));
       } catch {
-        setNepalTime("Bhaktapur, NP");
+        setNepalTime("Kathmandu, NP");
       }
     };
     updateTime();
@@ -214,23 +218,41 @@ export default function HomePage() {
     setTheme(initialTheme);
     document.documentElement.setAttribute("data-theme", initialTheme);
 
-    const handleHash = () => {
-      setCurrentRoute(window.location.hash || "#");
+    const syncRoute = () => {
+      let path = window.location.pathname;
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        if (hash === "#about") path = "/about";
+        else if (hash === "#blogs" || hash === "#blog") path = "/blogs";
+        else if (hash === "#contact") path = "/contact";
+        else if (hash.startsWith("#post/")) path = `/blog/${hash.slice(6)}`;
+      }
+      setCurrentPath(path);
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
     const handleScroll = () => {
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       setScrollProgress(height > 0 ? (document.documentElement.scrollTop / height) * 100 : 0);
     };
 
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
+    syncRoute();
+    window.addEventListener("popstate", syncRoute);
+    window.addEventListener("hashchange", syncRoute);
     window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("hashchange", handleHash);
+      window.removeEventListener("popstate", syncRoute);
+      window.removeEventListener("hashchange", syncRoute);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const navigateTo = (path: string, event?: React.MouseEvent) => {
+    if (event) event.preventDefault();
+    window.history.pushState({}, "", path);
+    setCurrentPath(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
@@ -266,9 +288,9 @@ export default function HomePage() {
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Hey Rojish — Let's Connect")}`;
   };
 
-  const isBlogsPage = currentRoute === "#blog" || currentRoute === "#blogs";
-  const isPostRoute = currentRoute.startsWith("#post/");
-  const activePostSlug = isPostRoute ? currentRoute.slice("#post/".length) : null;
+  const isBlogsPage = currentPath === "/blogs" || currentPath === "/blog";
+  const isPostRoute = currentPath.startsWith("/blog/");
+  const activePostSlug = isPostRoute ? currentPath.slice("/blog/".length) : null;
   const categories = ["All", ...Array.from(new Set(posts.map((post) => post.category)))];
   
   const filteredPosts = posts.filter((post) => {
@@ -279,9 +301,6 @@ export default function HomePage() {
   });
 
   const activePost = posts.find((post) => post.slug === activePostSlug);
-  const activePostIndex = activePost ? posts.findIndex((post) => post.slug === activePost.slug) : -1;
-  const prevPost = posts.length && activePostIndex > 0 ? posts[activePostIndex - 1] : null;
-  const nextPost = posts.length && activePostIndex >= 0 && activePostIndex < posts.length - 1 ? posts[activePostIndex + 1] : null;
 
   return (
     <div className="min-h-screen max-w-full overflow-x-hidden bg-[var(--bg)] text-[var(--text)] transition-colors duration-200 selection:bg-[var(--text)] selection:text-[var(--bg)]">
@@ -303,16 +322,21 @@ export default function HomePage() {
 
       <header className="sticky top-0 bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)] z-40 transition-colors">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-[64px] flex items-center justify-between">
-          <a href="#" className="font-bold text-[17px] tracking-tight hover:opacity-80 transition-opacity">
+          <a href="/" onClick={(e) => navigateTo("/", e)} className="font-bold text-[17px] tracking-tight hover:opacity-80 transition-opacity">
             Rojish0
           </a>
           <nav className="flex items-center gap-4 sm:gap-7">
             {[
-              { href: "#about", label: "About" },
-              { href: "#blogs", label: "Blogs" },
-              { href: "#contact", label: "Contact" }
+              { path: "/about", label: "About" },
+              { path: "/blogs", label: "Blogs" },
+              { path: "/contact", label: "Contact" }
             ].map((item) => (
-              <a key={item.href} href={item.href} className={`text-xs sm:text-sm transition-colors hover:text-[var(--text)] ${currentRoute === item.href || (item.href === "#blogs" && currentRoute === "#blog") ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}>
+              <a
+                key={item.path}
+                href={item.path}
+                onClick={(e) => navigateTo(item.path, e)}
+                className={`text-xs sm:text-sm transition-colors hover:text-[var(--text)] ${currentPath === item.path || (item.path === "/blogs" && currentPath === "/blog") ? "text-[var(--text)] font-semibold" : "text-[var(--text-muted)]"}`}
+              >
                 {item.label}
               </a>
             ))}
@@ -323,13 +347,13 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="max-w-[1240px] mx-auto px-5 sm:px-8 overflow-hidden">
+      <main className="max-w-[1240px] mx-auto px-5 sm:px-8 overflow-hidden mb-6 sm:mb-8">
         {activePostSlug ? (
           activePost ? (
             /* --- READ ESSAY VIEW --- */
-            <article className="max-w-[700px] mx-auto py-6 sm:py-12">
+            <article className="max-w-[700px] mx-auto py-6 sm:py-10">
               <div className="flex items-center justify-between gap-4 mb-8">
-                <a href="#blogs" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
+                <a href="/blogs" onClick={(e) => navigateTo("/blogs", e)} className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
                   ← Back to blogs
                 </a>
                 <button onClick={copyPostUrl} className="text-xs font-mono text-[var(--text-subtle)] hover:text-[var(--text)] flex items-center gap-1.5 transition-colors">
@@ -371,135 +395,166 @@ export default function HomePage() {
                 </div>
               )}
 
-              {/* ENHANCED BOTTOM ARTICLE NAVIGATION */}
-              <div className="mt-16 pt-8 border-t border-[var(--border)]">
-                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4 text-center font-bold">
-                  Keep Reading
-                </div>
+              {/* --- CARD NAVIGATION (CATEGORY SCOPED) --- */}
+              {(() => {
+                const categoryPosts = posts.filter(p => p.category === activePost.category);
+                const catIndex = categoryPosts.findIndex(p => p.slug === activePost.slug);
+                const scopedPrev = catIndex > 0 ? categoryPosts[catIndex - 1] : null;
+                const scopedNext = catIndex >= 0 && catIndex < categoryPosts.length - 1 ? categoryPosts[catIndex + 1] : null;
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {prevPost ? (
-                    <a
-                      href={`#post/${prevPost.slug}`}
-                      className="group p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all flex flex-col justify-between"
-                    >
-                      <span className="text-xs font-mono text-[var(--text-subtle)] flex items-center gap-1 group-hover:-translate-x-1 transition-transform">
-                        ← PREVIOUS ARTICLE
-                      </span>
-                      <h4 className="font-semibold text-sm sm:text-base text-[var(--text)] group-hover:underline mt-2 line-clamp-2 leading-snug">
-                        {prevPost.title}
-                      </h4>
-                    </a>
-                  ) : (
-                    <div className="hidden sm:block" />
-                  )}
+                return (
+                  <div className="mt-12 pt-8 border-t border-[var(--border)]">
+                    <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4">
+                      More in {activePost.category} ({catIndex + 1} of {categoryPosts.length})
+                    </div>
 
-                  {nextPost ? (
-                    <a
-                      href={`#post/${nextPost.slug}`}
-                      className="group p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all flex flex-col justify-between text-right sm:col-start-2"
-                    >
-                      <span className="text-xs font-mono text-[var(--text-subtle)] flex items-center justify-end gap-1 group-hover:translate-x-1 transition-transform">
-                        NEXT ARTICLE →
-                      </span>
-                      <h4 className="font-semibold text-sm sm:text-base text-[var(--text)] group-hover:underline mt-2 line-clamp-2 leading-snug">
-                        {nextPost.title}
-                      </h4>
-                    </a>
-                  ) : (
-                    <div className="hidden sm:block" />
-                  )}
-                </div>
-              </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {scopedPrev ? (
+                        <a
+                          href={`/blog/${scopedPrev.slug}`}
+                          onClick={(e) => navigateTo(`/blog/${scopedPrev.slug}`, e)}
+                          className="group flex flex-col justify-between p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] hover:shadow-lg transition-all"
+                        >
+                          <span className="text-xs font-mono text-[var(--text-subtle)] mb-2 flex items-center gap-1.5 group-hover:text-[var(--text)] transition-colors">
+                            <span className="group-hover:-translate-x-1 transition-transform">←</span> Previous Post
+                          </span>
+                          <span className="font-semibold text-sm sm:text-base text-[var(--text)] line-clamp-2 leading-snug group-hover:underline">
+                            {scopedPrev.title}
+                          </span>
+                        </a>
+                      ) : (
+                        <div className="hidden sm:block p-5 rounded-2xl border border-dashed border-[var(--border)]/50 opacity-40">
+                          <span className="text-xs font-mono text-[var(--text-subtle)]">First post in {activePost.category}</span>
+                        </div>
+                      )}
+
+                      {scopedNext ? (
+                        <a
+                          href={`/blog/${scopedNext.slug}`}
+                          onClick={(e) => navigateTo(`/blog/${scopedNext.slug}`, e)}
+                          className="group flex flex-col justify-between p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] hover:shadow-lg transition-all text-right sm:col-start-2"
+                        >
+                          <span className="text-xs font-mono text-[var(--text-subtle)] mb-2 flex items-center justify-end gap-1.5 group-hover:text-[var(--text)] transition-colors">
+                            Next Post <span className="group-hover:translate-x-1 transition-transform">→</span>
+                          </span>
+                          <span className="font-semibold text-sm sm:text-base text-[var(--text)] line-clamp-2 leading-snug group-hover:underline">
+                            {scopedNext.title}
+                          </span>
+                        </a>
+                      ) : (
+                        <div className="p-5 rounded-2xl border border-dashed border-[var(--border)]/50 opacity-40 text-right sm:col-start-2">
+                          <span className="text-xs font-mono text-[var(--text-subtle)]">Latest post in {activePost.category}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
             </article>
           ) : (
             <div className="py-20 text-center">
               <h1 className="text-2xl font-bold mb-3">Article not found</h1>
-              <a href="#blogs" className="px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider hover:scale-105 transition-transform inline-block">Back to blogs</a>
+              <a href="/blogs" onClick={(e) => navigateTo("/blogs", e)} className="px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-medium text-xs uppercase tracking-wider hover:scale-105 transition-transform inline-block">Back to blogs</a>
             </div>
           )
-        ) : currentRoute === "#contact" ? (
+        ) : currentPath === "/contact" ? (
           /* --- CONTACT SECTION --- */
-          <section className="py-8 sm:py-14">
+          <section className="py-6 sm:py-10">
             <div className="max-w-[1000px] mx-auto">
               <div className="mb-8 text-left">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)] shadow-sm mb-4">
-                  <span className="w-2 h-2 rounded-full bg-[var(--text)] animate-pulse" />
-                  <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] font-bold">Direct Inbox</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] font-bold">Fastest Response</span>
                 </div>
                 <h1 className="text-3xl sm:text-6xl font-bold tracking-tight leading-[1.02] mb-4">
                   Let’s connect.<br />
                   <span className="relative inline-block">
-                    <span>Simple & direct.</span>
+                    <span>Direct & instant.</span>
                     <DoodleCleanUnderline />
                   </span>
                 </h1>
                 <p className="text-[var(--text-muted)] text-sm sm:text-lg max-w-xl leading-relaxed">
-                  No forms to submit. Drop me a line directly via email or connect through social platforms.
+                  Connect instantly via WhatsApp or drop me a traditional email. Choose your preferred channel below.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                <div className="lg:col-span-7 bg-[var(--bg-card)] border border-[var(--border)] rounded-3xl p-6 sm:p-10 shadow-xl flex flex-col justify-between">
+                <div className="lg:col-span-7 bg-[var(--bg-card)] border-2 border-[var(--text)] rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[var(--text)] text-[var(--bg)] text-[10px] font-mono font-bold uppercase tracking-wider">
+                    ★ Quickest Response
+                  </div>
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ EMAIL ADDRESS ]</span>
-                      <span className="text-[10px] font-mono text-[var(--text)] bg-[var(--bg-subtle)] px-2.5 py-1 rounded border border-[var(--border)] font-bold">OPEN INBOX</span>
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                        <IconWhatsapp size={22} />
+                      </div>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ INSTANT MESSAGING ]</span>
                     </div>
-                    <div className="font-mono text-lg sm:text-2xl font-bold text-[var(--text)] tracking-tight mb-4 break-all">
-                      {EMAIL}
+                    <div className="font-mono text-xl sm:text-3xl font-bold text-[var(--text)] tracking-tight mb-2">
+                      @rojish0
                     </div>
-                    <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-8">
-                      Always open to discussions regarding business growth, brand strategy, IT systems, and financial markets.
+                    <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-8 max-w-md">
+                      WhatsApp is the quickest way to reach me for direct conversations, quick project inquiries, or strategy syncs.
                     </p>
                   </div>
-                  <div className="pt-6 border-t border-[var(--border)]/70 flex items-center gap-3">
-                    <button onClick={triggerDirectMail} className="group w-full py-4 px-6 rounded-2xl bg-[var(--text)] text-[var(--bg)] font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-98 transition-all shadow-md flex items-center justify-center gap-2">
-                      <Mail size={16} />
-                      <span>Send Mail</span>
+                  
+                  <div className="pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center gap-3">
+                    <a
+                      href={WHATSAPP}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group w-full py-4 px-6 rounded-2xl bg-[var(--text)] text-[var(--bg)] font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-98 transition-all shadow-md flex items-center justify-center gap-2"
+                    >
+                      <IconWhatsapp size={16} />
+                      <span>Chat on WhatsApp</span>
                       <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </button>
-                    <button onClick={copyEmail} className="p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)] hover:border-[var(--text)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors shrink-0" title="Copy Address">
-                      <Copy size={16} />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
                 <div className="lg:col-span-5 bg-[var(--bg-subtle)] border border-[var(--border)] rounded-3xl p-6 sm:p-10 shadow-xl flex flex-col justify-between">
                   <div className="space-y-6">
                     <div>
-                      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-2">[ LOCAL TIME ]</div>
-                      <div className="text-xl sm:text-2xl font-mono font-bold text-[var(--text)] tracking-tight">{nepalTime || "Bhaktapur, NP"}</div>
-                      <div className="text-xs text-[var(--text-muted)] flex items-center gap-1.5 mt-1">
-                        <MapPin size={13} className="text-[var(--text)]" /> Bhaktapur, Nepal (UTC +5:45)
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-2">[ EMAIL INBOX ]</div>
+                      <div className="font-mono text-sm sm:text-base font-bold text-[var(--text)] tracking-tight break-all mb-3">{EMAIL}</div>
+                      <div className="flex items-center gap-2">
+                        <button onClick={triggerDirectMail} className="py-2.5 px-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)] hover:border-[var(--text)] text-xs font-bold text-[var(--text)] flex items-center gap-2 transition-colors">
+                          <Mail size={14} /> Send Email
+                        </button>
+                        <button onClick={copyEmail} className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors" title="Copy Email">
+                          <Copy size={14} />
+                        </button>
                       </div>
                     </div>
+                    
                     <hr className="border-[var(--border)] opacity-60" />
+                    
                     <div>
-                      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-3">[ SOCIAL CHANNELS ]</div>
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-3">[ SOCIAL PROFILES ]</div>
                       <div className="grid grid-cols-2 gap-2">
                         <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all group text-xs font-medium">
-                          <span className="flex items-center gap-2"><IconLinkedin size={15} /> LinkedIn</span>
-                          <ArrowUpRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <span className="flex items-center gap-1.5"><IconLinkedin size={14} /> LinkedIn</span>
+                          <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                         </a>
                         <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all group text-xs font-medium">
-                          <span className="flex items-center gap-2"><IconInstagram size={15} /> Instagram</span>
-                          <ArrowUpRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <span className="flex items-center gap-1.5"><IconInstagram size={14} /> Instagram</span>
+                          <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                         </a>
                       </div>
                     </div>
                   </div>
+
                   <div className="pt-6 border-t border-[var(--border)]/70 text-[10px] font-mono text-[var(--text-subtle)] flex items-center justify-between mt-6">
-                    <span>LOCATION: BHAKTAPUR</span>
+                    <span className="flex items-center gap-1 text-[var(--text-muted)]"><MapPin size={12} /> Kathmandu, NP</span>
                     <span className="flex items-center gap-1 text-[var(--text)] font-bold">● ONLINE</span>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-        ) : currentRoute === "#about" ? (
-          /* --- ABOUT PAGE WITH ALIGNED CORE MINDSET & 2X2 SHORT TOOLS CARD --- */
-          <article className="about-page py-6 sm:py-12">
+        ) : currentPath === "/about" ? (
+          /* --- ABOUT PAGE --- */
+          <article className="about-page py-6 sm:py-10">
             <section className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-10 lg:p-14 mb-8 sm:mb-10">
               <div className="absolute right-10 top-10 hidden lg:block" aria-hidden="true">
                 <MinimalFocusBadge />
@@ -527,7 +582,7 @@ export default function HomePage() {
                       <p className="text-xs sm:text-base font-medium leading-relaxed">Good conversations. Clear ideas. Useful connections.</p>
                     </div>
                     <div className="mt-6 flex flex-wrap gap-3">
-                      <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-5 py-3 text-xs sm:text-sm font-semibold hover:scale-105 active:scale-95 transition-transform">Say hello <ArrowUpRight size={16} /></a>
+                      <a href="/contact" onClick={(e) => navigateTo("/contact", e)} className="inline-flex items-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-5 py-3 text-xs sm:text-sm font-semibold hover:scale-105 active:scale-95 transition-transform">Say hello <ArrowUpRight size={16} /></a>
                       <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-dark)] px-5 py-3 text-xs sm:text-sm font-medium hover:bg-[var(--text)] hover:text-[var(--bg)] hover:border-[var(--text)] active:scale-95 transition-all">Resume <ArrowUpRight size={15} /></a>
                     </div>
                   </div>
@@ -535,7 +590,7 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+            <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-10">
               <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4">01 / Background & Story</div>
@@ -548,7 +603,6 @@ export default function HomePage() {
                   </div>
                 </div>
                 
-                {/* Core Mindset Card */}
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6 sm:p-7">
                   <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-2">Core Mindset</div>
                   <p className="text-lg sm:text-xl font-semibold leading-snug tracking-tight text-[var(--text)]">“The best ideas only matter when you can make people understand them.”</p>
@@ -596,7 +650,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* COMPACT 2x2 TOOLS & WORKFLOW CARD */}
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 sm:p-6 shadow-sm">
                   <div className="flex items-center justify-between text-[10px] font-mono text-[var(--text-subtle)] uppercase tracking-[0.2em] mb-3">
                     <span>Tools & Workflow</span>
@@ -619,8 +672,7 @@ export default function HomePage() {
               </aside>
             </section>
 
-            {/* DOMAINS OF INTEREST */}
-            <section className="mb-12">
+            <section className="mb-10">
               <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">02 / Key Pillars</div>
               <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-6">Different ways of looking at a problem.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -639,19 +691,18 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* SECTION 03 BOTTOM CALLOUT */}
             <section className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
                 <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">03 / Next Steps</div>
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Open to interesting conversations.</h2>
                 <p className="mt-2 text-sm text-[var(--text-muted)] max-w-xl">Whether it's strategy, technology, or creative direction, I'm always down to connect.</p>
               </div>
-              <a href="#contact" className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3.5 text-sm font-bold hover:scale-105 active:scale-95 transition-transform">Start a conversation <ArrowUpRight size={16} /></a>
+              <a href="/contact" onClick={(e) => navigateTo("/contact", e)} className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3.5 text-sm font-bold hover:scale-105 active:scale-95 transition-transform">Start a conversation <ArrowUpRight size={16} /></a>
             </section>
           </article>
         ) : isBlogsPage ? (
           /* --- MINIMAL BLOGS LIST --- */
-          <section className="py-8 sm:py-14">
+          <section className="py-6 sm:py-10">
             <div className="mb-8 pb-6 border-b border-[var(--border)]">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] font-bold mb-2 block">[ ESSAYS & FIELD NOTES ]</span>
               <h1 className="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
@@ -689,7 +740,8 @@ export default function HomePage() {
               ) : filteredPosts.map((post) => (
                 <a
                   key={post.slug}
-                  href={`#post/${post.slug}`}
+                  href={`/blog/${post.slug}`}
+                  onClick={(e) => navigateTo(`/blog/${post.slug}`, e)}
                   className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 py-6 px-3 hover:bg-[var(--bg-hover)] rounded-2xl transition-all group relative overflow-hidden"
                 >
                   <div className="sm:col-span-3 text-xs text-[var(--text-subtle)] font-mono flex flex-col justify-center gap-1">
@@ -725,7 +777,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-md px-3.5 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs text-[var(--text-muted)] mb-5 sm:mb-6 shadow-sm"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[var(--text)] opacity-80" />
-                    Based in Bhaktapur, Nepal
+                    Based in Kathmandu, Nepal
                     <span className="text-[var(--text-subtle)]">·</span>
                     Open to opportunities
                   </motion.div>
@@ -762,18 +814,31 @@ export default function HomePage() {
                     IT graduate exploring the space between business, technology, and creative thinking. I enjoy understanding people, spotting opportunities, and making things happen.
                   </motion.p>
 
+                  {/* HERO DIRECT CONTACT OPTIONS */}
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.34 }}
                     className="flex flex-wrap items-center gap-3 sm:gap-4 mt-8"
                   >
-                    <a href="#contact" className="group inline-flex items-center gap-3 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-bold hover:gap-4 hover:scale-105 active:scale-95 transition-all">
-                      Let’s talk <ArrowUpRight size={17} />
+                    <a
+                      href={WHATSAPP}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3.5 text-xs sm:text-sm font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
+                    >
+                      <IconWhatsapp size={16} />
+                      <span>WhatsApp Me</span>
+                      <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </a>
-                    <a href="#about" className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-bold hover:bg-[var(--text)] hover:text-[var(--bg)] hover:border-[var(--text)] hover:scale-105 active:scale-95 transition-all">
-                      More about me <ArrowRight size={16} />
-                    </a>
+                    
+                    <button
+                      onClick={triggerDirectMail}
+                      className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-6 py-3.5 text-xs sm:text-sm font-bold hover:bg-[var(--text)] hover:text-[var(--bg)] hover:border-[var(--text)] hover:scale-105 active:scale-95 transition-all"
+                    >
+                      <Mail size={15} />
+                      <span>Send Email</span>
+                    </button>
                   </motion.div>
                 </div>
 
@@ -793,7 +858,6 @@ export default function HomePage() {
                     </svg>
                   </motion.div>
 
-                  {/* Responsive Idea Map Visual */}
                   <motion.div
                     className="idea-map relative z-10 scale-75 sm:scale-100 pointer-events-none"
                     initial={{ opacity: 0, scale: 0.88, rotate: -4 }}
@@ -830,12 +894,11 @@ export default function HomePage() {
                     <span className="idea-label idea-label-comms">communication</span>
                   </motion.div>
 
-                  {/* ADAPTIVE MOBILE STACK / DESKTOP INLINE SOCIAL BAR */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
-                    className="relative z-20 pt-4 w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-6 text-xs font-mono text-[var(--text-subtle)]"
+                    className="relative z-20 pt-4 w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-5 text-xs font-mono text-[var(--text-subtle)]"
                   >
                     <a
                       aria-label="LinkedIn"
@@ -897,7 +960,7 @@ export default function HomePage() {
             </section>
 
             {/* WHERE THINGS CONNECT SECTION */}
-            <section className="pt-10 sm:pt-20 pb-6">
+            <section className="pt-10 sm:pt-16 pb-4">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div className="max-w-xl">
                   <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)]">Where things connect</span>
@@ -909,7 +972,7 @@ export default function HomePage() {
                     </span>
                   </h2>
                 </div>
-                <a href="#about" className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold hover:gap-4 transition-all bg-[var(--bg-card)] border border-[var(--border)] px-5 py-2.5 rounded-full hover:border-[var(--text)] shadow-sm shrink-0">
+                <a href="/about" onClick={(e) => navigateTo("/about", e)} className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold hover:gap-4 transition-all bg-[var(--bg-card)] border border-[var(--border)] px-5 py-2.5 rounded-full hover:border-[var(--text)] shadow-sm shrink-0">
                   Get to know me <ArrowUpRight size={17} />
                 </a>
               </div>
@@ -950,7 +1013,8 @@ export default function HomePage() {
                   },
                 ].map(({ number, label, icon: Icon, note, highlights, badge }, index) => (
                   <motion.a
-                    href="#about"
+                    href="/about"
+                    onClick={(e) => navigateTo("/about", e)}
                     key={label}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -1001,29 +1065,26 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* HOMEPAGE CTA */}
-            <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-12 mt-12 mb-16 shadow-xl">
-              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="space-y-3 max-w-lg">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ GET IN TOUCH ]</span>
-                  <h2 className="text-2xl sm:text-5xl font-bold tracking-tight leading-tight">
-                    Let's create something<br />
-                    <span className="relative inline-block mt-1">
-                      <span>extraordinary together.</span>
-                      <DoodleCleanUnderline />
-                    </span>
+            {/* COMPACT BOTTOM CTA (DIRECTS ONLY TO CONTACT PAGE) */}
+            <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[var(--border)] bg-[var(--bg-subtle)] p-5 sm:p-8 mt-8 sm:mt-10 mb-4 shadow-lg">
+              <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ GET IN TOUCH ]</span>
+                  <h2 className="text-xl sm:text-3xl font-bold tracking-tight">
+                    Let's work together.
                   </h2>
-                  <p className="text-[var(--text-muted)] text-xs sm:text-base leading-relaxed">
-                    Have an idea, project, or topic you'd like to discuss? Drop me a line anytime.
+                  <p className="text-[var(--text-muted)] text-xs sm:text-sm">
+                    Have an idea or project to discuss? Drop me a line anytime.
                   </p>
                 </div>
 
                 <a
-                  href="#contact"
-                  className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[var(--text)] text-[var(--bg)] px-7 py-3.5 text-xs sm:text-sm font-bold shadow-lg hover:scale-[1.02] active:scale-95 transition-all shrink-0"
+                  href="/contact"
+                  onClick={(e) => navigateTo("/contact", e)}
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--text)] text-[var(--bg)] px-5 py-3 text-xs font-bold hover:scale-[1.02] active:scale-95 transition-all shrink-0 self-start sm:self-auto"
                 >
-                  <span>Start a conversation</span>
-                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>Contact me</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </section>
@@ -1031,13 +1092,10 @@ export default function HomePage() {
         )}
       </main>
 
-      <footer className="border-t border-[var(--border)] py-8 text-xs text-[var(--text-muted)] bg-[var(--bg-card)] mt-12">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex flex-wrap items-center justify-between gap-4 font-mono">
-          <div>© 2026 Rojish Sakhakarmi — Bhaktapur, Nepal</div>
-          <div className="flex items-center gap-5">
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">LinkedIn</a>
-            <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">Instagram</a>
-          </div>
+      {/* MINIMAL FOOTER WITH REDUCED MARGIN */}
+      <footer className="border-t border-[var(--border)] py-6 text-xs text-[var(--text-muted)] bg-[var(--bg-card)]">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex items-center justify-between gap-4 font-mono">
+          <div>© 2026 Rojish Sakhakarmi — Kathmandu, Nepal</div>
         </div>
       </footer>
 
