@@ -371,18 +371,45 @@ export default function HomePage() {
                 </div>
               )}
 
-              <div className="mt-14 pt-8 border-t border-[var(--border)] flex items-center justify-between gap-4">
-                {prevPost ? (
-                  <a href={`#post/${prevPost.slug}`} className="text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text)] transition-colors line-clamp-1">
-                    ← {prevPost.title}
-                  </a>
-                ) : <div />}
+              {/* ENHANCED BOTTOM ARTICLE NAVIGATION */}
+              <div className="mt-16 pt-8 border-t border-[var(--border)]">
+                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4 text-center font-bold">
+                  Keep Reading
+                </div>
 
-                {nextPost ? (
-                  <a href={`#post/${nextPost.slug}`} className="text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text)] transition-colors text-right line-clamp-1">
-                    {nextPost.title} →
-                  </a>
-                ) : <div />}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {prevPost ? (
+                    <a
+                      href={`#post/${prevPost.slug}`}
+                      className="group p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all flex flex-col justify-between"
+                    >
+                      <span className="text-xs font-mono text-[var(--text-subtle)] flex items-center gap-1 group-hover:-translate-x-1 transition-transform">
+                        ← PREVIOUS ARTICLE
+                      </span>
+                      <h4 className="font-semibold text-sm sm:text-base text-[var(--text)] group-hover:underline mt-2 line-clamp-2 leading-snug">
+                        {prevPost.title}
+                      </h4>
+                    </a>
+                  ) : (
+                    <div className="hidden sm:block" />
+                  )}
+
+                  {nextPost ? (
+                    <a
+                      href={`#post/${nextPost.slug}`}
+                      className="group p-5 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text)] transition-all flex flex-col justify-between text-right sm:col-start-2"
+                    >
+                      <span className="text-xs font-mono text-[var(--text-subtle)] flex items-center justify-end gap-1 group-hover:translate-x-1 transition-transform">
+                        NEXT ARTICLE →
+                      </span>
+                      <h4 className="font-semibold text-sm sm:text-base text-[var(--text)] group-hover:underline mt-2 line-clamp-2 leading-snug">
+                        {nextPost.title}
+                      </h4>
+                    </a>
+                  ) : (
+                    <div className="hidden sm:block" />
+                  )}
+                </div>
               </div>
             </article>
           ) : (
@@ -1008,7 +1035,7 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex flex-wrap items-center justify-between gap-4 font-mono">
           <div>© 2026 Rojish Sakhakarmi — Bhaktapur, Nepal</div>
           <div className="flex items-center gap-5">
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">Linkedin</a>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">LinkedIn</a>
             <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[var(--text)] transition-colors">Instagram</a>
           </div>
         </div>
