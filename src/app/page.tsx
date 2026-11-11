@@ -883,7 +883,7 @@ export default function HomePage() {
                   </h2>
                 </div>
                 <a href="#about" className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold hover:gap-4 transition-all bg-[var(--bg-card)] border border-[var(--border)] px-5 py-2.5 rounded-full hover:border-[var(--text)] shadow-sm shrink-0">
-                  Get to know me <ArrowUpRight size={17} />
+                  Get to know me <ArrowUpRight size={16.9} />
                 </a>
               </div>
 
