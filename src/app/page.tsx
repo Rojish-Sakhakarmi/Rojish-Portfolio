@@ -685,7 +685,7 @@ export default function HomePage() {
         ) : (
           /* --- FULL HERO HOMEPAGE --- */
           <>
-            <section className="home-hero relative isolate min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] flex items-center pt-4 sm:pt-6 pb-10 sm:pb-16">
+            <section className="home-hero relative isolate flex items-center pt-4 sm:pt-6 pb-10 sm:pb-16">
               <div className="hero-glow hero-glow-one" aria-hidden="true" />
               <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
@@ -718,12 +718,12 @@ export default function HomePage() {
                     transition={{ duration: 0.7, delay: 0.14 }}
                     className="text-[clamp(2.5rem,7vw,6.8rem)] leading-[0.95] font-bold tracking-[-0.065em] max-w-[780px]"
                   >
-                    I connect
-                    <span className="relative inline-block block">
+                    I connect{" "}
+                    <span className="relative inline-block my-1 sm:my-0">
                       <span>ideas to</span>
                       <DoodleHeroSwirl />
-                    </span>
-                    <span className="block">opportunity<span className="text-[var(--text)]">.</span></span>
+                    </span>{" "}
+                    <span className="block sm:inline">opportunity<span className="text-[var(--text)]">.</span></span>
                   </motion.h1>
 
                   <motion.p
@@ -750,7 +750,7 @@ export default function HomePage() {
                   </motion.div>
                 </div>
 
-                <div className="lg:col-span-5 relative min-h-[340px] sm:min-h-[460px] flex flex-col items-center justify-center lg:-translate-x-4 mt-4 lg:mt-0">
+                <div className="lg:col-span-5 relative w-full flex flex-col items-center justify-center lg:-translate-x-4 mt-6 lg:mt-0">
                   <motion.div
                     className="doodle-scribble pointer-events-none"
                     animate={{ rotate: [0, 8, -5, 0], scale: [1, 1.04, 1] }}
@@ -766,9 +766,9 @@ export default function HomePage() {
                     </svg>
                   </motion.div>
 
-                  {/* Clean Idea Map Visual */}
+                  {/* Responsive Idea Map Visual */}
                   <motion.div
-                    className="idea-map relative z-10 scale-90 sm:scale-100 pointer-events-none"
+                    className="idea-map relative z-10 scale-75 sm:scale-100 pointer-events-none"
                     initial={{ opacity: 0, scale: 0.88, rotate: -4 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     transition={{ type: "spring", stiffness: 85, damping: 15, delay: 0.2 }}
@@ -803,46 +803,46 @@ export default function HomePage() {
                     <span className="idea-label idea-label-comms">communication</span>
                   </motion.div>
 
-                  {/* STRICT HORIZONTAL BASELINE SOCIAL BAR */}
+                  {/* ADAPTIVE MOBILE STACK / DESKTOP INLINE SOCIAL BAR */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
-                    className="relative z-20 mt-6 inline-flex flex-row items-center justify-center gap-5 text-xs font-mono text-[var(--text-subtle)]"
+                    className="relative z-20 pt-4 w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-6 text-xs font-mono text-[var(--text-subtle)]"
                   >
                     <a
                       aria-label="LinkedIn"
                       href={LINKEDIN}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors leading-none"
+                      className="group w-full sm:w-auto px-4 py-2 sm:p-0 rounded-xl sm:rounded-none border sm:border-none border-[var(--border)] bg-[var(--bg-card)] sm:bg-transparent inline-flex items-center justify-center gap-2 hover:text-[var(--text)] transition-all leading-none"
                     >
                       <IconLinkedin size={14} className="shrink-0" />
                       <span className="leading-none">LinkedIn</span>
                       <ArrowUpRight size={12} className="shrink-0 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                     </a>
 
-                    <span className="select-none leading-none opacity-40">•</span>
+                    <span className="hidden sm:inline select-none leading-none opacity-40">•</span>
 
                     <a
                       aria-label="Instagram"
                       href={INSTAGRAM}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors leading-none"
+                      className="group w-full sm:w-auto px-4 py-2 sm:p-0 rounded-xl sm:rounded-none border sm:border-none border-[var(--border)] bg-[var(--bg-card)] sm:bg-transparent inline-flex items-center justify-center gap-2 hover:text-[var(--text)] transition-all leading-none"
                     >
                       <IconInstagram size={14} className="shrink-0" />
                       <span className="leading-none">Instagram</span>
                       <ArrowUpRight size={12} className="shrink-0 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                     </a>
 
-                    <span className="select-none leading-none opacity-40">•</span>
+                    <span className="hidden sm:inline select-none leading-none opacity-40">•</span>
 
                     <a
                       href="/Rojish_Resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors leading-none"
+                      className="group w-full sm:w-auto px-4 py-2 sm:p-0 rounded-xl sm:rounded-none border sm:border-none border-[var(--border)] bg-[var(--bg-card)] sm:bg-transparent inline-flex items-center justify-center gap-2 hover:text-[var(--text)] transition-all leading-none"
                     >
                       <IconFileText size={14} className="shrink-0" />
                       <span className="leading-none">Resume</span>
@@ -883,7 +883,7 @@ export default function HomePage() {
                   </h2>
                 </div>
                 <a href="#about" className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold hover:gap-4 transition-all bg-[var(--bg-card)] border border-[var(--border)] px-5 py-2.5 rounded-full hover:border-[var(--text)] shadow-sm shrink-0">
-                  Get to know me <ArrowUpRight size={16.9} />
+                  Get to know me <ArrowUpRight size={17} />
                 </a>
               </div>
 
