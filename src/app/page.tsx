@@ -15,15 +15,16 @@ import {
   Mail,
   Share2
 } from "lucide-react";
+
 // --- Custom Minimal SVGs ---
-const IconLinkedin = ({ size = 16 }: { size?: number }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+const IconLinkedin = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
 );
-const IconInstagram = ({ size = 16 }: { size?: number }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+const IconInstagram = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
 );
-const IconFileText = ({ size = 16 }: { size?: number }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+const IconFileText = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
 );
 
 // --- Underline Doodles ---
@@ -64,12 +65,11 @@ const DoodlePulseLine = () => (
   </svg>
 );
 
-// 4-Node Focus Badge (Removed Systems & Comms)
 const MinimalFocusBadge = () => (
   <div className="relative w-52 sm:w-56 h-auto rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] p-4 sm:p-5 flex flex-col justify-between overflow-hidden shadow-sm group hover:border-[var(--text)] transition-colors">
     <div className="flex items-center justify-between text-[10px] font-mono text-[var(--text-subtle)] mb-3">
       <span>[ CORE NODES ]</span>
-      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+      <span className="w-2 h-2 rounded-full bg-[var(--text)] animate-pulse" />
     </div>
     
     <div className="grid grid-cols-2 gap-2 my-1">
@@ -172,7 +172,6 @@ export default function HomePage() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [nepalTime, setNepalTime] = useState("");
 
-  // Live posts fetch from backend API
   useEffect(() => {
     const fetchLivePosts = async () => {
       try {
@@ -295,8 +294,8 @@ export default function HomePage() {
           --border: #222226;
           --border-dark: #333338;
           --text: #ffffff;
-          --text-muted: #a1a1aa;
-          --text-subtle: #52525b;
+          --text-muted: #e4e4e7;
+          --text-subtle: #a1a1aa;
         }
       `}} />
 
@@ -328,7 +327,7 @@ export default function HomePage() {
         {activePostSlug ? (
           activePost ? (
             /* --- READ ESSAY VIEW --- */
-            <article className="max-w-[700px] mx-auto py-8 sm:py-16">
+            <article className="max-w-[700px] mx-auto py-6 sm:py-12">
               <div className="flex items-center justify-between gap-4 mb-8">
                 <a href="#blogs" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
                   ← Back to blogs
@@ -394,11 +393,11 @@ export default function HomePage() {
           )
         ) : currentRoute === "#contact" ? (
           /* --- CONTACT SECTION --- */
-          <section className="py-10 sm:py-20">
+          <section className="py-8 sm:py-14">
             <div className="max-w-[1000px] mx-auto">
               <div className="mb-8 text-left">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)] shadow-sm mb-4">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[var(--text)] animate-pulse" />
                   <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] font-bold">Direct Inbox</span>
                 </div>
                 <h1 className="text-3xl sm:text-6xl font-bold tracking-tight leading-[1.02] mb-4">
@@ -418,7 +417,7 @@ export default function HomePage() {
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ EMAIL ADDRESS ]</span>
-                      <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-bold">OPEN INBOX</span>
+                      <span className="text-[10px] font-mono text-[var(--text)] bg-[var(--bg-subtle)] px-2.5 py-1 rounded border border-[var(--border)] font-bold">OPEN INBOX</span>
                     </div>
                     <div className="font-mono text-lg sm:text-2xl font-bold text-[var(--text)] tracking-tight mb-4 break-all">
                       {EMAIL}
@@ -445,7 +444,7 @@ export default function HomePage() {
                       <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold mb-2">[ LOCAL TIME ]</div>
                       <div className="text-xl sm:text-2xl font-mono font-bold text-[var(--text)] tracking-tight">{nepalTime || "Bhaktapur, NP"}</div>
                       <div className="text-xs text-[var(--text-muted)] flex items-center gap-1.5 mt-1">
-                        <MapPin size={13} className="text-emerald-500" /> Bhaktapur, Nepal (UTC +5:45)
+                        <MapPin size={13} className="text-[var(--text)]" /> Bhaktapur, Nepal (UTC +5:45)
                       </div>
                     </div>
                     <hr className="border-[var(--border)] opacity-60" />
@@ -465,7 +464,7 @@ export default function HomePage() {
                   </div>
                   <div className="pt-6 border-t border-[var(--border)]/70 text-[10px] font-mono text-[var(--text-subtle)] flex items-center justify-between mt-6">
                     <span>LOCATION: BHAKTAPUR</span>
-                    <span className="flex items-center gap-1 text-emerald-400 font-bold">● ONLINE</span>
+                    <span className="flex items-center gap-1 text-[var(--text)] font-bold">● ONLINE</span>
                   </div>
                 </div>
               </div>
@@ -473,8 +472,8 @@ export default function HomePage() {
           </section>
         ) : currentRoute === "#about" ? (
           /* --- ABOUT PAGE WITH ALIGNED CORE MINDSET & 2X2 SHORT TOOLS CARD --- */
-          <article className="about-page py-8 sm:py-16">
-            <section className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-10 lg:p-14 mb-10 sm:mb-12">
+          <article className="about-page py-6 sm:py-12">
+            <section className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-10 lg:p-14 mb-8 sm:mb-10">
               <div className="absolute right-10 top-10 hidden lg:block" aria-hidden="true">
                 <MinimalFocusBadge />
               </div>
@@ -509,7 +508,7 @@ export default function HomePage() {
               </div>
             </section>
 
-            <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
+            <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
               <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-4">01 / Background & Story</div>
@@ -574,7 +573,7 @@ export default function HomePage() {
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 sm:p-6 shadow-sm">
                   <div className="flex items-center justify-between text-[10px] font-mono text-[var(--text-subtle)] uppercase tracking-[0.2em] mb-3">
                     <span>Tools & Workflow</span>
-                    <span className="text-emerald-400 font-bold">● Active</span>
+                    <span className="text-[var(--text)] font-bold">● Active</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {[
@@ -594,7 +593,7 @@ export default function HomePage() {
             </section>
 
             {/* DOMAINS OF INTEREST */}
-            <section className="mb-16">
+            <section className="mb-12">
               <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] mb-3">02 / Key Pillars</div>
               <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-6">Different ways of looking at a problem.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -625,7 +624,7 @@ export default function HomePage() {
           </article>
         ) : isBlogsPage ? (
           /* --- MINIMAL BLOGS LIST --- */
-          <section className="py-10 sm:py-16">
+          <section className="py-8 sm:py-14">
             <div className="mb-8 pb-6 border-b border-[var(--border)]">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] font-bold mb-2 block">[ ESSAYS & FIELD NOTES ]</span>
               <h1 className="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
@@ -686,7 +685,7 @@ export default function HomePage() {
         ) : (
           /* --- FULL HERO HOMEPAGE --- */
           <>
-            <section className="home-hero relative isolate min-h-[580px] sm:min-h-[650px] lg:min-h-[720px] flex items-center py-12 sm:py-20">
+            <section className="home-hero relative isolate min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] flex items-center pt-4 sm:pt-6 pb-10 sm:pb-16">
               <div className="hero-glow hero-glow-one" aria-hidden="true" />
               <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
@@ -696,9 +695,9 @@ export default function HomePage() {
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="inline-flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-md px-3.5 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs text-[var(--text-muted)] mb-6 sm:mb-8 shadow-sm"
+                    className="inline-flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-md px-3.5 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs text-[var(--text-muted)] mb-5 sm:mb-6 shadow-sm"
                   >
-                    <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-500" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--text)] opacity-80" />
                     Based in Bhaktapur, Nepal
                     <span className="text-[var(--text-subtle)]">·</span>
                     Open to opportunities
@@ -749,30 +748,11 @@ export default function HomePage() {
                       More about me <ArrowRight size={16} />
                     </a>
                   </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.55, duration: 0.7 }}
-                    className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-8 sm:mt-10 text-[var(--text-subtle)]"
-                  >
-                    <a aria-label="LinkedIn" href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[10px] sm:text-xs font-mono font-bold hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all">
-                      <IconLinkedin size={13} /> LINKEDIN
-                    </a>
-                    <a aria-label="Instagram" href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[10px] sm:text-xs font-mono font-bold hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all">
-                      <IconInstagram size={13} /> INSTAGRAM
-                    </a>
-                    <a href="/Rojish_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[10px] sm:text-xs font-mono font-bold hover:border-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all">
-                      <IconFileText size={13} /> RESUME
-                    </a>
-                  </motion.div>
                 </div>
 
-                <div className="lg:col-span-5 relative min-h-[320px] sm:min-h-[480px] flex items-center justify-center lg:-translate-x-8 pointer-events-none mt-4 lg:mt-0">
-                  <div className="doodle-cross doodle-cross-one" aria-hidden="true">✳</div>
-                  <div className="doodle-cross doodle-cross-two" aria-hidden="true">✳</div>
+                <div className="lg:col-span-5 relative min-h-[340px] sm:min-h-[460px] flex flex-col items-center justify-center lg:-translate-x-4 mt-4 lg:mt-0">
                   <motion.div
-                    className="doodle-scribble"
+                    className="doodle-scribble pointer-events-none"
                     animate={{ rotate: [0, 8, -5, 0], scale: [1, 1.04, 1] }}
                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                     aria-hidden="true"
@@ -786,8 +766,9 @@ export default function HomePage() {
                     </svg>
                   </motion.div>
 
+                  {/* Clean Idea Map Visual */}
                   <motion.div
-                    className="idea-map relative z-10 scale-90 sm:scale-100"
+                    className="idea-map relative z-10 scale-90 sm:scale-100 pointer-events-none"
                     initial={{ opacity: 0, scale: 0.88, rotate: -4 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     transition={{ type: "spring", stiffness: 85, damping: 15, delay: 0.2 }}
@@ -813,7 +794,6 @@ export default function HomePage() {
                     <div className="idea-map-core">
                       <span className="idea-core-kicker">THE CONNECTION</span>
                       <strong>MAKE<br />IT HAPPEN.</strong>
-                      <span className="idea-core-arrow">↗</span>
                     </div>
                     <span className="idea-label idea-label-tech">technology</span>
                     <span className="idea-label idea-label-creative">creativity</span>
@@ -821,14 +801,54 @@ export default function HomePage() {
                     <span className="idea-label idea-label-market">markets</span>
                     <span className="idea-label idea-label-people">people</span>
                     <span className="idea-label idea-label-comms">communication</span>
-                    <span className="idea-handwritten">different dots,<br />one big picture ↗</span>
-                    <span className="idea-star idea-star-one">✳</span>
-                    <span className="idea-star idea-star-two">✧</span>
                   </motion.div>
 
-                  <motion.span className="hero-hand-note hidden sm:block" animate={{ rotate: [-8, -3, -8], y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
-                    always connecting dots ↗
-                  </motion.span>
+                  {/* STRICT HORIZONTAL BASELINE SOCIAL BAR */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                    className="relative z-20 mt-6 inline-flex flex-row items-center justify-center gap-5 text-xs font-mono text-[var(--text-subtle)]"
+                  >
+                    <a
+                      aria-label="LinkedIn"
+                      href={LINKEDIN}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors leading-none"
+                    >
+                      <IconLinkedin size={14} className="shrink-0" />
+                      <span className="leading-none">LinkedIn</span>
+                      <ArrowUpRight size={12} className="shrink-0 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    </a>
+
+                    <span className="select-none leading-none opacity-40">•</span>
+
+                    <a
+                      aria-label="Instagram"
+                      href={INSTAGRAM}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors leading-none"
+                    >
+                      <IconInstagram size={14} className="shrink-0" />
+                      <span className="leading-none">Instagram</span>
+                      <ArrowUpRight size={12} className="shrink-0 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    </a>
+
+                    <span className="select-none leading-none opacity-40">•</span>
+
+                    <a
+                      href="/Rojish_Resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors leading-none"
+                    >
+                      <IconFileText size={14} className="shrink-0" />
+                      <span className="leading-none">Resume</span>
+                      <ArrowUpRight size={12} className="shrink-0 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    </a>
+                  </motion.div>
                 </div>
               </div>
             </section>
@@ -838,11 +858,11 @@ export default function HomePage() {
                 <div className="ticker-inner gap-8 sm:gap-16 whitespace-nowrap text-[11px] sm:text-sm font-mono uppercase tracking-[0.18em] text-[var(--text-muted)]">
                   {Array.from({ length: 2 }).map((_, index) => (
                     <span key={index} className="inline-flex items-center gap-8 sm:gap-16">
-                      <span>Business Development</span><span className="text-[var(--text-subtle)]">✳</span>
-                      <span>Digital Growth</span><span className="text-[var(--text-subtle)]">✳</span>
-                      <span>Creative Thinking & Design</span><span className="text-[var(--text-subtle)]">✳</span>
-                      <span>Technology</span><span className="text-[var(--text-subtle)]">✳</span>
-                      <span>People & Communication</span><span className="text-[var(--text-subtle)]">✳</span>
+                      <span>Business Development</span><span className="text-[var(--text-subtle)]">/</span>
+                      <span>Digital Growth</span><span className="text-[var(--text-subtle)]">/</span>
+                      <span>Creative Thinking & Design</span><span className="text-[var(--text-subtle)]">/</span>
+                      <span>Technology</span><span className="text-[var(--text-subtle)]">/</span>
+                      <span>People & Communication</span><span className="text-[var(--text-subtle)]">/</span>
                     </span>
                   ))}
                 </div>
@@ -850,7 +870,7 @@ export default function HomePage() {
             </section>
 
             {/* WHERE THINGS CONNECT SECTION */}
-            <section className="pt-12 sm:pt-24 pb-6">
+            <section className="pt-10 sm:pt-20 pb-6">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div className="max-w-xl">
                   <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)]">Where things connect</span>
@@ -955,7 +975,7 @@ export default function HomePage() {
             </section>
 
             {/* HOMEPAGE CTA */}
-            <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-12 my-8 shadow-xl">
+            <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-[var(--border)] bg-[var(--bg-subtle)] p-6 sm:p-12 mt-12 mb-16 shadow-xl">
               <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-3 max-w-lg">
                   <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ GET IN TOUCH ]</span>
@@ -984,7 +1004,7 @@ export default function HomePage() {
         )}
       </main>
 
-      <footer className="border-t border-[var(--border)] py-8 text-xs text-[var(--text-muted)] bg-[var(--bg-card)] mt-10">
+      <footer className="border-t border-[var(--border)] py-8 text-xs text-[var(--text-muted)] bg-[var(--bg-card)] mt-12">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex flex-wrap items-center justify-between gap-4 font-mono">
           <div>© 2026 Rojish Sakhakarmi — Bhaktapur, Nepal</div>
           <div className="flex items-center gap-5">
