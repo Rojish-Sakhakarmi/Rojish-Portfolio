@@ -2,12 +2,35 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rojish0 — Brand, Systems & Markets",
-  description: "Personal website of Rojish Sakhakarmi. Notes on brand, marketing, design, systems, and markets.",
-  authors: [{ name: "Rojish Sakhakarmi" }],
+  metadataBase: new URL("https://rojish-sakhakarmi.com.np"),
+  title: "Rojish Sakhakarmi",
+  description:
+    "Personal website of Rojish Sakhakarmi — Financial Market Analyst, Trader, and Brand Strategist. Notes on brand, marketing, design, systems, and capital markets.",
+  keywords: [
+    "Rojish Sakhakarmi",
+    "Rojish0",
+    "Financial Market Analyst",
+    "Trader",
+    "Brand Strategy",
+    "Nepali",
+    "Smart Money Concepts",
+    "Nepal",
+    "Forex Trader",
+    "Nepali Trader",
+    "Nepali gold trader",
+    "SMC Trader",
+  ],
+  authors: [{ name: "Rojish Sakhakarmi", url: "https://rojish-sakhakarmi.com.np" }],
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
-    title: "Rojish Sakhakarmi",
-    description: "I think about brands, people and markets.",
+    title: "Rojish Sakhakarmi — Strategy, Systems & Markets",
+    description:
+      "Connecting ideas to opportunity across brand strategy, business growth, IT systems, and financial markets.",
+    url: "https://rojish-sakhakarmi.com.np",
+    siteName: "Rojish Sakhakarmi",
+    locale: "en_US",
     type: "website",
   },
 };

@@ -16,10 +16,6 @@ const nextConfig = {
         destination: "/",
       },
       {
-        source: "/blog/:slug*",
-        destination: "/",
-      },
-      {
         source: "/contact",
         destination: "/",
       },
