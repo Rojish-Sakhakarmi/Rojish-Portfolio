@@ -104,7 +104,16 @@ interface BlogPost {
   excerpt: string;
   body: string[];
   readTime: string;
+  featured?: boolean;
 }
+
+// Replace any of these 4 slugs when you publish new essays you want pinned at the top
+const FEATURED_SLUGS = [
+  "why-creativity-needs-strategy",
+  "international-client-outreach",
+  "teaching-financial-markets",
+  "systems-thinking-from-it",
+];
 
 const INITIAL_POSTS: BlogPost[] = [
   {
@@ -292,8 +301,16 @@ export default function HomePage() {
   const isPostRoute = currentPath.startsWith("/blog/");
   const activePostSlug = isPostRoute ? currentPath.slice("/blog/".length) : null;
   const categories = ["All", ...Array.from(new Set(posts.map((post) => post.category)))];
-  
+
+  const isPostFeatured = (post: BlogPost) =>
+    Boolean(post.featured) || FEATURED_SLUGS.includes(post.slug);
+
+  const featuredPosts = posts.filter(isPostFeatured);
+  const showFeaturedSection =
+    featuredPosts.length > 0 && activeCategory === "All" && !searchQuery.trim();
+
   const filteredPosts = posts.filter((post) => {
+    if (showFeaturedSection && isPostFeatured(post)) return false;
     const matchesCategory = activeCategory === "All" || post.category === activeCategory;
     const query = searchQuery.toLowerCase();
     const matchesSearch = [post.title, post.excerpt, (post.body || []).join(" ")].join(" ").toLowerCase().includes(query);
@@ -347,7 +364,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="max-w-[1240px] mx-auto px-5 sm:px-8 overflow-hidden mb-6 sm:mb-8">
+      <main className="max-w-[1240px] mx-auto px-5 sm:px-8 overflow-hidden">
         {activePostSlug ? (
           activePost ? (
             /* --- READ ESSAY VIEW --- */
@@ -702,8 +719,8 @@ export default function HomePage() {
           </article>
         ) : isBlogsPage ? (
           /* --- MINIMAL BLOGS LIST --- */
-          <section className="py-6 sm:py-10">
-            <div className="mb-8 pb-6 border-b border-[var(--border)]">
+          <section className="pt-6 sm:pt-10 pb-2">
+            <div className="mb-6 pb-5 border-b border-[var(--border)]">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] font-bold mb-2 block">[ ESSAYS & FIELD NOTES ]</span>
               <h1 className="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
                 Blogs & Perspectives
@@ -713,7 +730,48 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            {/* --- PINNED / FEATURED ESSAYS --- */}
+            {showFeaturedSection && (
+              <div className="mb-6">
+                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)] font-bold mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--text)]" />
+                  <span>Featured & Pinned</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                  {featuredPosts.map((post) => (
+                    <a
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      onClick={(e) => navigateTo(`/blog/${post.slug}`, e)}
+                      className="group rounded-2xl border border-[var(--border-dark)] bg-[var(--bg-card)] p-4 sm:p-5 flex flex-col justify-between hover:border-[var(--text)] transition-all"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 text-[11px] font-mono text-[var(--text-subtle)] mb-2.5">
+                          <span className="px-2.5 py-0.5 rounded-full bg-[var(--bg-subtle)] border border-[var(--border)] text-[var(--text)] font-medium">
+                            {post.category}
+                          </span>
+                          <span>★ Pinned · {post.readTime}</span>
+                        </div>
+                        <h2 className="text-base sm:text-lg font-bold tracking-tight leading-snug text-[var(--text)] group-hover:underline mb-1.5">
+                          {post.title}
+                        </h2>
+                        <p className="text-xs sm:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">
+                          {post.excerpt}
+                        </p>
+                      </div>
+                      <div className="mt-3.5 pt-2.5 border-t border-[var(--border)]/60 flex items-center justify-between text-[11px] font-mono text-[var(--text-subtle)]">
+                        <span>{post.date}</span>
+                        <span className="text-[var(--text)] font-bold group-hover:translate-x-1 transition-transform">
+                          Read essay →
+                        </span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
@@ -734,32 +792,38 @@ export default function HomePage() {
               />
             </div>
 
-            <div className="divide-y divide-[var(--border)] border-t border-b border-[var(--border)] my-6">
-              {!filteredPosts || filteredPosts.length === 0 ? (
-                <div className="py-12 text-center text-[var(--text-muted)] text-xs font-mono">No blogs match your search query.</div>
-              ) : filteredPosts.map((post) => (
-                <a
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  onClick={(e) => navigateTo(`/blog/${post.slug}`, e)}
-                  className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 py-6 px-3 hover:bg-[var(--bg-hover)] rounded-2xl transition-all group relative overflow-hidden"
-                >
-                  <div className="sm:col-span-3 text-xs text-[var(--text-subtle)] font-mono flex flex-col justify-center gap-1">
-                    <span className="font-semibold text-[var(--text-muted)]">{post.category}</span>
-                    <span className="text-[10px] text-[var(--text-subtle)]">{post.date} · {post.readTime}</span>
-                  </div>
-                  <div className="sm:col-span-8 space-y-1.5">
-                    <h3 className="font-semibold text-base sm:text-lg group-hover:underline leading-snug tracking-tight text-[var(--text)]">
-                      {post.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">{post.excerpt}</p>
-                  </div>
-                  <div className="sm:col-span-1 flex items-center justify-end">
-                    <span className="text-[var(--text-muted)] group-hover:translate-x-1.5 transition-transform font-bold text-lg">→</span>
-                  </div>
-                </a>
-              ))}
-            </div>
+            {filteredPosts.length > 0 && (
+              <div className="divide-y divide-[var(--border)] border-t border-[var(--border)] mt-4">
+                {filteredPosts.map((post) => (
+                  <a
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    onClick={(e) => navigateTo(`/blog/${post.slug}`, e)}
+                    className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-6 py-5 px-3 hover:bg-[var(--bg-hover)] rounded-2xl transition-all group relative overflow-hidden"
+                  >
+                    <div className="sm:col-span-3 text-xs text-[var(--text-subtle)] font-mono flex flex-col justify-center gap-1">
+                      <span className="font-semibold text-[var(--text-muted)]">{post.category}</span>
+                      <span className="text-[10px] text-[var(--text-subtle)]">{post.date} · {post.readTime}</span>
+                    </div>
+                    <div className="sm:col-span-8 space-y-1.5">
+                      <h3 className="font-semibold text-base sm:text-lg group-hover:underline leading-snug tracking-tight text-[var(--text)]">
+                        {post.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                    </div>
+                    <div className="sm:col-span-1 flex items-center justify-end">
+                      <span className="text-[var(--text-muted)] group-hover:translate-x-1.5 transition-transform font-bold text-lg">→</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {!showFeaturedSection && filteredPosts.length === 0 && (
+              <div className="py-12 text-center text-[var(--text-muted)] text-xs font-mono border-t border-[var(--border)] mt-4">
+                No blogs match your search query.
+              </div>
+            )}
           </section>
         ) : (
           /* --- FULL HERO HOMEPAGE --- */
@@ -814,7 +878,7 @@ export default function HomePage() {
                     IT graduate exploring the space between business, technology, and creative thinking. I enjoy understanding people, spotting opportunities, and making things happen.
                   </motion.p>
 
-                  {/* HERO DIRECT CONTACT OPTIONS */}
+                  {/* HERO PRIMARY ACTIONS */}
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -822,23 +886,24 @@ export default function HomePage() {
                     className="flex flex-wrap items-center gap-3 sm:gap-4 mt-8"
                   >
                     <a
+                      href="/blogs"
+                      onClick={(e) => navigateTo("/blogs", e)}
+                      className="group inline-flex items-center gap-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3.5 text-xs sm:text-sm font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
+                    >
+                      <IconFileText size={16} />
+                      <span>Read Blogs</span>
+                      <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                    
+                    <a
                       href={WHATSAPP}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] px-6 py-3.5 text-xs sm:text-sm font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
-                    >
-                      <IconWhatsapp size={16} />
-                      <span>WhatsApp Me</span>
-                      <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </a>
-                    
-                    <button
-                      onClick={triggerDirectMail}
                       className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-6 py-3.5 text-xs sm:text-sm font-bold hover:bg-[var(--text)] hover:text-[var(--bg)] hover:border-[var(--text)] hover:scale-105 active:scale-95 transition-all"
                     >
-                      <Mail size={15} />
-                      <span>Send Email</span>
-                    </button>
+                      <IconWhatsapp size={15} />
+                      <span>WhatsApp Me</span>
+                    </a>
                   </motion.div>
                 </div>
 
@@ -949,7 +1014,7 @@ export default function HomePage() {
                   {Array.from({ length: 2 }).map((_, index) => (
                     <span key={index} className="inline-flex items-center gap-8 sm:gap-16">
                       <span>Business Development</span><span className="text-[var(--text-subtle)]">/</span>
-                      <span>Digital Growth</span><span className="text-[var(--text-subtle)]">/</span>
+                      <span>Market Analyst</span><span className="text-[var(--text-subtle)]">/</span>
                       <span>Creative Thinking & Design</span><span className="text-[var(--text-subtle)]">/</span>
                       <span>Technology</span><span className="text-[var(--text-subtle)]">/</span>
                       <span>People & Communication</span><span className="text-[var(--text-subtle)]">/</span>
@@ -1066,7 +1131,7 @@ export default function HomePage() {
             </section>
 
             {/* COMPACT BOTTOM CTA (DIRECTS ONLY TO CONTACT PAGE) */}
-            <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[var(--border)] bg-[var(--bg-subtle)] p-5 sm:p-8 mt-8 sm:mt-10 mb-4 shadow-lg">
+            <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[var(--border)] bg-[var(--bg-subtle)] p-5 sm:p-8 mt-8 sm:mt-10 mb-6 shadow-lg">
               <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-subtle)] font-bold">[ GET IN TOUCH ]</span>
