@@ -109,10 +109,8 @@ interface BlogPost {
 
 // Replace any of these 4 slugs when you publish new essays you want pinned at the top
 const FEATURED_SLUGS = [
-  "why-creativity-needs-strategy",
-  "international-client-outreach",
-  "teaching-financial-markets",
-  "systems-thinking-from-it",
+  "what-are-prop-firms-in-forex",
+  "is-forex-trading-legal-in-nepal"
 ];
 
 const INITIAL_POSTS: BlogPost[] = [
@@ -174,6 +172,28 @@ const EMAIL = "hello@rojish-sakhakarmi.com.np";
 const LINKEDIN = "https://linkedin.com/in/rojish0";
 const INSTAGRAM = "https://instagram.com/rojish0";
 const WHATSAPP = "https://wa.me/rojish0";
+
+function renderFormattedText(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*|\*[^*]+?\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-bold text-[var(--text)]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return (
+        <em key={index} className="italic">
+          {part.slice(1, -1)}
+        </em>
+      );
+    }
+    return part;
+  });
+}
 
 export default function HomePage() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -402,7 +422,7 @@ export default function HomePage() {
 
               <div className="space-y-6 text-base sm:text-[18px] leading-relaxed text-[var(--text-muted)]">
                 {(activePost.body || []).map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
+                  <p key={index}>{renderFormattedText(paragraph)}</p>
                 ))}
               </div>
 

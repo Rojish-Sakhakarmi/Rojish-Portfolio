@@ -388,7 +388,7 @@ export default function AdminDashboard() {
                   >
                     <option value="Business Development">Business Development</option>
                     <option value="Brand Strategy">Brand Strategy</option>
-                    <option value="Market Strategy">Market Strategy</option>
+                    <option value="Financial Markets">Financial Markets</option>
                     <option value="Product & UX">Product & UX</option>
                     <option value="Operations">Operations</option>
                   </select>

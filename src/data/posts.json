@@ -1,5 +1,58 @@
 [
   {
+    "slug": "what-are-prop-firms-in-forex",
+    "title": "What Are Prop Firms in Forex? A Simple Guide for Beginners",
+    "category": "Financial Markets",
+    "date": "2026-11-10",
+    "excerpt": "Prop firms are companies that give traders access to simulated capital to trade forex in exchange for an evaluation fee. Learn how they work and what it takes to pass.",
+    "body": [
+      "When I first started exploring forex a couple of years ago, I ran into a problem almost every beginner faces: I wanted to learn how to trade properly, but I did not have thousands of dollars sitting around to fund a big account. Around that time, I kept hearing other traders talk about passing challenges and getting funded through proprietary trading firms (prop firms).",
+      "In simple terms, prop firms are companies that give traders access to simulated capital to trade forex and gold in exchange for a one-time evaluation fee. To get funded, you have to pass a trading test by hitting a profit target without breaking their risk rules.",
+      "**What Type of Company Is a Prop Firm?**",
+      "Traditionally, a proprietary trading firm is a financial institution that trades its own money—not client deposits—to make profits from the markets.",
+      "However, the online retail prop firms popular today work mostly as fintech and evaluation companies. Unlike regulated brokers where you deposit and trade your own money, prop firms provide a simulated trading environment. Because they do not hold public investor deposits, most are registered as standard technology or commercial companies rather than banks or brokers.",
+      "**How the Evaluation Model Works**",
+      "Normally, if you trade a $100 personal account and make a solid 10% gain in a month, you only earn $10. It is hard to grow a small account without taking reckless risks.",
+      "With a prop firm, you pay a small upfront fee—for example, $50 to $100—to take an evaluation challenge on a $5,000 or $10,000 simulated account. If you pass their test, you get a funded account and keep a share of the profits you make, usually 80% to 90%.",
+      "**What You Need to Pass**",
+      "Prop firms make money from evaluation fees and by using trading data from their top, consistent traders. To filter out gamblers, almost every firm enforces two strict rules:",
+      "Daily Drawdown Limit: The maximum amount you can lose in a single day (usually 4% to 5%).",
+      "Maximum Overall Loss: The total amount your account can drop before it is permanently breached (usually 8% to 10%).",
+      "If you cross either limit even by a dollar, you fail the challenge and lose your evaluation fee.",
+      "**My Take**",
+      "From watching local traders and studying market structure myself, I see prop firms as a great opportunity—but a terrible shortcut.",
+      "If you cannot stay profitable and control your emotions on a free demo account yet, paying for a prop firm challenge will only cost you money. Master your risk management first, treat the evaluation like real capital, and only pay the fee when your strategy is already consistent.",
+      "*Disclaimer: This article is for educational purposes only and does not constitute financial advice. Always research a firm's background, payout track record, and local payment eligibility before purchasing any trading evaluation.*"
+    ]
+  },
+  {
+    "slug": "is-forex-trading-legal-in-nepal",
+    "title": "Is Forex Trading Legal in Nepal? What About Prop Firms?",
+    "category": "Financial Markets",
+    "date": "2026-11-14",
+    "excerpt": "Is forex trading legal in Nepal? Here is the practical difference between funding an offshore broker and using a prop firm under Nepal Rastra Bank rules.",
+    "body": [
+      "Over the past couple of years of following forex and watching the local trading community grow, I have noticed the same pattern everywhere. Young people across Nepal are diving into MetaTrader charts, tracking gold setups, and sharing funded payout screenshots.",
+      "Yet almost every beginner I talk to gets stuck on the exact same question before placing their first real trade: Is forex trading actually legal in Nepal?",
+      "The honest answer depends on how you enter the market and how money moves across borders.",
+      "**Offshore Forex Brokers**",
+      "If you live in Nepal and want to deposit your own savings into an international forex broker, you run directly into Nepal's foreign exchange laws.",
+      "Under the Foreign Exchange (Regulation) Act and Nepal Rastra Bank (NRB) directives, sending money abroad for speculative margin trading is restricted. A common mistake I see beginners make is assuming a broker is legal locally just because the platform accepts a Nepali citizenship card or passport.",
+      "Offshore brokers follow their own country's rules, not Nepal's. Using informal workarounds, third-party wallets, or peer-to-peer (P2P) transfers to fund a foreign trading account carries serious legal and banking risks.",
+      "**What About Prop Firms?**",
+      "This is why proprietary trading firms (prop firms) have gained so much attention among Nepali traders.",
+      "Instead of depositing your own savings as live trading capital, you pay a one-time fee to take an evaluation challenge on a simulated account. If you pass their profit targets without breaking their drawdown rules, you qualify for a funded account and earn a split of the profits.",
+      "From a beginner's perspective, the appeal is easy to understand: you are not putting thousands of dollars of personal savings at risk. Your financial exposure is capped at the challenge fee. Still, you can lose that fee, and passing an evaluation or receiving a payout is never guaranteed.",
+      "**Can You Pay With a Nepali Dollar Card?**",
+      "Nepali banks issue USD prepaid cards (commonly called dollar cards) for approved international online payments. However, having a dollar card does not mean every foreign payment is allowed.",
+      "Many banks block payments to trading or high-risk platforms. Before paying any evaluation fee, ask your bank directly if that payment is permitted under current NRB rules. And if you ever receive a payout, keep clear records and use official banking channels.",
+      "**My Take**",
+      "When I first started learning about forex and market structure, I realized quickly that knowing how to read a chart is only half the picture. Understanding the rules around how you fund and withdraw is just as important.",
+      "Prop firms offer a realistic way to test your trading discipline without risking large personal savings. Still, don't let social media hype rush you into buying a challenge. Check the firm's Nepal eligibility, confirm payment rules with your bank first, and understand the full setup before spending a single rupee.",
+      "*Disclaimer: This article is for educational purposes only, not legal or financial advice. Always verify current foreign exchange rules with Nepal Rastra Bank (NRB) or your bank before making international payments.*"
+    ]
+  },
+  {
     "slug": "why-creativity-needs-strategy",
     "title": "Why creativity becomes truly valuable only when backed by strategy?",
     "category": "Brand Strategy",
@@ -16,9 +69,9 @@
     "title": "What international client outreach taught me about business development?",
     "category": "Business Development",
     "date": "2026-08-20",
-    "excerpt": "Notes from lead generation and client communication at WebX Nepal. Why listening and understanding client requirements beats high-pressure pitches.",
+    "excerpt": "Notes from lead generation and client communication. Why listening and understanding client requirements beats high-pressure pitches.",
     "body": [
-      "Stepping into business development at WebX Nepal, I was tasked with international outreach, lead generation, and digital positioning. Coming in with a design and IT background, I initially wondered how much persuasion would be required.",
+      "Stepping into business development, I was tasked with international outreach, lead generation, and digital positioning. Coming in with a design and IT background, I initially wondered how much persuasion would be required.",
       "What I quickly discovered was that effective business development is not about aggressive selling. It is about careful research, active listening, and diagnosing what a prospective partner actually needs before proposing a digital solution.",
       "When you take the time to understand a client's workflows, target audience, and current bottlenecks, the commercial proposal almost writes itself. Genuine communication and clear expectations build partnerships that last."
     ]
@@ -40,9 +93,9 @@
     "title": "How an IT background in cybersecurity shapes business thinking?",
     "category": "Systems & Tech",
     "date": "2026-06-05",
-    "excerpt": "Studying Computer Science and networking at KFA Business School gave me a framework for diagnosing friction and understanding how systems behave under pressure.",
+    "excerpt": "Studying Computer Science and networking gave me a framework for diagnosing friction and understanding how systems behave under pressure.",
     "body": [
-      "Completing my Bachelor's in Computer Science and IT with a focus on networking and cybersecurity gave me a foundational appreciation for how interconnected systems function—and where they break.",
+      "Completing my Bachelor's in Computer Science and IT with a focus on networking and cybersecurity gave me a foundational appreciation for how interconnected systems function and where they break.",
       "In cybersecurity, you learn that vulnerabilities rarely appear in the center of a well-trodden process; they emerge at the handoffs, the edge cases, and the gaps where communication breaks down. The exact same rule applies to business operations and sales funnels.",
       "When a business struggles to convert leads or scale its brand, the bottleneck is almost always an unaddressed operational edge case. Having an IT mindset allows me to analyze commercial problems with structured logic, ensuring that marketing promises align with operational capability."
     ]
