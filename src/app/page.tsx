@@ -1160,7 +1160,7 @@ export default function HomePage() {
       {/* MINIMAL FOOTER WITH REDUCED MARGIN */}
       <footer className="border-t border-[var(--border)] py-6 text-xs text-[var(--text-muted)] bg-[var(--bg-card)]">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex items-center justify-between gap-4 font-mono">
-          <div>© 2026 Rojish Sakhakarmi — Kathmandu, Nepal</div>
+          <div>© 2026 Rojish Sakhakarmi - Kathmandu, Nepal</div>
         </div>
       </footer>
 
