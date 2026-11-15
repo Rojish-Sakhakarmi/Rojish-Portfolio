@@ -98,8 +98,8 @@ const MinimalFocusBadge = () => (
 );
 
 const FEATURED_SLUGS = [
+    "is-forex-trading-legal-in-nepal",
   "what-are-prop-firms-in-forex",
-  "is-forex-trading-legal-in-nepal",
 ];
 
 const EMAIL = "hello@rojish-sakhakarmi.com.np";
