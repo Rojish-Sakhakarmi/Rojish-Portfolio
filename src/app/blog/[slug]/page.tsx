@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import HomePage, { INITIAL_POSTS, type BlogPost } from "../../page";
+import PortfolioClient from "@/components/PortfolioClient";
+import { INITIAL_POSTS, type BlogPost } from "@/lib/posts";
 
 const BASE_URL = "https://rojish-sakhakarmi.com.np";
 
@@ -60,5 +61,5 @@ export default async function BlogPostRoute({
   const { slug } = await params;
   const posts = await getAllPosts();
 
-  return <HomePage initialPosts={posts} initialPath={`/blog/${slug}`} />;
+  return <PortfolioClient initialPosts={posts} initialPath={`/blog/${slug}`} />;
 }
