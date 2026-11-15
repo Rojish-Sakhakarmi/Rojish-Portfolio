@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.2",
     "@tailwindcss/postcss": "^4.3.4",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",

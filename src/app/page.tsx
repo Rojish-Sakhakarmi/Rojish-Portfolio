@@ -96,7 +96,7 @@ const MinimalFocusBadge = () => (
   </div>
 );
 
-interface BlogPost {
+export interface BlogPost {
   slug: string;
   title: string;
   category: string;
@@ -109,11 +109,13 @@ interface BlogPost {
 
 // Replace any of these 4 slugs when you publish new essays you want pinned at the top
 const FEATURED_SLUGS = [
-  "what-are-prop-firms-in-forex",
-  "is-forex-trading-legal-in-nepal"
+  "why-creativity-needs-strategy",
+  "international-client-outreach",
+  "teaching-financial-markets",
+  "systems-thinking-from-it",
 ];
 
-const INITIAL_POSTS: BlogPost[] = [
+export const INITIAL_POSTS: BlogPost[] = [
   {
     slug: "why-creativity-needs-strategy",
     title: "Why creativity becomes truly valuable only when backed by strategy",
@@ -195,10 +197,18 @@ function renderFormattedText(text: string) {
   });
 }
 
-export default function HomePage() {
+export default function HomePage({
+  initialPosts,
+  initialPath = "/",
+}: {
+  initialPosts?: BlogPost[];
+  initialPath?: string;
+}) {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
-  const [currentPath, setCurrentPath] = useState("/");
-  const [posts, setPosts] = useState<BlogPost[]>(INITIAL_POSTS);
+  const [currentPath, setCurrentPath] = useState(initialPath);
+  const [posts, setPosts] = useState<BlogPost[]>(
+    initialPosts && initialPosts.length > 0 ? initialPosts : INITIAL_POSTS
+  );
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
