@@ -109,10 +109,8 @@ export interface BlogPost {
 
 // Replace any of these 4 slugs when you publish new essays you want pinned at the top
 const FEATURED_SLUGS = [
-  "why-creativity-needs-strategy",
-  "international-client-outreach",
-  "teaching-financial-markets",
-  "systems-thinking-from-it",
+  "is-forex-trading-legal-in-nepal",
+  "what-are-prop-firms-in-forex"
 ];
 
 export const INITIAL_POSTS: BlogPost[] = [
