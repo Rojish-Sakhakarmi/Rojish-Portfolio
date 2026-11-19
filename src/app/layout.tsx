@@ -57,6 +57,21 @@ export default function RootLayout({
         {children}
         <Analytics />
         <SpeedInsights />
+
+        {/* Google Tag (G-0BFP519WZ3) */}
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=G-0BFP519WZ3"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
+
+        {/* Microsoft Clarity */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
