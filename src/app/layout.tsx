@@ -52,24 +52,25 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap"
           rel="stylesheet"
         />
-      </head>
-      <body className="antialiased min-h-screen">
-        {children}
-        <Analytics />
-        <SpeedInsights />
 
-        {/* Google Tag (G-0BFP519WZ3) */}
+        {/* Google Tag (GTM-TDLSNXPN) */}
         <Script
-          src="https://www.googletagmanager.com/gtm.js?id=G-0BFP519WZ3"
-          strategy="afterInteractive"
+          id="google-tag-src"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-TDLSNXPN"
+          strategy="beforeInteractive"
         />
-        <Script id="google-tag-init" strategy="afterInteractive">
+        <Script id="google-tag-init" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
           `}
         </Script>
+      </head>
+      <body className="antialiased min-h-screen">
+        {children}
+        <Analytics />
+        <SpeedInsights />
 
         {/* Microsoft Clarity */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
