@@ -387,10 +387,10 @@ export default function AdminDashboard() {
                     className="w-full px-4 py-2.5 rounded-xl border border-[#27272a] bg-black text-sm outline-none focus:border-white transition-colors"
                   >
                     <option value="Business Development">Business Development</option>
-                    <option value="Brand Strategy">Brand Strategy</option>
-                    <option value="Financial Markets">Financial Markets</option>
-                    <option value="Product & UX">Product & UX</option>
-                    <option value="Operations">Operations</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Trading & Crypto">Trading & Crypto</option>
+                    <option value="System & Tech">System & Tech</option>
+                    <option value="NEPSE & Investing">NEPSE & Investing</option>
                   </select>
                 </div>
               </div>

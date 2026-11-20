@@ -1,8 +1,109 @@
 [
   {
+    "slug": "how-to-start-investing-in-nepse-a-step-by-step-guide-for-beginners",
+    "title": "How to Start Investing in NEPSE: A Step-by-Step Guide for Beginners",
+    "category": "NEPSE & Investing",
+    "date": "2026-09-25",
+    "excerpt": "Want to start investing in the Nepal Stock Exchange? Follow this simple, step-by-step beginner guide covering bank accounts, Demat, Meroshare, broker TMS setup, and your first trade.",
+    "body": [
+      "When I first started exploring the **Nepal Stock Exchange (NEPSE)**, the biggest hurdle was not picking stocks. It was figuring out how all the different accounts fit together. Between banks, Demat numbers, Meroshare logins, and broker portals, the whole onboarding process can feel confusing if nobody lays it out simply.",
+      "If you are ready to move past IPOs and start buying shares in the secondary market, here is the exact step-by-step roadmap to get set up properly in Nepal.",
+      "**1. Open a Bank Account With C-ASBA Enabled**",
+      "Everything in NEPSE starts with a standard savings account at a commercial or development bank in Nepal.",
+      "Once your account is active, ask your bank to activate **C-ASBA** and provide your **CRN (C-ASBA Registration Number)**. You will need this number whenever you apply for Initial Public Offerings (IPOs) or right shares, as it allows the bank to hold your application amount safely until allotment.",
+      "**2. Open a Demat Account and Activate Meroshare**",
+      "Think of a **Demat account** as a digital locker that holds your shares electronically instead of paper certificates. You can open one through a licensed Depository Participant (DP), usually a bank's merchant banking arm or your stock broker.",
+      "At the same time, request **Meroshare** access. Meroshare is the online portal by CDSC where you apply for IPOs, check your portfolio holdings, calculate your Weighted Average Cost of Capital (WACC), and transfer shares after selling them.",
+      "**3. Register With a Licensed Stock Broker for TMS**",
+      "To buy and sell shares directly in the live secondary market, you need an account with a SEBON-licensed stock broker.",
+      "Most brokers now offer online KYC registration. Once verified, they will give you login credentials for your **TMS (Trade Management System)** account, which is the web portal used to place buy and sell orders during market hours from Sunday to Thursday, 11:00 AM to 3:00 PM.",
+      "**4. Load Collateral and Place Your First Small Order**",
+      "Before buying shares on TMS, you transfer funds from your bank into your broker account as **collateral** (usually via ConnectIPS).",
+      "Start with a small amount you are comfortable learning with. Stick to fundamentally sound companies or mutual funds first rather than chasing volatile stocks hitting daily circuits.",
+      "**My Take**",
+      "From my own experience watching beginners enter NEPSE, getting the accounts opened is easy, *but having patience once your TMS screen turns green or red is the real test*.",
+      "Set up your system cleanly, start small while learning how orders and T+2 settlement work, and focus on understanding the businesses you buy rather than following daily market rumors.",
+      "*Disclaimer: This article is for educational purposes only and does not constitute financial or investment advice. Always do your own research and consult a licensed financial advisor before investing in the stock market.*"
+    ]
+  },
+  {
+    "slug": "how-to-apply-for-ipo-in-nepal",
+    "title": "How to Apply for an IPO in Nepal: A Complete Beginner's Guide",
+    "category": "NEPSE & Investing",
+    "date": "2026-09-23",
+    "excerpt": "Want to apply for Initial Public Offerings (IPOs) in Nepal? Learn how IPOs work, what documents you need, and how to apply online through Meroshare in minutes.",
+    "body": [
+      "For almost every young investor in Nepal, including myself, applying for an **Initial Public Offering (IPO)** is the very first step into the stock market. Before you ever open a broker account or look at live candlestick charts on NEPSE, an IPO lets you buy shares directly from a company at its base price before it lists on the exchange.",
+      "If you are completely new to investing in Nepal and want to start applying for IPOs properly, here is how the process works from start to finish.",
+      "**What Is an IPO in Simple Terms?**",
+      "When a private company in Nepal wants to raise money from the public to expand its business or pay off loans, it offers its shares to everyday investors for the first time.",
+      "In Nepal, most general public IPOs are issued at a par value of **Rs. 100 per share**, with a minimum application of **10 units (Rs. 1,000)** (though some companies issue shares at a premium or via book-building). Because millions of Nepalis apply for limited shares, allotment usually happens through a lottery system. If you get allotted, the shares appear in your account; if not, your bank releases your blocked money automatically.",
+      "**What You Need Before Applying**",
+      "You do not need a stock broker account to apply for an IPO. You only need three basic things set up through a commercial or development bank:",
+      "* **A Savings Bank Account:** An active account with at least Rs. 1,000 to Rs. 2,000 in balance.\n* **Demat Account:** A digital locker where your allotted shares are stored safely.\n* **Meroshare and CRN:** Online login access to CDSC's **Meroshare** portal, plus your **C-ASBA Registration Number (CRN)** from your bank so funds can be held during the application window.",
+      "**How to Apply Online Through Meroshare**",
+      "Once an IPO opens (usually for four working days), applying takes less than two minutes:",
+      "1. Log in to your **Meroshare** portal or mobile app.",
+      "2. Go to the **My ASBA** tab and select **Apply for Issue**.",
+      "3. Pick the open company IPO (make sure you select *Ordinary Shares* for the general public, not local or foreign-employment quotas unless eligible).",
+      "4. Enter your applied units (usually **10 kitta** for oversubscribed issues), select your bank, type your **CRN**, and confirm with your **4-digit transaction PIN**.",
+      "**My Take**",
+      "From my own experience starting out in Nepal's market, IPOs are the safest way to build the habit of investing without risking big money.",
+      "Do not get discouraged if you miss several allotments in a row because of high applicant numbers. Stay consistent, keep a small balance ready in your bank account, and use that time to learn how companies actually perform once they list on NEPSE.",
+      "*Disclaimer: This article is for educational purposes only and does not constitute financial or investment advice. Always verify official IPO announcements through CDSC, SEBON, or Meroshare before applying.*"
+    ]
+  },
+  {
+    "slug": "nepse-vs-forex-liquidity-lessons",
+    "title": "NEPSE vs. Forex: What Trading Both Taught Me About Liquidity",
+    "category": "Finance",
+    "date": "2026-09-22",
+    "excerpt": "Comparing the Nepal Stock Exchange with the global forex market reveals a critical lesson every beginner misses. Learn how liquidity works in both markets and why it changes how you enter and exit trades.",
+    "body": [
+      "Having spent over four years watching the **Nepal Stock Exchange (NEPSE)** and the past couple of years studying **forex and gold (XAUUSD)**, I often get asked which market is better for a young trader in Nepal.",
+      "The truth is, comparing them is not about which one makes more money. Watching both markets side by side taught me one of the most important concepts in trading: **liquidity**, or how easily you can enter and exit a position without moving the price against yourself.",
+      "**1. NEPSE Shows You What Happens When Liquidity Dries Up**",
+      "In NEPSE, trading runs from 11:00 AM to 3:00 PM Sunday through Thursday, with a strict **10% daily circuit limit** on individual stocks.",
+      "When strong news or sector hype hits a low-cap hydropower or microfinance stock, buyers flood the order book. The stock hits a positive circuit within minutes, and suddenly you cannot buy a single share even if you want to. The exact opposite happens when panic hits. Everyone lines up to sell at the negative circuit, and there are zero buyers on the other side. *You are locked in until sentiment shifts.*",
+      "**2. Forex Shows You How Price Hunts Liquidity**",
+      "Forex operates on a completely different scale. With trillions of dollars moving daily across Sydney, Tokyo, London, and New York, you almost never worry about getting stuck in a circuit freeze on major pairs like **EUR/USD** or **XAUUSD**.",
+      "Instead, liquidity in forex shapes *where* price moves. Institutional players need large pools of resting orders to fill big positions. That is why you often see price sweep just above an obvious resistance level or below a clean support zone, trigger retail stop losses, and then reverse sharply. In NEPSE, lack of liquidity traps you; in forex, abundance of liquidity hunts your stops.",
+      "**3. Timing Matters Differently in Both**",
+      "In NEPSE, volume spikes around the opening hour and the final thirty minutes before 3:00 PM, while mid-day often drifts quietly. In forex, trading during the quiet morning hours in Nepal feels slow until European and US volume steps in during the afternoon and evening.",
+      "**My Take**",
+      "Studying both NEPSE and forex made me realize that a chart pattern means nothing without understanding the liquidity behind it.",
+      "Whether you are buying shares in Kathmandu or analyzing gold setups on MetaTrader, always check if there is enough volume to support your trade, and never place your stop loss where the crowd puts theirs.",
+      "*Disclaimer: This article is for educational purposes only and does not constitute financial or investment advice. Always do your own research and verify local regulations before participating in any financial market.*"
+    ]
+  },
+  {
+    "slug": "nepse-cycles-crowd-psychology",
+    "title": "What 4 Years of Watching NEPSE Cycles Taught Me About Crowd Psychology",
+    "category": "NEPSE & Investing",
+    "date": "2026-09-21",
+    "excerpt": "After 4+ years of following the Nepal Stock Exchange, one pattern repeats every cycle. Learn how retail crowd psychology drives NEPSE bull runs, panic sell-offs, and how beginners can avoid getting trapped.",
+    "body": [
+      "Over the past four years of watching and participating in the **Nepal Stock Exchange (NEPSE)**, I have seen full market cycles play out right in front of me. I have watched quiet accumulation phases turn into massive bull runs, and I have watched those same rallies fade into long, frustrating bear markets.",
+      "When you first start looking at NEPSE, it is easy to think prices move purely because of company profits, bonus shares, or central bank policies. Those things definitely spark the move, *but crowd psychology is what pushes prices to extremes*.",
+      "**1. Everybody Wants to Buy at the Top**",
+      "One of the clearest patterns in NEPSE is when retail interest peaks.",
+      "During the early stages of a bull market, when quality stocks and mutual funds are trading at reasonable valuations, almost nobody is talking about the market. Volume stays low, and people hesitate because the recent memory of losses is still fresh.",
+      "Fast forward six months, after the index has already climbed hundreds of points, and suddenly everyone at tea shops, family gatherings, and on social media is asking which stock to buy. Beginners enter heavily right when early investors are looking to book profits. *By the time a stock feels completely safe to buy, most of the easy upside is already gone.*",
+      "**2. Fear Makes People Sell Quality at a Discount**",
+      "The exact opposite happens during a bear cycle.",
+      "When the market drops week after week and red portfolios take over social media feeds, panic spreads fast. Instead of looking at company fundamentals or long-term value, retail investors sell good stocks at steep losses simply to stop the emotional discomfort of watching their screen turn red every afternoon.",
+      "**3. Rumors Move Faster Than Real Data**",
+      "In a smaller market like NEPSE, herd behavior gets amplified by unverified tips. Whenever a sector like hydropower or microfinance starts hitting positive circuits, crowds rush in without checking earnings, book values, or floorsheet volume. When sentiment flips, those same stocks hit negative circuits with zero buyers left to exit into.",
+      "**My Take**",
+      "Watching NEPSE over the last few years taught me that your biggest advantage is simply staying calm while everyone else is reacting emotionally.",
+      "You do not need to predict the exact top or bottom of a cycle. Just remember that when everyone around you is overly excited, it is time to manage risk, and when everyone is panicking, it is time to do your homework quietly.",
+      "*Disclaimer: This article is for educational purposes only and does not constitute financial or investment advice. Always do your own research and consult a licensed financial advisor before investing in the stock market.*"
+    ]
+  },
+  {
     "slug": "forex-trading-sessions-nepal-time",
     "title": "Forex Trading Sessions in Nepal Time (NPT): Best Hours to Trade",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-19",
     "excerpt": "Wondering when the forex market moves fastest in Nepal? Learn the exact Sydney, Tokyo, London, and New York session timings in Nepal Time (NPT) and the best evening overlap hours to trade.",
     "body": [
@@ -10,10 +111,10 @@
       "Even though the forex market runs 24 hours a day from Monday to Friday, volume and price movement depend entirely on which major financial center is open.",
       "**The Four Forex Sessions in Nepal Time**",
       "Because Nepal does not observe Daylight Saving Time, our session hours shift by one hour twice a year when the US, UK, and Australia change their clocks. Here is the schedule in **Nepal Time (NPT)**:",
-      " **Sydney Session:** 2:45 AM to 11:45 AM NPT (3:45 AM to 12:45 PM from April to October)*. This is the quietest start to the trading day, mostly moving AUD and NZD pairs.",
-      " **Tokyo (Asian) Session:** 5:45 AM to 2:45 PM NPT (year-round). Price often consolidates in tight ranges, with better movement on JPY pairs.",
-      " **London Session:** 1:45 PM to 10:45 PM NPT (12:45 PM to 9:45 PM from April to October). Volume picks up sharply in the afternoon as European banks enter the market.",
-      " **New York Session:** 6:45 PM to 3:45 AM NPT (5:45 PM to 2:45 AM from April to October). Major US economic news and heavy liquidity hit the charts during this window.",
+      "**Sydney Session:** 2:45 AM to 11:45 AM NPT (3:45 AM to 12:45 PM from April to October)*. This is the quietest start to the trading day, mostly moving AUD and NZD pairs.",
+      "**Tokyo (Asian) Session:** 5:45 AM to 2:45 PM NPT (year-round). Price often consolidates in tight ranges, with better movement on JPY pairs.",
+      "**London Session:** 1:45 PM to 10:45 PM NPT (12:45 PM to 9:45 PM from April to October). Volume picks up sharply in the afternoon as European banks enter the market.",
+      "**New York Session:** 6:45 PM to 3:45 AM NPT (5:45 PM to 2:45 AM from April to October). Major US economic news and heavy liquidity hit the charts during this window.",
       "**The Best Window for Traders in Nepal**",
       "If you trade major pairs like **EUR/USD, GBP/USD, or gold (XAUUSD)**, the highest volume and cleanest setups happen during the **London and New York overlap**.",
       "In Nepal, that peak window runs from **6:45 PM to 10:45 PM NPT** *(5:45 PM to 9:45 PM in summer)*. Nearly half of all daily forex volume flows through these four hours, giving you tighter spreads and stronger momentum without staying up all night.",
@@ -26,7 +127,7 @@
   {
     "slug": "how-can-i-start-forex-trading",
     "title": "How Can I Start Forex Trading? A Beginner's Roadmap",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-17",
     "excerpt": "Want to start forex trading without blowing your first account? Follow this simple, step-by-step beginner roadmap covering market basics, chart setup, demo practice, and risk management.",
     "body": [
@@ -54,7 +155,7 @@
   {
     "slug": "withdraw-prop-firm-payouts-nepali-bank",
     "title": "Can You Withdraw Prop Firm Payouts to a Nepali Bank Account?",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-15",
     "excerpt": "Passed your prop firm challenge? Learn how international USD wire transfers reach your Nepali bank account, what documents banks ask for, and which payout options to avoid.",
     "body": [
@@ -80,7 +181,7 @@
   {
     "slug": "how-to-start-prop-firm-trading-from-nepal",
     "title": "How to Start Prop Firm Trading From Nepal: A Step-by-Step Guide",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-13",
     "excerpt": "Want to start prop firm trading from Nepal without wasting money on failed challenges? Follow this practical step-by-step roadmap covering demo practice, firm selection, and bank payment checks.",
     "body": [
@@ -111,7 +212,7 @@
   {
     "slug": "how-can-i-trade-forex-legally-from-nepal",
     "title": "How Can I Trade Forex Legally From Nepal? Practical Options for Beginners",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-09",
     "excerpt": "Looking for ways to trade forex legally from Nepal? Learn why funding personal offshore brokers violates NRB rules, and explore the practical, compliant steps beginners can take instead.",
     "body": [
@@ -137,7 +238,7 @@
   {
     "slug": "is-crypto-trading-legal-in-nepal",
     "title": "Is Crypto Trading Legal in Nepal? What Beginners Need to Know",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-07",
     "excerpt": "Is crypto trading legal in Nepal? Learn why Nepal Rastra Bank bans buying, selling, and holding cryptocurrency, and the real risks beginners face before touching any exchange.",
     "body": [
@@ -161,7 +262,7 @@
   {
     "slug": "what-are-prop-firms-in-forex",
     "title": "What Are Prop Firms in Forex? A Simple Guide for Beginners",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-03",
     "excerpt": "Prop firms are companies that give traders access to simulated capital to trade forex in exchange for an evaluation fee. Learn how they work and what it takes to pass.",
     "body": [
@@ -187,7 +288,7 @@
   {
     "slug": "is-forex-trading-legal-in-nepal",
     "title": "Is Forex Trading Legal in Nepal? What About Prop Firms?",
-    "category": "Financial Markets",
+    "category": "Trading & Crypto",
     "date": "2026-09-01",
     "excerpt": "Is forex trading legal in Nepal? Here is the practical difference between funding an offshore broker and using a prop firm under Nepal Rastra Bank rules.",
     "body": [
@@ -238,19 +339,31 @@
   {
     "slug": "teaching-financial-markets",
     "title": "What educating others on financial markets taught me about risk and patience?",
-    "category": "Financial Markets",
+    "category": "Finance",
     "date": "2026-07-10",
     "excerpt": "Observing the stock and forex markets rewards emotional discipline over impulse. Teaching financial literacy showed me how human psychology drives decision-making.",
     "body": [
-      "My fascination with the financial markets—from stock investing to forex—began with a simple curiosity about how capital flows and how market participants react to uncertainty. In trading, you quickly learn that being right matters far less than managing downside risk.",
-      "When I started teaching and educating others about financial literacy and market fundamentals, I noticed that the hardest lesson is rarely technical analysis—it is emotional discipline. Most beginners lose money not because of bad charts, but because of impatience and ego.",
-      "Whether in the markets or in business negotiations, patience is an active position. Managing risk, preserving resources, and waiting for high-probability setups will always compound better than chasing restless impulses. (This reflects personal experience, not financial advice.)"
+      "When I first started sharing simple posts and answering questions about NEPSE and forex for young people here in Nepal, I thought I was just helping beginners understand the basics. What I did not expect was how much explaining those concepts would reshape my own habits in the market.",
+      "You never truly test your understanding of a topic until someone asks you to explain it without charts, jargon, or complicated indicators. Doing that forced me to confront my own blind spots around risk and patience.",
+      "**1. Most People Do Not Lose Because of Bad Entries**",
+      "When beginners reach out to me, they almost always ask for the same things: a better entry setup, a hidden indicator, or which stock will move next week.",
+      "After looking at dozens of beginner questions and blown demo accounts, a clear pattern stood out. Very few people lose money because they cannot spot a trend. They lose because they risk way too much on a single idea. Explaining why risking 1% per trade matters made me much stricter with my own position sizing. When you teach someone else to protect their downside first, you feel foolish ignoring your own stop loss.",
+      "**2. Impatience Is Usually Just Boredom in Disguise**",
+      "In both NEPSE and forex, the market spends most of its time doing nothing exciting. For months in NEPSE, indices move sideways while liquidity dries up. In forex, price sits in tight ranges before London or New York volume steps in.",
+      "Writing about market cycles and liquidity taught me that forcing trades during quiet periods is just paying for entertainment. Seeing beginners rush into prop firm challenges or chase green candles in NEPSE reminded me how expensive impatience really is. Waiting for clear confirmation is not missing out; it is part of the job.",
+      "**3. Simplicity Beats Complexity Every Time**",
+      "If you cannot explain why you are taking a trade or buying a stock in two simple sentences, you probably do not have a real plan.",
+      "Breaking down market structure and basic company fundamentals for others stripped away the unnecessary noise from my own charts. Good risk management and a clear thesis will always beat ten overlapping indicators.",
+      "**My Take**",
+      "Sharing what I have learned over the past few years of following NEPSE and forex has been one of the best filters for my own discipline.",
+      "Teaching keeps you honest. It reminds you every single day that surviving in financial markets has very little to do with predicting the future, and everything to do with managing your risk and having the patience to wait for your setup.",
+      "*Disclaimer: This article is for educational purposes only and does not constitute financial or investment advice. Always do your own research and manage your risk carefully before participating in any financial market.*"
     ]
   },
   {
     "slug": "systems-thinking-from-it",
     "title": "How an IT background in cybersecurity shapes business thinking?",
-    "category": "Systems & Tech",
+    "category": "System & Tech",
     "date": "2026-06-05",
     "excerpt": "Studying Computer Science and networking gave me a framework for diagnosing friction and understanding how systems behave under pressure.",
     "body": [
